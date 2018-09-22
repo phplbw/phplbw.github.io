@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="vmware安装安装前准备1vmware安装自己百度或者谷歌下载安装，我用的是12.1.0版本的vmware">
+<meta name="keywords" content="vmware_centos6_lnmp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36">
+<meta property="og:url" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="vmware安装安装前准备1vmware安装自己百度或者谷歌下载安装，我用的是12.1.0版本的vmware">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_1.jpg">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_2.png">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_3.jpg">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_4.png">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_5.jpg">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_6.png">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_7.jpg">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_8.png">
+<meta property="og:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_9.jpg">
+<meta property="og:updated_time" content="2018-08-21T14:39:54.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36">
+<meta name="twitter:description" content="vmware安装安装前准备1vmware安装自己百度或者谷歌下载安装，我用的是12.1.0版本的vmware">
+<meta name="twitter:image" content="http://www.phplbw.site/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/centos_1.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/" class="article-date">
+      <time datetime="2018-06-25T14:55:47.000Z" itemprop="datePublished">2018-06-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="vmware安装"><a href="#vmware安装" class="headerlink" title="vmware安装"></a>vmware安装</h2><h3 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmware安装自己百度或者谷歌下载安装，我用的是12.1.0版本的vmware</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="centos6安装"><a href="#centos6安装" class="headerlink" title="centos6安装"></a>centos6安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击虚拟机右上角的文件—&gt;新建虚拟机—&gt;典型（推荐）—&gt;下一步—&gt;选稍后安装系统—&gt;下一步—&gt;选linux对应版本为centos64位—&gt;下一步—&gt;给虚拟机命名（随意）和所安装的路径（这里建议建个文件夹搞）—&gt;下一步—&gt;设置最大磁盘大小（我设置了80G）选将磁盘拆分成多个文件—&gt;下一步—&gt;点自定义硬件—&gt;设置内存（根据自己电脑设置我设置了3G）设置CD/DVD选右边的使用ISO映像文件找到下载的文件（我用的是CentOS-6.5-x86_64-minimal.iso）—&gt;关闭—&gt;完成</span><br></pre></td></tr></table></figure>
+<h3 id="开启虚拟机"><a href="#开启虚拟机" class="headerlink" title="开启虚拟机"></a>开启虚拟机</h3><p><img src="centos_1.jpg" alt="centos_1"><br>回车<br><img src="centos_2.png" alt="centos_2"><br>这里记得用tab键切换到Skip然后回车<br><img src="centos_3.jpg" alt="centos_3"><br>下一步<br><img src="centos_4.png" alt="centos_4"><br>下一步<br><img src="centos_5.jpg" alt="centos_5"><br>下一步<br><img src="centos_6.png" alt="centos_6"><br>下一步<br><img src="centos_7.jpg" alt="centos_7"><br><img src="centos_8.png" alt="centos_8"><br>暂时用默认主机名点下一步<br><img src="centos_9.jpg" alt="centos_9"><br>下一步<br>接着设置登录密码<br>下一步<br>选创建自定义布局<br>下一步<br>创建—&gt;标准分区—&gt;创建—&gt;挂载点填/boot然后其它默认—&gt;确定<br>创建—&gt;标准分区—&gt;创建—&gt;文件系统类型选swap大小填2048然后其它默认—&gt;确定<br>创建—&gt;标准分区—&gt;创建—&gt;挂载点填/其它大小选项选使用全部可用空间然后其它默认—&gt;确定<br>下一步—&gt;格式化—&gt;将修改写入磁盘—&gt;默认设置—&gt;下一步—&gt;最后等待安装完成—&gt;点重新引导</p>
+<h3 id="配置静态ip访问外网"><a href="#配置静态ip访问外网" class="headerlink" title="配置静态ip访问外网"></a>配置静态ip访问外网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">安装完虚拟机之后，检查网络连接下的VMnet1和VMnet8是否存在，如果不存在可以在虚拟机界面 编辑—&gt;虚拟网络编辑器—&gt;还原默认配置</span><br><span class="line">然后设置虚拟机桥接模式，在电脑本机cmd界面输入ipconfig查看本机的ip假设为192.168.137.59</span><br><span class="line">接着进到centos虚拟机命令行界面输入ifconfig会发现只有lo少了网卡eth0上不了网,解决办法配置静态ip,操作如下：</span><br><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line">会看到如下配置其中写着修改和添加表示改动过和新增的</span><br><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=00:0C:29:B4:21:3B</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=b1635b78-bf89-4b9e-b598-450ac33797a8</span><br><span class="line">ONBOOT=yes 修改</span><br><span class="line">NM_CONTROLLED=no 修改</span><br><span class="line">BOOTPROTO=static 修改</span><br><span class="line">IPADDR=192.168.137.130 添加（这里根据电脑本机设置同一网段）</span><br><span class="line">NETMASK=255.255.255.0 添加（子网掩码）</span><br><span class="line">GATEWAY=192.168.137.2 添加（网关）</span><br><span class="line">DNS1=8.8.8.8 添加</span><br><span class="line">DNS1=8.8.4.4 添加</span><br><span class="line">配置完后esc然后英文状态下:wq保存退出</span><br><span class="line">重启网络服务 service network restart</span><br><span class="line">此时在/etc/resolv.conf就会加入</span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line">然后ping www.baidu.com这回可以上网了，完美~</span><br><span class="line">接下来就可以使用xshell连接虚拟机里面的centos</span><br></pre></td></tr></table></figure>
+<h3 id="修改虚拟机主机名"><a href="#修改虚拟机主机名" class="headerlink" title="修改虚拟机主机名"></a>修改虚拟机主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">有三种方式：</span><br><span class="line">第一种直接用hostname命名</span><br><span class="line">hostname linbiwei</span><br><span class="line">第二种编辑network</span><br><span class="line">vi /etc/sysconfig/network</span><br><span class="line">NETWORKING=yes</span><br><span class="line">HOSTNAME=linbiwei(根据自己喜欢的名称设置)</span><br><span class="line">第三种编辑hosts(我一般使用这种)</span><br><span class="line">vi /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line">127.0.0.1 linbiwei</span><br><span class="line">192.168.137.130 linbiwei</span><br><span class="line">注：（这里192.168.137.130根据上面设置的DHCP起始ip范围自己设置）</span><br><span class="line">重启reboot</span><br></pre></td></tr></table></figure>
+<h3 id="nginx-1-12-2安装准备"><a href="#nginx-1-12-2安装准备" class="headerlink" title="nginx-1.12.2安装准备"></a>nginx-1.12.2安装准备</h3><p>我使用的安装包是nginx-1.12.2.tar.gz<br>可以去这里下载<br><a href="http://nginx.org/download/nginx-1.12.2.tar.gz" target="_blank" rel="noopener">nginx-1.12.2.tar.gz</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@linbiwei ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br><span class="line">[root@linbiwei ~]<span class="comment"># cd /</span></span><br><span class="line">[root@linbiwei /]<span class="comment"># ll</span></span><br><span class="line">[root@linbiwei /]<span class="comment"># mkdir software</span></span><br><span class="line">[root@linbiwei /]<span class="comment"># cd software</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># yum -y install wget</span></span><br><span class="line">如果安装包已经下载好可以用工具SSH Secure File Transfer Client上传</span><br><span class="line">如果还没下载可以用wget http://nginx.org/download/nginx-1.12.2.tar.gz下载</span><br><span class="line">关闭防火墙</span><br><span class="line">[root@linbiwei software]<span class="comment"># service iptables status</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># service iptables stop   临时关闭防火墙</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># chkconfig iptables off  永久关闭防火墙</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># service iptables status</span></span><br><span class="line">iptables：未运行防火墙。</span><br><span class="line">关闭SElinux</span><br><span class="line">[root@linbiwei software]<span class="comment"># sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># setenforce 0</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># useradd www -s /sbin/nologin</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># yum -y install pcre pcre-devel zlib zlib-devel gcc-c++ gcc openssl*</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># tar zxvf nginx-1.12.2.tar.gz </span></span><br><span class="line">[root@linbiwei software]<span class="comment"># cd nginx-1.12.2/</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># ./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_realip_module --with-http_sub_module --with-http_gzip_static_module --with-http_stub_status_module  --with-pcre</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># make &amp;&amp; make install</span></span><br><span class="line">接下来浏览器访问ip地址就可以看到Welcome to nginx!</span><br><span class="line">注：如果不能访问接着下面的nginx添加系统服务操作步骤完成后一般就可以正常访问</span><br></pre></td></tr></table></figure></p>
+<h3 id="nginx添加到系统服务"><a href="#nginx添加到系统服务" class="headerlink" title="nginx添加到系统服务"></a>nginx添加到系统服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">设置nginx到系统服务</span><br><span class="line">vi /etc/init.d/nginx </span><br><span class="line">添加如下脚本</span><br><span class="line">开始</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># nginx Startup script for the Nginx HTTP Server</span></span><br><span class="line"><span class="comment"># this script create it by caffreyxin at 2007.10.15.</span></span><br><span class="line"><span class="comment"># it is v.0.0.1 version.</span></span><br><span class="line"><span class="comment"># if you find any errors on this scripts, please contact caffreyxin.</span></span><br><span class="line"><span class="comment"># and send mail to xinyflove at sina dot com.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig: - 85 15</span></span><br><span class="line"><span class="comment"># description: Nginx is a high-performance web and proxy server.</span></span><br><span class="line"><span class="comment">#              It has a lot of features, but it's not for everyone.</span></span><br><span class="line"><span class="comment"># processname: nginx</span></span><br><span class="line"><span class="comment"># pidfile: /var/run/nginx.pid</span></span><br><span class="line"><span class="comment"># config: /usr/local/nginx/conf/nginx.conf</span></span><br><span class="line"></span><br><span class="line">nginxd=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">nginx_config=/usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">nginx_pid=/var/run/nginx.pid</span><br><span class="line"></span><br><span class="line">RETVAL=0</span><br><span class="line">prog=<span class="string">"nginx"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Source function library.</span></span><br><span class="line">. /etc/rc.d/init.d/<span class="built_in">functions</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Source networking configuration.</span></span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check that networking is up.</span></span><br><span class="line">[ <span class="variable">$&#123;NETWORKING&#125;</span> = <span class="string">"no"</span> ] &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line"></span><br><span class="line">[ -x <span class="variable">$nginxd</span> ] || <span class="built_in">exit</span> 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start nginx daemons functions.</span></span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ -e <span class="variable">$nginx_pid</span> ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"nginx already running...."</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Starting <span class="variable">$prog</span>: "</span></span><br><span class="line">    daemon <span class="variable">$nginxd</span> -c <span class="variable">$&#123;nginx_config&#125;</span></span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx</span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$RETVAL</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Stop nginx daemons functions.</span></span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Stopping <span class="variable">$prog</span>: "</span></span><br><span class="line">    killproc <span class="variable">$nginxd</span></span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /var/run/nginx.pid</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># reload nginx service functions.</span></span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Reloading <span class="variable">$prog</span>: "</span></span><br><span class="line">    <span class="comment">#kill -HUP `cat $&#123;nginx_pid&#125;`</span></span><br><span class="line">    killproc <span class="variable">$nginxd</span> -HUP</span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># See how we were called.</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">        start</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">stop)</span><br><span class="line">        stop</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">reload)</span><br><span class="line">        reload</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">restart)</span><br><span class="line">        stop</span><br><span class="line">        start</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">status)</span><br><span class="line">        status <span class="variable">$prog</span></span><br><span class="line">        RETVAL=$?</span><br><span class="line">        ;;</span><br><span class="line">*)</span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">"Usage: <span class="variable">$prog</span> &#123;start|stop|restart|reload|status|help&#125;"</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> <span class="variable">$RETVAL</span></span><br><span class="line"></span><br><span class="line">结束</span><br><span class="line">脚本中的</span><br><span class="line">nginxd=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">nginx_config=/usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">nginx_pid=/var/run/nginx.pid</span><br><span class="line">这三个路径一般按照我上面的操作不用改</span><br><span class="line"></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># chmod 755 /etc/init.d/nginx</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># chkconfig nginx on  设置开机自启</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># chkconfig --list    查看开机启动的服务</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># service nginx restart 重启nginx</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># service nginx stop 停止nginx</span></span><br><span class="line">[root@linbiwei nginx-1.12.2]<span class="comment"># service nginx start 开启nginx</span></span><br></pre></td></tr></table></figure>
+<h3 id="mysql-5-6-22安装准备"><a href="#mysql-5-6-22安装准备" class="headerlink" title="mysql-5.6.22安装准备"></a>mysql-5.6.22安装准备</h3><p>我使用的安装包是mysql-5.6.22.tar.gz<br>可以去这里下载<br><a href="http://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.22.tar.gz" target="_blank" rel="noopener">mysql-5.6.22.tar.gz</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line">[root@linbiwei software]<span class="comment"># rpm -qa | grep mysql </span></span><br><span class="line">mysql-libs-5.1.71-1.el6.x86_64</span><br><span class="line">查看是否有安装mysql服务，因为mysql-libs-5.1.71-1.el6.x86_64是 MySQL 的必要包，没有 MySQL 服务，因此没必要卸载</span><br><span class="line">如果需要删除可以使用rpm -e mysql 普通删除模式或者yum remove mysql mysql-* 删除</span><br><span class="line">修改防火墙设置开启3306端口</span><br><span class="line">[root@linbiwei software]<span class="comment"># vi /etc/sysconfig/iptables </span></span><br><span class="line">添加</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT </span><br><span class="line">以下是所有的配置</span><br><span class="line">开始</span><br><span class="line"><span class="comment"># Firewall configuration written by system-config-firewall</span></span><br><span class="line"><span class="comment"># Manual customization of this file is not recommended.</span></span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [0:0]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0]</span><br><span class="line">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">-A INPUT -p icmp -j ACCEPT</span><br><span class="line">-A INPUT -i lo -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT 新增</span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">COMMIT</span><br><span class="line">结束</span><br><span class="line">[root@linbiwei software]<span class="comment"># service iptables restart 重启防火墙生效这里有个坑，会发现访问不了nginx</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># service iptables stop </span></span><br><span class="line">[root@linbiwei software]<span class="comment"># chkconfig iptables off</span></span><br><span class="line">解决nginx访问不了</span><br><span class="line">[root@linbiwei software]<span class="comment"># groupadd mysql  新增mysql用户组</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># useradd -r -g mysql mysql 新增 mysql 用户并添加到 mysql 用户组</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># mkdir -p /usr/local/mysql 新建mysql 执行文件目录</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># mkdir -p /home/mysql/data 新建mysql数据文件目录</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># mkdir -p /home/mysql/logs 新建mysql日志文件目录</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># mkdir -p /home/mysql/temp 新建mysql缓存文件目录</span></span><br><span class="line">这里的数据文件目录、日志文件目录、缓存文件目录可以自定义、执行文件目录一般用/usr/<span class="built_in">local</span>/mysql 个人感觉比较规范</span><br><span class="line">[root@linbiwei software]<span class="comment">#  vi /etc/profile </span></span><br><span class="line">在最后一行添加者两行</span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/mysql/bin:/usr/<span class="built_in">local</span>/mysql/lib:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line">[root@linbiwei software]<span class="comment"># source /etc/profile 使其生效</span></span><br><span class="line"> 安装mysql需要的依赖包</span><br><span class="line">[root@linbiwei software]<span class="comment"># yum install make cmake gcc gcc-c++ bison bison-devel  ncurses ncurses-devel  autoconf  automake</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># tar -zxvf mysql-5.6.22.tar.gz</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># ll</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># cd mysql-5.6.22</span></span><br><span class="line">使用cmake源码安装mysql这里需要注意的是两个参数DCMAKE_INSTALL_PREFIX和DMYSQL_DATADIR对应的mysql创建的执行目录路径和数据目录要写对</span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql  -DDEFAULT_CHARSET=utf8  -DDEFAULT_COLLATION=utf8_general_ci  -DWITH_MYISAM_STORAGE_ENGINE=1  -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_ARCHIVE_STORAGE_ENGINE=1  -DWITH_BLACKHOLE_STORAGE_ENGINE=1  -DWITH_MEMORY_STORAGE_ENGINE=1  -DWITH_READLINE=1 -DENABLED_LOCAL_INFILE=1  -DMYSQL_DATADIR=/home/mysql/data  -DMYSQL_USER=mysql  -DMYSQL_TCP_PORT=3306  -DENABLE_DOWNLOADS=1</span></span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># make</span></span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># make install</span></span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># make clean</span></span><br><span class="line">修改 mysql 目录拥有者为 mysql 用户</span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># chown -Rf mysql:mysql /usr/local/mysql </span></span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment"># chown -Rf mysql:mysql /home/mysql</span></span><br><span class="line">进入mysql执行目录</span><br><span class="line">[root@linbiwei mysql-5.6.22]<span class="comment">#  cd /usr/local/mysql</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># pwd</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql</span><br><span class="line">[root@linbiwei mysql]<span class="comment"># scripts/mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/home/mysql/data 初始化脚本生成my.cnf</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># chown -Rf mysql:mysql /usr/local/mysql</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># vi my.cnf</span></span><br><span class="line">在sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES之上添加</span><br><span class="line">开始</span><br><span class="line">[client]</span><br><span class="line">port=3306</span><br><span class="line"><span class="comment">#socket=/usr/local/mysql/mysql.sock</span></span><br><span class="line">socket=/tmp/mysql.sock</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">collation-server=utf8_general_ci</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">skip-external-locking</span><br><span class="line">skip-name-resolve</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">user=mysql</span><br><span class="line">port=3306</span><br><span class="line">basedir=/usr/<span class="built_in">local</span>/mysql</span><br><span class="line">datadir=/home/mysql/data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#server_id=...</span></span><br><span class="line"><span class="comment">#socket=/usr/local/mysql/mysql.sock</span></span><br><span class="line">socket=/tmp/mysql.sock</span><br><span class="line"><span class="built_in">log</span>-error=/home/mysql/logs/mysql_error.log</span><br><span class="line">pid-file=/home/mysql/mysql.pid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">open_files_limit=10240</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">back_log=600</span><br><span class="line">max_connections=500</span><br><span class="line">max_connect_errors=6000</span><br><span class="line">wait_timeout=605800</span><br><span class="line"><span class="comment">#open_tables=6000</span></span><br><span class="line"><span class="comment">#table_cache=650</span></span><br><span class="line"><span class="comment">#opened_talbes=630</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">max_allowed_packet=32M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sort_buffer_size=4M</span><br><span class="line">join_buffer_size=4M</span><br><span class="line">thread_cache_size=300</span><br><span class="line">query_cache_type=1</span><br><span class="line">query_cache_size=256</span><br><span class="line">query_cache_limit=2M</span><br><span class="line">query_cache_min_res_unit=16K</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tmp_table_size=256M</span><br><span class="line">max_heap_table_size=256M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">key_buffer_size=256M</span><br><span class="line">read_buffer_size=1M</span><br><span class="line">read_rnd_buffer_size=16M</span><br><span class="line">bulk_insert_buffer_size=64M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lower_case_table_names=1</span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">innodb_buffer_pool_size=1024</span><br><span class="line">innodb_log_buffer_size=32M</span><br><span class="line">innodb_log_file_size=128M</span><br><span class="line">innodb_flush_method=O_DIRECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##########################</span></span><br><span class="line">thread_concurrency=32</span><br><span class="line">long_query_time=2</span><br><span class="line">slow-query-log=on</span><br><span class="line">slow-query-log-file=/home/mysql/logs/mysql-slow.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet=32M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysql_safe]</span><br><span class="line"><span class="built_in">log</span>-error=/var/<span class="built_in">log</span>/mysqld.log</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pid</span><br><span class="line">结束</span><br><span class="line">脚本中的innodb_buffer_pool_size=1024这个值根据设置为内存的三分之一或三分之二即可</span><br><span class="line">[root@linbiwei mysql]<span class="comment"># cd /etc</span></span><br><span class="line">[root@linbiwei etc]<span class="comment"># ll  查看是否有my.cnf</span></span><br><span class="line">[root@linbiwei etc]<span class="comment"># rm -rf my.cnf  将其删除主要是我想直接在mysql执行目录设置my.cnf软链接到etc目录</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># ln -s /usr/local/mysql/my.cnf /etc/my.cnf</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 复制启动脚本到/etc/init.d目录</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment">#  service mysql start  启动mysql服务</span></span><br><span class="line">如果出现以下错误</span><br><span class="line">Starting MySQL.. ERROR! The server quit without updating PID file (/home/mysql/mysql.pid).</span><br><span class="line">是因为/home/mysql这个目录之前设置目录拥有者为mysql没有成功</span><br><span class="line">使用chown -Rf mysql:mysql /home/mysql 解决后再执行service mysql start</span><br><span class="line">[root@linbiwei mysql]<span class="comment"># chkconfig mysql on</span></span><br><span class="line">[root@linbiwei mysql]<span class="comment"># mysqladmin -u root password 'xxx' 设置数据库密码为xxx</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line">填写xxx密码</span><br><span class="line">show databases;</span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">'root'</span>) <span class="built_in">where</span> user=<span class="string">'xxx'</span>; 修改密码sql</span><br><span class="line">flush privileges; 刷新权限</span><br><span class="line">设置远程访问</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH  GRANT OPTION; 允许root远程访问数据库</span><br><span class="line">flush privileges; 刷新权限</span><br></pre></td></tr></table></figure></p>
+<h3 id="php-5-6-36"><a href="#php-5-6-36" class="headerlink" title="php-5.6.36"></a>php-5.6.36</h3><p>我使用的安装包是php-5.6.36.tar.gz<br>可以去这里下载<br><a href="http://am1.php.net/distributions/php-5.6.36.tar.gz" target="_blank" rel="noopener">php-5.6.36.tar.gz</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line">[root@linbiwei software]<span class="comment"># yum install gcc-c++ gd libxml2-devel libjpeg-devel libpng-devel net-snmp-devel curl-devel libxslt-devel pcre-devel libjpeg libpng libxml2 libcurl4-openssl-dev libcurl-devel libcurl freetype-config freetype freetype-devel unixODBC libxslt -y</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># tar -zxf php-5.6.36.tar.gz</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># cd php-5.6.36</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># ./configure --prefix=/usr/local/php --with-curl --with-gd --with-gettext --with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-mysql --with-mysqli --with-openssl --with-pcre-regex --with-pdo-mysql --with-pdo-sqlite --with-pear --with-png-dir --with-freetype-dir --with-jpeg-dir --with-xmlrpc --with-xsl --with-zlib --enable-fpm --enable-bcmath --enable-libxml --enable-inline-optimization --enable-gd-native-ttf --enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-xml</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># make &amp;&amp; make install</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># cp -a /software/php-5.6.36/php.ini-production /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># ln -s /usr/local/php/etc/php.ini /etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># cp -a /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># ln -s /usr/local/php/etc/php-fpm.conf /etc/php-fpm.conf</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '25s/;//g' /usr/local/php/etc/php-fpm.conf</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '303s/disable_functions =/disable_functions = passthru,exec,system,chroot,scandir,chgrp,chown,shell_exec,proc_open,proc_get_status, ini_alter,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,esca peshellcmd,dll,popen,disk_free_space,checkdnsrr,checkdnsrr,getservbyname,getservbyport,disk_total_space,p osix_ctermid,posix_get_last_error,posix_getcwd, posix_getegid,posix_geteuid,posix_getgid, posix_getgrgid, posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid, posix_getppid,pos ix_getpwnam,posix_getpwuid, posix_getrlimit, posix_getsid,posix_getuid,posix_isatty, posix_kill,posix_mkf ifo,posix_setegid,posix_seteuid,posix_setgid, posix_setpgid,posix_setsid,posix_setuid,posix_strerror,posi x_times,posix_ttyname,posix_uname/g' /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '936s/;date.timezone =/date.timezone = PRC/g' /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '151s/; short_open_tag/short_open_tag = ON/g' /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '1905s/;opcache.enable=0/opcache.enable=1/g' /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '1908s/;opcache.enable_cli=0/opcache.enable_cli=0/g' /usr/local/php/etc/php.ini</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># sed -i '$a zend_extension=opcache.so' /usr/local/php/etc/php.ini</span></span><br><span class="line">root@linbiwei php-5.6.36]<span class="comment"># sed -i '509s/;env[PATH] = /usr/local/bin:/usr/bin:/bin/env[PATH] = /usr/local/bin:/usr/bin:/bin/:/usr/local/php/bin/g' /usr/local/php/etc/php-fpm.conf</span></span><br><span class="line">[root@linbiwei php-5.6.36]<span class="comment"># cd /etc/init.d</span></span><br><span class="line">[root@linbiwei init.d]<span class="comment"># vi php-fpm 创建启动脚本</span></span><br><span class="line">开始</span><br><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:          php-fpm</span></span><br><span class="line"><span class="comment"># Required-Start:    $remote_fs $network</span></span><br><span class="line"><span class="comment"># Required-Stop:     $remote_fs $network</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: starts php-fpm</span></span><br><span class="line"><span class="comment"># Description:       starts the PHP FastCGI Process Manager daemon</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"> </span><br><span class="line">prefix=/usr/<span class="built_in">local</span>/php</span><br><span class="line">exec_prefix=<span class="variable">$&#123;prefix&#125;</span></span><br><span class="line"> </span><br><span class="line">php_fpm_BIN=<span class="variable">$&#123;exec_prefix&#125;</span>/sbin/php-fpm</span><br><span class="line">php_fpm_CONF=<span class="variable">$&#123;prefix&#125;</span>/etc/php-fpm.conf</span><br><span class="line">php_fpm_PID=<span class="variable">$&#123;prefix&#125;</span>/var/run/php-fpm.pid</span><br><span class="line"> </span><br><span class="line">php_opts=<span class="string">"--fpm-config <span class="variable">$php_fpm_CONF</span> --pid <span class="variable">$php_fpm_PID</span>"</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">wait_for_pid</span></span> () &#123;</span><br><span class="line">        try=0</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">test</span> <span class="variable">$try</span> -lt 35 ; <span class="keyword">do</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">                        <span class="string">'created'</span>)</span><br><span class="line">                        <span class="keyword">if</span> [ -f <span class="string">"<span class="variable">$2</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">                                try=<span class="string">''</span></span><br><span class="line">                                <span class="built_in">break</span></span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                        ;;</span><br><span class="line"> </span><br><span class="line">                        <span class="string">'removed'</span>)</span><br><span class="line">                        <span class="keyword">if</span> [ ! -f <span class="string">"<span class="variable">$2</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">                                try=<span class="string">''</span></span><br><span class="line">                                <span class="built_in">break</span></span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                        ;;</span><br><span class="line">                <span class="keyword">esac</span></span><br><span class="line"> </span><br><span class="line">                <span class="built_in">echo</span> -n .</span><br><span class="line">                try=`expr <span class="variable">$try</span> + 1`</span><br><span class="line">                sleep 1</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">        start)</span><br><span class="line">                <span class="built_in">echo</span> -n <span class="string">"Starting php-fpm "</span></span><br><span class="line"> </span><br><span class="line">                <span class="variable">$php_fpm_BIN</span> --daemonize <span class="variable">$php_opts</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">"$?"</span> != 0 ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" failed"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">                wait_for_pid created <span class="variable">$php_fpm_PID</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$try</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" failed"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" done"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">        stop)</span><br><span class="line">                <span class="built_in">echo</span> -n <span class="string">"Gracefully shutting down php-fpm "</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ ! -r <span class="variable">$php_fpm_PID</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"warning, no pid file found - php-fpm is not running ?"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">                <span class="built_in">kill</span> -QUIT `cat <span class="variable">$php_fpm_PID</span>`</span><br><span class="line"> </span><br><span class="line">                wait_for_pid removed <span class="variable">$php_fpm_PID</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$try</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" failed. Use force-quit"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" done"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">        force-quit)</span><br><span class="line">                <span class="built_in">echo</span> -n <span class="string">"Terminating php-fpm "</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ ! -r <span class="variable">$php_fpm_PID</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"warning, no pid file found - php-fpm is not running ?"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">                <span class="built_in">kill</span> -TERM `cat <span class="variable">$php_fpm_PID</span>`</span><br><span class="line"> </span><br><span class="line">                wait_for_pid removed <span class="variable">$php_fpm_PID</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$try</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" failed"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">" done"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">        restart)</span><br><span class="line">                <span class="variable">$0</span> stop</span><br><span class="line">                <span class="variable">$0</span> start</span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">        reload)</span><br><span class="line"> </span><br><span class="line">                <span class="built_in">echo</span> -n <span class="string">"Reload service php-fpm "</span></span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> [ ! -r <span class="variable">$php_fpm_PID</span> ] ; <span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"warning, no pid file found - php-fpm is not running ?"</span></span><br><span class="line">                        <span class="built_in">exit</span> 1</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">                <span class="built_in">kill</span> -USR2 `cat <span class="variable">$php_fpm_PID</span>`</span><br><span class="line"> </span><br><span class="line">                <span class="built_in">echo</span> <span class="string">" done"</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">        *)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop|force-quit|restart|reload&#125;"</span></span><br><span class="line">                <span class="built_in">exit</span> 1</span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line">结束</span><br><span class="line">[root@linbiwei init.d]<span class="comment"># chmod 755 php-fpm</span></span><br><span class="line">[root@linbiwei init.d]<span class="comment"># chkconfig php-fpm on</span></span><br><span class="line">[root@linbiwei init.d]<span class="comment"># service php-fpm restart</span></span><br><span class="line">[root@linbiwei init.d]<span class="comment"># vi /etc/profile </span></span><br><span class="line">添加环境变量，方便直接在任何目录下使用php -v，php -m， php -i等操作</span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/php/bin:/usr/<span class="built_in">local</span>/mysql/bin:/usr/<span class="built_in">local</span>/mysql/lib:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line">[root@linbiwei init.d]<span class="comment"># source /etc/profile  设置生效</span></span><br></pre></td></tr></table></figure>
+<h3 id="windows共享目录到centos"><a href="#windows共享目录到centos" class="headerlink" title="windows共享目录到centos"></a>windows共享目录到centos</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">[root@linbiwei software]<span class="comment"># yum install perl</span></span><br><span class="line">点击Vmware菜单栏虚拟机—&gt;安装Vmware tools</span><br><span class="line">[root@linbiwei software]<span class="comment"># mkdir /mnt/cdrom  创建目录</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># mount /dev/cdrom /mnt/cdrom 挂载</span></span><br><span class="line">[root@linbiwei software]<span class="comment"># cd /mnt/cdrom 进入挂载目录</span></span><br><span class="line">[root@linbiwei cdrom]<span class="comment"># ll 查看VMware tools安装包</span></span><br><span class="line">总用量 71994</span><br><span class="line">-r-xr-xr-x 1 root root     1994 11月 11 2015 manifest.txt</span><br><span class="line">-r-xr-xr-x 1 root root     1850 11月 11 2015 run_upgrader.sh</span><br><span class="line">-r--r--r-- 1 root root 72270857 11月 11 2015 VMwareTools-10.0.5-3228253.tar.gz</span><br><span class="line">-r-xr-xr-x 1 root root   687524 11月 11 2015 vmware-tools-upgrader-32</span><br><span class="line">-r-xr-xr-x 1 root root   757944 11月 11 2015 vmware-tools-upgrader-64</span><br><span class="line">[root@linbiwei cdrom]<span class="comment"># mkdir /usr/local/vm-src 创建安装包存放文件夹</span></span><br><span class="line">[root@linbiwei cdrom]<span class="comment"># cp VMwareTools-10.0.5-3228253.tar.gz /usr/local/vm-src  把挂载目录中的安装包拷贝到存放文件夹中</span></span><br><span class="line">[root@linbiwei cdrom]<span class="comment"># cd /usr/local/vm-src 进入存放文件夹中</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># umount /dev/cdrom  卸载</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># tar zxvf VMwareTools-10.0.5-3228253.tar.gz  解压</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># ll</span></span><br><span class="line">总用量 70584</span><br><span class="line">-r--r--r-- 1 root root 72270857 6月  28 08:38 VMwareTools-10.0.5-3228253.tar.gz</span><br><span class="line">drwxr-xr-x 9 root root     4096 11月 11 2015 vmware-tools-distrib</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># cd vmware-tools-distrib</span></span><br><span class="line">[root@linbiwei vmware-tools-distrib]<span class="comment"># ./vmware-install.pl 执行文件</span></span><br><span class="line">接下来一路回车即可</span><br><span class="line">最后会看到这些</span><br><span class="line">Creating a new initrd boot image <span class="keyword">for</span> the kernel.</span><br><span class="line">Generating the key and certificate files.</span><br><span class="line">Successfully generated the key and certificate files.</span><br><span class="line">vmware-tools-thinprint start/running</span><br><span class="line">initctl: Job failed to start</span><br><span class="line">Unable to start services <span class="keyword">for</span> VMware Tools</span><br><span class="line"></span><br><span class="line">Execution aborted.</span><br><span class="line">需要解决initctl: Job failed to start</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># ll /etc/init/vmware-tools-thinprint.conf</span></span><br><span class="line">-rw-r--r-- 1 root root 351 6月  28 08:41 /etc/init/vmware-tools-thinprint.conf</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># rm /etc/init/vmware-tools-thinprint.conf</span></span><br><span class="line">rm：是否删除普通文件 <span class="string">"/etc/init/vmware-tools-thinprint.conf"</span>？yes</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># /etc/vmware-tools/services.sh start </span></span><br><span class="line">   Checking acpi hot plug                                  [确定]</span><br><span class="line">Starting VMware Tools services <span class="keyword">in</span> the virtual machine:</span><br><span class="line">   Switching to guest configuration:                       [确定]</span><br><span class="line">   VM communication interface:                             [确定]</span><br><span class="line">   VM communication interface socket family:               [确定]</span><br><span class="line">   Guest filesystem driver:                                [确定]</span><br><span class="line">   Mounting HGFS shares:                                   [失败]</span><br><span class="line">   Blocking file system:                                   [失败]</span><br><span class="line">   Guest operating system daemon:                          [确定]</span><br><span class="line">   VGAuthService:                                          [确定]</span><br><span class="line">   Common Agent:                                           [确定]</span><br><span class="line">接下来解决Blocking file system:[失败]</span><br><span class="line">Mounting HGFS shares:[失败]</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># yum install fuse-libs</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># mkdir /mnt/win</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># /usr/bin/vmhgfs-fuse .host:/ /mnt/win -o subtype=vmhgfs-fuse,allow_other</span></span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># reboot 重启</span></span><br><span class="line">接着到虚拟机菜单栏点击虚拟机—&gt;设置—&gt;左上角选项—&gt;选共享文件夹—&gt;点击右边总是启用—&gt;添加共享目录</span><br><span class="line">[root@linbiwei vm-src]<span class="comment"># cd /mnt/hgfs  windows共享的文件夹一般都在hgfs目录</span></span><br><span class="line">[root@linbiwei hgfs]<span class="comment"># ll</span></span><br><span class="line">总用量 4</span><br><span class="line">drwxrwxrwx 1 root root 4096 5月  23 11:13 backend 这个文件夹是从windows共享出来的 </span><br><span class="line">最后就可以完美的在linux开发环境下搞事了~~~</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/09/23/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/16/vmware-centos-share-folder/">
+                    vmware下centos7实现共享文件夹
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware安装"><span class="toc-number">1.</span> <span class="toc-text">vmware安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装前准备"><span class="toc-number">1.1.</span> <span class="toc-text">安装前准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centos6安装"><span class="toc-number">1.2.</span> <span class="toc-text">centos6安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启虚拟机"><span class="toc-number">1.3.</span> <span class="toc-text">开启虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置静态ip访问外网"><span class="toc-number">1.4.</span> <span class="toc-text">配置静态ip访问外网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改虚拟机主机名"><span class="toc-number">1.5.</span> <span class="toc-text">修改虚拟机主机名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-1-12-2安装准备"><span class="toc-number">1.6.</span> <span class="toc-text">nginx-1.12.2安装准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx添加到系统服务"><span class="toc-number">1.7.</span> <span class="toc-text">nginx添加到系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql-5-6-22安装准备"><span class="toc-number">1.8.</span> <span class="toc-text">mysql-5.6.22安装准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php-5-6-36"><span class="toc-number">1.9.</span> <span class="toc-text">php-5.6.36</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows共享目录到centos"><span class="toc-number">1.10.</span> <span class="toc-text">windows共享目录到centos</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/09/23/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/16/vmware-centos-share-folder/" title="下一篇: vmware下centos7实现共享文件夹">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="thinkphp notes模块化设计1234应用:基于同一个入口文件访问的项目我们称之为一个应用模块:一个应用下面可以包含多个模块，每个模块在应用目录下面都是一个独立的子目录控制器:每个模块可以包含多个控制器，一个控制器通常体现为一个控制器类操作:每个控制器类可以包含多个操作方法，也可能是绑定的某个操作类，每个操作是URL访问的最小单元">
+<meta name="keywords" content="thinkphp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thinkphp笔记">
+<meta property="og:url" content="http://www.phplbw.site/2016/09/07/thinkphp-bj/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="thinkphp notes模块化设计1234应用:基于同一个入口文件访问的项目我们称之为一个应用模块:一个应用下面可以包含多个模块，每个模块在应用目录下面都是一个独立的子目录控制器:每个模块可以包含多个控制器，一个控制器通常体现为一个控制器类操作:每个控制器类可以包含多个操作方法，也可能是绑定的某个操作类，每个操作是URL访问的最小单元">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.phplbw.site/2016/09/07/thinkphp-bj/thinkphp_ml.png">
+<meta property="og:updated_time" content="2017-01-03T15:14:01.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="thinkphp笔记">
+<meta name="twitter:description" content="thinkphp notes模块化设计1234应用:基于同一个入口文件访问的项目我们称之为一个应用模块:一个应用下面可以包含多个模块，每个模块在应用目录下面都是一个独立的子目录控制器:每个模块可以包含多个控制器，一个控制器通常体现为一个控制器类操作:每个控制器类可以包含多个操作方法，也可能是绑定的某个操作类，每个操作是URL访问的最小单元">
+<meta name="twitter:image" content="http://www.phplbw.site/2016/09/07/thinkphp-bj/thinkphp_ml.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>thinkphp笔记 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-thinkphp-bj" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/07/thinkphp-bj/" class="article-date">
+      <time datetime="2016-09-07T08:55:46.000Z" itemprop="datePublished">2016-09-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      thinkphp笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="thinkphp-notes"><a href="#thinkphp-notes" class="headerlink" title="thinkphp notes"></a>thinkphp notes</h2><h3 id="模块化设计"><a href="#模块化设计" class="headerlink" title="模块化设计"></a>模块化设计</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">应用:基于同一个入口文件访问的项目我们称之为一个应用</span><br><span class="line">模块:一个应用下面可以包含多个模块，每个模块在应用目录下面都是一个独立的子目录</span><br><span class="line">控制器:每个模块可以包含多个控制器，一个控制器通常体现为一个控制器类</span><br><span class="line">操作:每个控制器类可以包含多个操作方法，也可能是绑定的某个操作类，每个操作是URL访问的最小单元</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="应用目录"><a href="#应用目录" class="headerlink" title="应用目录"></a>应用目录</h3><p><img src="thinkphp_ml.png" alt="thinkphp_ml"></p>
+<h3 id="URL模式"><a href="#URL模式" class="headerlink" title="URL模式"></a>URL模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">普通模式 0 eg:http://localhost/?m=home&amp;c=user&amp;a=login&amp;var=value m参数表示模块，c参数表示控制器，a参数表示操作（当然这些参数都是可以配置的），后面的表示其他GET参数</span><br><span class="line">PATHINFO模式 1 eg:http://localhost/index.php/home/user/login/var/value/PATHINFO地址的前三个参数分别表示模块/控制器/操作   // 更改PATHINFO参数分隔符<span class="string">'URL_PATHINFO_DEPR'</span>=&gt;<span class="string">'-'</span>,</span><br><span class="line">REWRITE模式 2</span><br><span class="line">兼容模式 3</span><br></pre></td></tr></table></figure>
+<h3 id="前置和后置操作-类似高级语言面向对象中的构造函数（前置）与析构函数（后置）"><a href="#前置和后置操作-类似高级语言面向对象中的构造函数（前置）与析构函数（后置）" class="headerlink" title="前置和后置操作{类似高级语言面向对象中的构造函数（前置）与析构函数（后置）}"></a>前置和后置操作{类似高级语言面向对象中的构造函数（前置）与析构函数（后置）}</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">系统会检测当前操作是否具有前置和后置操作，如果存在就会按照顺序执行，前置和后置操作的定义方式如下：</span><br><span class="line">class IndexController extends Controller&#123;</span><br><span class="line">    //前置操作方法</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">_before_index</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'before&lt;br/&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">index</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'index&lt;br/&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    //后置操作方法</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">_after_index</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'after&lt;br/&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">需要注意的是，在有些方法里面使用了<span class="built_in">exit</span>或者错误输出之类的话,有可能不会会再执行后置方法了。例如，如果在当前操作里面调用了控制器类的error方法，那么将不会再执行后置操作，但是不影响success方法的后置方法执行。</span><br></pre></td></tr></table></figure>
+<h3 id="success和error方法"><a href="#success和error方法" class="headerlink" title="success和error方法"></a>success和error方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">一般形式：success(<span class="variable">$message</span>,<span class="variable">$error</span>,<span class="variable">$waitSecond</span>)或error(<span class="variable">$message</span>,<span class="variable">$error</span>,<span class="variable">$waitSecond</span>)  默认的等待时间success方法是1秒，error方法是3秒</span><br><span class="line"><span class="variable">$message</span> 页面提示信息</span><br><span class="line"><span class="variable">$error</span> 页面错误提示信息</span><br><span class="line"><span class="variable">$waitSecond</span> 跳转等待时间 单位为秒</span><br><span class="line"><span class="variable">$jumpUrl</span> 跳转页面地址</span><br><span class="line">eg:</span><br><span class="line">public <span class="keyword">function</span> showid(<span class="variable">$id</span>=0)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$id</span>===0)&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;error(<span class="string">'操作失败'</span>,<span class="string">'./Index/index'</span>,1);</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="built_in">echo</span> <span class="string">"This is PostController's showid method!The ID is "</span>.<span class="variable">$id</span>.<span class="string">"."</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Controller类的redirect方法可以实现页面的重定向功能</span><br><span class="line">redirect方法的参数用法和U函数的用法一致</span><br><span class="line">eg://重定向到New模块的Category操作 <span class="variable">$this</span>-&gt;redirect(<span class="string">'New/category'</span>, array(<span class="string">'cate_id'</span> =&gt; 2), 5, <span class="string">'页面跳转中...'</span>);</span><br><span class="line">如果仅仅是想重定向要一个指定的URL地址，而不是到某个模块的操作方法，可以直接使用redirect函数重定向，eg：//重定向到指定的URL地址 redirect(<span class="string">'/New/category/cate_id/2'</span>, 5, <span class="string">'页面跳转中...'</span>)//Redirect函数的第一个参数是一个URL地址</span><br><span class="line">控制器的redirect方法和redirect函数的区别在于前者是用URL规则定义跳转地址，后者是一个纯粹的URL地址</span><br></pre></td></tr></table></figure>
+<h3 id="请求类型"><a href="#请求类型" class="headerlink" title="请求类型"></a>请求类型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">常量                 说明</span><br><span class="line">IS_GET          判断是否是GET方式提交</span><br><span class="line">IS_POST         判断是否是POST方式提交</span><br><span class="line">IS_PUT          判断是否是PUT方式提交</span><br><span class="line">IS_DELETE       判断是否是DELETE方式提交</span><br><span class="line">IS_AJAX         判断是否是AJAX提交</span><br><span class="line">REQUEST_METHOD  当前提交类型</span><br></pre></td></tr></table></figure>
+<h3 id="连贯操作（数据库操作）"><a href="#连贯操作（数据库操作）" class="headerlink" title="连贯操作（数据库操作）"></a>连贯操作（数据库操作）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">系统支持的连贯操作方法有：</span><br><span class="line">连贯操作	作用	                                  支持的参数类型</span><br><span class="line"><span class="built_in">where</span>*	用于查询或者更新条件的定义	                字符串、数组和对象</span><br><span class="line">table	用于定义要操作的数据表名称	                字符串和数组</span><br><span class="line"><span class="built_in">alias</span>	用于给当前数据表定义别名	                字符串</span><br><span class="line">data	用于新增或者更新数据之前的数据对象赋值	    数组和对象</span><br><span class="line">field	用于定义要查询的字段（支持字段排除）	    字符串和数组</span><br><span class="line">order	用于对结果排序	                            字符串和数组</span><br><span class="line"><span class="built_in">limit</span>	用于限制查询结果数量	                    字符串和数字</span><br><span class="line">page	用于查询分页（内部会转换成<span class="built_in">limit</span>）	        字符串和数字</span><br><span class="line">group	用于对查询的group支持	                    字符串</span><br><span class="line">having	用于对查询的having支持	                    字符串</span><br><span class="line">join*	用于对查询的join支持	                    字符串和数组</span><br><span class="line">union*	用于对查询的union支持	                    字符串、数组和对象</span><br><span class="line">distinct用于查询的distinct支持	                    布尔值</span><br><span class="line">lock	用于数据库的锁机制	                        布尔值</span><br><span class="line">cache	用于查询缓存支持	                        多个参数</span><br><span class="line">relation用于关联查询（需要关联模型支持）	        字符串</span><br><span class="line">result	用于返回数据转换	                        字符串</span><br><span class="line">validate用于数据自动验证	                        数组</span><br><span class="line">auto	用于数据自动完成	                        数组</span><br><span class="line">filter	用于数据过滤	                            字符串</span><br><span class="line">scope*	用于命名范围	                            字符串、数组</span><br><span class="line"><span class="built_in">bind</span>*	用于数据绑定操作	                        数组或多个参数</span><br><span class="line">token	用于令牌验证	                            布尔值</span><br><span class="line">comment	用于SQL注释	                                字符串</span><br><span class="line">index	用于数据集的强制索引（3.2.3新增）	        字符串</span><br><span class="line">strict	用于数据入库的严格检测（3.2.3新增）	        布尔值</span><br><span class="line">所有的连贯操作都返回当前的模型实例对象（this），其中带*标识的表示支持多次调用。</span><br></pre></td></tr></table></figure>
+<h3 id="where"><a href="#where" class="headerlink" title="where"></a>where</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">字符串</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'type=1 AND status=1'</span>)-&gt;select();</span><br><span class="line">相当于：SELECT * FROM think_user WHERE <span class="built_in">type</span>=1 AND status=1</span><br><span class="line">数组</span><br><span class="line">普通查询</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$map</span>[<span class="string">'name'</span>] = <span class="string">'thinkphp'</span>;</span><br><span class="line"><span class="variable">$map</span>[<span class="string">'status'</span>] = 1;</span><br><span class="line">// 把查询条件传入查询方法</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="variable">$map</span>)-&gt;select();</span><br><span class="line">相当于：SELECT * FROM think_user WHERE `name`=<span class="string">'thinkphp'</span> AND status=1</span><br><span class="line">或者表达式查询</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$map</span>[<span class="string">'name'</span>] = array(<span class="string">'EQ'</span>,<span class="string">'thinkphp'</span>);</span><br><span class="line"><span class="variable">$map</span>[<span class="string">'status'</span>] = array(<span class="string">'EQ'</span>,1);</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="variable">$map</span>)-&gt;select();</span><br><span class="line"> 支持的表达式有：</span><br><span class="line"> 表达式	             含义</span><br><span class="line"> EQ	                等于（=）</span><br><span class="line"> NEQ	            不等于（&lt;&gt;）</span><br><span class="line"> GT	                大于（&gt;）</span><br><span class="line"> EGT	            大于等于（&gt;=）</span><br><span class="line"> LT	                小于（&lt;）</span><br><span class="line"> ELT	            小于等于（&lt;=）</span><br><span class="line"> LIKE	            模糊查询</span><br><span class="line"> [NOT] BETWEEN	   （不在）区间查询</span><br><span class="line"> [NOT] IN	       （不在）IN 查询</span><br><span class="line"> EXP	           表达式查询，支持SQL语法</span><br><span class="line">多次调用</span><br><span class="line"><span class="variable">$map</span>[<span class="string">'a'</span>] = array(<span class="string">'gt'</span>,1);</span><br><span class="line"><span class="variable">$where</span>[<span class="string">'b'</span>] = 1;</span><br><span class="line"><span class="variable">$Model</span>-&gt;<span class="built_in">where</span>(<span class="variable">$map</span>)-&gt;<span class="built_in">where</span>(<span class="variable">$where</span>)-&gt;<span class="built_in">where</span>(<span class="string">'status=1'</span>)-&gt;select();</span><br></pre></td></tr></table></figure>
+<h3 id="命名范围（就是-scope-属性定义和scope-连贯操作方法的使用）"><a href="#命名范围（就是-scope-属性定义和scope-连贯操作方法的使用）" class="headerlink" title="命名范围（就是_scope 属性定义和scope 连贯操作方法的使用）"></a>命名范围（就是_scope 属性定义和scope 连贯操作方法的使用）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">定义_scope属性：</span><br><span class="line">namespace Home\Model;</span><br><span class="line">use Think\Model;</span><br><span class="line">class NewsModel extends Model &#123;</span><br><span class="line">    protected <span class="variable">$_scope</span> = array(</span><br><span class="line">    // 默认的命名范围</span><br><span class="line">    <span class="string">'default'</span>=&gt;array(</span><br><span class="line">    <span class="string">'where'</span>=&gt;array(<span class="string">'status'</span>=&gt;1),</span><br><span class="line">    <span class="string">'limit'</span>=&gt;10,</span><br><span class="line">    ),</span><br><span class="line">    // 命名范围normal</span><br><span class="line">    <span class="string">'normal'</span>=&gt;array(</span><br><span class="line">    <span class="string">'where'</span>=&gt;array(<span class="string">'status'</span>=&gt;1),</span><br><span class="line">    ),</span><br><span class="line">    // 命名范围latest</span><br><span class="line">    <span class="string">'latest'</span>=&gt;array(</span><br><span class="line">    <span class="string">'order'</span>=&gt;<span class="string">'create_time DESC'</span>,</span><br><span class="line">    <span class="string">'limit'</span>=&gt;10,</span><br><span class="line">    ),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line">其实命名范围就是事先把常用的查询条件储存起来，之后方便直接调用</span><br><span class="line"><span class="variable">$Model</span> = D(<span class="string">'News'</span>); // 这里必须使用D方法 因为命名范围在模型里面定义</span><br><span class="line"><span class="variable">$Model</span>-&gt;scope(<span class="string">'normal'</span>)-&gt;select();</span><br><span class="line"><span class="variable">$Model</span>-&gt;scope(<span class="string">'latest'</span>)-&gt;select();</span><br><span class="line"><span class="variable">$Model</span>-&gt;scope()-&gt;select();//调用默认命名范围</span><br><span class="line">相当于：</span><br><span class="line">SELECT * FROM think_news WHERE status=1</span><br><span class="line">SELECT * FROM think_news ORDER BY create_time DESC LIMIT 10</span><br><span class="line">支持多次调用</span><br><span class="line"><span class="variable">$Model</span>-&gt;scope(<span class="string">'normal'</span>)-&gt;scope(<span class="string">'latest'</span>)-&gt;select();</span><br><span class="line">//相当于</span><br><span class="line"><span class="variable">$Model</span>-&gt;scope(<span class="string">'normal,latest'</span>)-&gt;select();</span><br></pre></td></tr></table></figure>
+<h3 id="CURD操作-数据库操作的四个基本操作（CURD）：创建-Create-、更新-Update-、读取-Read-和删除-Delete"><a href="#CURD操作-数据库操作的四个基本操作（CURD）：创建-Create-、更新-Update-、读取-Read-和删除-Delete" class="headerlink" title="CURD操作{数据库操作的四个基本操作（CURD）：创建(Create)、更新(Update)、读取(Read)和删除(Delete)}"></a>CURD操作{数据库操作的四个基本操作（CURD）：创建(Create)、更新(Update)、读取(Read)和删除(Delete)}</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add()方法--数据写入（相当于sql中的Insert）</span><br><span class="line">find()方法--读取数据表中的一行数据（或者关联数据）</span><br><span class="line">select()方法--获取数据表中的多行记录（以及关联数据）</span><br><span class="line">save()方法--更新数据（相当于sql中的Update）</span><br><span class="line">delete()方法--删除数据使用（相当于sql中的Drop）</span><br></pre></td></tr></table></figure>
+<h3 id="ActiveRecord"><a href="#ActiveRecord" class="headerlink" title="ActiveRecord"></a>ActiveRecord</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">ThinkPHP实现了ActiveRecords模式的ORM模型，采用了非标准的ORM模型：表映射到类，记录映射到对象</span><br><span class="line">插入数据</span><br><span class="line">eg:</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 然后直接给数据对象赋值</span><br><span class="line"><span class="variable">$User</span>-&gt;name = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;email = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line">// 把数据对象添加到数据库</span><br><span class="line"><span class="variable">$User</span>-&gt;add();</span><br><span class="line">根据主键查询</span><br><span class="line">eg:</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 查找id为8的用户数据</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=8'</span>)-&gt;find();</span><br><span class="line">//相当于</span><br><span class="line"><span class="variable">$User</span>-&gt;find(8);</span><br><span class="line">// 查找主键为1、3、8的多个数据</span><br><span class="line"><span class="variable">$userList</span> = <span class="variable">$User</span>-&gt;select(<span class="string">'1,3,8'</span>);</span><br><span class="line">根据某个字段查询</span><br><span class="line">eg:</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;getByName(<span class="string">"ThinkPHP"</span>);</span><br><span class="line">更新记录</span><br><span class="line">eg:</span><br><span class="line"><span class="variable">$User</span>-&gt;find(1); // 查找主键为1的数据</span><br><span class="line"><span class="variable">$User</span>-&gt;name = <span class="string">'TOPThink'</span>; // 修改数据对象</span><br><span class="line"><span class="variable">$User</span>-&gt;save(); // 保存当前数据对象</span><br><span class="line">删除记录</span><br><span class="line">eg:</span><br><span class="line"><span class="variable">$User</span>-&gt;find(2);</span><br><span class="line"><span class="variable">$User</span>-&gt;delete(); // 删除当前的数据对象</span><br><span class="line"><span class="variable">$User</span>-&gt;delete(8); // 删除主键为8的数据</span><br><span class="line"><span class="variable">$User</span>-&gt;delete(<span class="string">'5,6'</span>); // 删除主键为5、6的多个数据</span><br></pre></td></tr></table></figure>
+<h3 id="内置标签"><a href="#内置标签" class="headerlink" title="内置标签"></a>内置标签</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">标签名	作用	                                                 包含属性</span><br><span class="line">include包含外部模板文件（闭合）	                                  file</span><br><span class="line">import 导入资源文件（闭合 包括js css load别名）	           file,href,<span class="built_in">type</span>,value,basepath</span><br><span class="line">volist 循环数组数据输出	                                   name,id,offset,length,key,mod</span><br><span class="line">foreach	数组或对象遍历输出	                               name,item,key</span><br><span class="line"><span class="keyword">for</span>	     For循环数据输出	                              name,from,to,before,step</span><br><span class="line">switch	分支判断输出	                                   name</span><br><span class="line"><span class="keyword">case</span>	分支判断输出（必须和switch配套使用）	           value,<span class="built_in">break</span></span><br><span class="line">default	默认情况输出（闭合 必须和switch配套使用）	       无</span><br><span class="line">compare	比较输出（包括eq neq lt gt egt elt heq nheq等别名）	name,value,<span class="built_in">type</span></span><br><span class="line">range	范围判断输出（包括<span class="keyword">in</span> notin between notbetween别名）	name,value,<span class="built_in">type</span></span><br><span class="line">present	判断是否赋值	                                    name</span><br><span class="line">notpresent	判断是否尚未赋值	                            name</span><br><span class="line">empty	判断数据是否为空	                                name</span><br><span class="line">notempty	判断数据是否不为空	                            name</span><br><span class="line">defined	判断常量是否定义	                                name</span><br><span class="line">notdefined	判断常量是否未定义	                            name</span><br><span class="line">define	常量定义（闭合）	                                name,value</span><br><span class="line">assign	变量赋值（闭合）	                                name,value</span><br><span class="line"><span class="keyword">if</span>	条件判断输出	                                        condition</span><br><span class="line">elseif	条件判断输出（闭合 必须和<span class="keyword">if</span>标签配套使用）	        condition</span><br><span class="line"><span class="keyword">else</span>	条件不成立输出（闭合 可用于其他标签）	            无</span><br><span class="line">php	  使用php代码	                                        无</span><br></pre></td></tr></table></figure>
+<h3 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">默认情况下只是在调试模式记录日志，要在部署模式开启日志记录，必须在配置中开启LOG_RECORD 参数，以及可以在应用配置文件中配置需要记录的日志级别</span><br><span class="line">手动记录</span><br><span class="line">方法	                  描述</span><br><span class="line">Log::record()	   记录日志信息到内存</span><br><span class="line">Log::save()	      把保存在内存中的日志信息（用指定的记录方式）写入</span><br><span class="line">Log::write()	  实时写入一条日志信息</span><br></pre></td></tr></table></figure>
+<h3 id="表单合法性检测-配置insertFields-和-updateFields属性"><a href="#表单合法性检测-配置insertFields-和-updateFields属性" class="headerlink" title="表单合法性检测(配置insertFields 和 updateFields属性)"></a>表单合法性检测(配置insertFields 和 updateFields属性)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">定义后，调用add方法写入用户数据的时候，只能写入<span class="string">'account'</span>,<span class="string">'password'</span>,<span class="string">'nickname'</span>,<span class="string">'email'</span> 这几个字段，编辑的时候只能更新<span class="string">'nickname'</span>,<span class="string">'email'</span> 两个字段</span><br><span class="line">eg:</span><br><span class="line">namespace Home\Model;</span><br><span class="line">class UserModel extends \Think\Model&#123;</span><br><span class="line">protected <span class="variable">$insertFields</span> = array(<span class="string">'account'</span>,<span class="string">'password'</span>,<span class="string">'nickname'</span>,<span class="string">'email'</span>);</span><br><span class="line">protected <span class="variable">$updateFields</span> = array(<span class="string">'nickname'</span>,<span class="string">'email'</span>);</span><br><span class="line">&#125;</span><br><span class="line">配合field方法使用</span><br><span class="line">//新增用户数据</span><br><span class="line">M(<span class="string">'User'</span>)-&gt;field(<span class="string">'account,password,nickname,email'</span>)-&gt;create();</span><br><span class="line">//更新用户数据</span><br><span class="line">M(<span class="string">'User'</span>)-&gt;field(<span class="string">'nickname,email'</span>)-&gt;create();</span><br></pre></td></tr></table></figure>
+<h3 id="assign方法–模板赋值"><a href="#assign方法–模板赋值" class="headerlink" title="assign方法–模板赋值"></a>assign方法–模板赋值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">assign方法必须在display和show方法之前调用，并且系统只会输出设定的变量，其它变量不会输出（系统变量例外），一定程度上保证了变量的安全性</span><br><span class="line"><span class="variable">$array</span>[<span class="string">'name'</span>] = <span class="string">'thinkphp'</span>;</span><br><span class="line"><span class="variable">$array</span>[<span class="string">'email'</span>] = <span class="string">'liu21st@gmail.com'</span>;</span><br><span class="line"><span class="variable">$array</span>[<span class="string">'phone'</span>] = <span class="string">'12335678'</span>;</span><br><span class="line"><span class="variable">$this</span>-&gt;assign(<span class="variable">$array</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="display方法–渲染模板"><a href="#display方法–渲染模板" class="headerlink" title="display方法–渲染模板"></a>display方法–渲染模板</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dump()方法 内置用于打印的函数</span><br><span class="line">一般形式：dump(<span class="variable">$var</span>, <span class="variable">$echo</span>=<span class="literal">true</span>, <span class="variable">$label</span>=null, <span class="variable">$strict</span>=<span class="literal">true</span>)</span><br><span class="line">参数	                     描述</span><br><span class="line">var（必须）	           要输出的变量，支持所有变量类型</span><br><span class="line"><span class="built_in">echo</span>（可选）	      是否直接输出，默认为<span class="literal">true</span>，如果为<span class="literal">false</span>则返回但不输出</span><br><span class="line">label（可选）	      变量输出的label标识，默认为空</span><br><span class="line">strict（可选）	     输出变量类型，默认为<span class="literal">true</span>，如果为<span class="literal">false</span>则采用print_r输出</span><br></pre></td></tr></table></figure>
+<h3 id="A方法"><a href="#A方法" class="headerlink" title="A方法"></a>A方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">默认情况下，A方法实例化的是默认控制器层（Controller），如果要实例化其他的分层控制器的话，可以使用</span><br><span class="line">// 假设当前模块是Home模块</span><br><span class="line">// 实例化Event控制器</span><br><span class="line"><span class="variable">$User</span> = A(<span class="string">'User'</span>,<span class="string">'Event'</span>);</span><br><span class="line"><span class="variable">$Blog</span> = A(<span class="string">'Admin/Blog'</span>,<span class="string">'Event'</span>);</span><br><span class="line">等效于</span><br><span class="line">// 实例化Home模块的User事件控制器</span><br><span class="line"><span class="variable">$User</span> = new \Home\Event\UserEvent();</span><br><span class="line">// 实例化Admin模块的Blog事件控制器</span><br><span class="line"><span class="variable">$Blog</span> = new \Admin\Event\BlogEvent();</span><br></pre></td></tr></table></figure>
+<h3 id="C方法"><a href="#C方法" class="headerlink" title="C方法"></a>C方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">无论何种配置文件，定义了配置文件之后，都统一使用系统提供的C方法（Config）来读取已有的配置。用法：C(<span class="string">'参数名称'</span>)</span><br><span class="line">例如，读取当前的URL模式配置参数：</span><br><span class="line"><span class="variable">$model</span> = C(<span class="string">'URL_MODEL'</span>);</span><br><span class="line">还可以利用C方法对某些参数进行动态配置（或者增加新的配置），主要是指那些还没有被使用的参数。设置格式：C(<span class="string">'参数名称'</span>,<span class="string">'新的参数值'</span>)</span><br><span class="line">// 动态改变缓存有效期</span><br><span class="line">C(<span class="string">'DATA_CACHE_TIME'</span>,60);</span><br></pre></td></tr></table></figure>
+<h3 id="D方法"><a href="#D方法" class="headerlink" title="D方法"></a>D方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用于数据模型的实例化操作，实例化某个具体的模型类</span><br><span class="line">D(<span class="string">'User'</span>) //实例化UserModel</span><br><span class="line">D(<span class="string">'User'</span>,<span class="string">'Logic'</span>) //实例化UserLogic</span><br><span class="line">D(<span class="string">'User'</span>,<span class="string">'Service'</span>) //实例化UserService</span><br><span class="line">eg:</span><br><span class="line">//实例化模型</span><br><span class="line"><span class="variable">$User</span> = D(<span class="string">'User'</span>);</span><br><span class="line">// 相当于 <span class="variable">$User</span> = new \Home\Model\UserModel();</span><br><span class="line">// 执行具体的数据操作</span><br><span class="line"><span class="variable">$User</span>-&gt;select();</span><br></pre></td></tr></table></figure>
+<h3 id="E方法"><a href="#E方法" class="headerlink" title="E方法"></a>E方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">手动抛出异常</span><br><span class="line">E(<span class="string">'新增失败'</span>);</span><br><span class="line">E(<span class="string">'信息录入错误'</span>,25);</span><br></pre></td></tr></table></figure>
+<h3 id="F方法–快速缓存"><a href="#F方法–快速缓存" class="headerlink" title="F方法–快速缓存"></a>F方法–快速缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">F方法可以支持不同的存储类型，如果是文件类型的话，默认保存在DATA_PATH目录下面</span><br><span class="line">//快速缓存Data数据</span><br><span class="line">F(<span class="string">'data'</span>,<span class="variable">$Data</span>);</span><br><span class="line">//保存到指定的目录</span><br><span class="line">F(<span class="string">'data'</span>,<span class="variable">$Data</span>,TEMP_PATH);</span><br><span class="line"></span><br><span class="line">//获取缓存数据</span><br><span class="line"><span class="variable">$Data</span> = F(<span class="string">'data'</span>);</span><br><span class="line">//删除缓存数据</span><br><span class="line">F(<span class="string">'data'</span>,NULL);</span><br></pre></td></tr></table></figure>
+<h3 id="I方法"><a href="#I方法" class="headerlink" title="I方法"></a>I方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">I方法是ThinkPHP用于更加方便和安全的获取系统输入变量，可以用于任何地方，用法格式如下:</span><br><span class="line">I(<span class="string">'变量类型.变量名/修饰符'</span>,[<span class="string">'默认值'</span>],[<span class="string">'过滤方法或正则'</span>],[<span class="string">'额外数据源'</span>])</span><br><span class="line">//以GET变量类型为例</span><br><span class="line"><span class="built_in">echo</span> I(<span class="string">'get.id'</span>); // 相当于 <span class="variable">$_GET</span>[<span class="string">'id'</span>]</span><br><span class="line"><span class="built_in">echo</span> I(<span class="string">'get.name'</span>); // 相当于 <span class="variable">$_GET</span>[<span class="string">'name'</span>]</span><br><span class="line">变量类型是指请求方式或者输入类型，包括：</span><br><span class="line">变量类型	             含义</span><br><span class="line">get	                 获取GET参数</span><br><span class="line">post	             获取POST参数</span><br><span class="line">param	             自动判断请求类型获取GET、POST或者PUT参数</span><br><span class="line">request	             获取REQUEST 参数</span><br><span class="line">put	                 获取PUT 参数</span><br><span class="line">session	             获取 <span class="variable">$_SESSION</span> 参数</span><br><span class="line">cookie	             获取 <span class="variable">$_COOKIE</span> 参数</span><br><span class="line">server	             获取 <span class="variable">$_SERVER</span> 参数</span><br><span class="line">globals	             获取<span class="variable">$GLOBALS</span>参数</span><br><span class="line">path	             获取PATHINFO模式的URL参数</span><br><span class="line">data	             获取其他类型的参数，需要配合额外数据源参数</span><br><span class="line">I方法的第三个参数如果传入函数名，则表示调用该函数对变量进行过滤并返回，例：</span><br><span class="line">I(<span class="string">'post.email'</span>,<span class="string">''</span>,FILTER_VALIDATE_EMAIL)</span><br><span class="line">//表示 会对<span class="variable">$_POST</span>[<span class="string">'email'</span>] 进行 格式验证，如果不符合要求的话，返回空字符串。</span><br><span class="line">新版本中，I函数对变量使用修饰符功能，可以更方便的通过类型过滤变量</span><br><span class="line">I(<span class="string">'变量类型.变量名/修饰符'</span>)</span><br><span class="line">修饰符	      作用</span><br><span class="line">s	       强制转换为字符串类型</span><br><span class="line">d	       强制转换为整型类型</span><br><span class="line">b	       强制转换为布尔类型</span><br><span class="line">a	       强制转换为数组类型</span><br><span class="line">f	       强制转换为浮点类型</span><br><span class="line">eg:</span><br><span class="line">I(<span class="string">'get.id/d'</span>); // 强制变量转换为整型</span><br><span class="line">I(<span class="string">'post.name/s'</span>); // 强制转换变量为字符串类型</span><br><span class="line">I(<span class="string">'post.ids/a'</span>); // 强制变量转换为数组类型</span><br></pre></td></tr></table></figure>
+<h3 id="M方法"><a href="#M方法" class="headerlink" title="M方法"></a>M方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">使用M方法实例化，对数据表进行基本的CURD操作，由于不需要加载具体的模型类，所以性能会更高</span><br><span class="line">用于数据模型的实例化操作，实例化某个具体的模型类</span><br><span class="line">M(<span class="string">'User'</span>) //实例化UserModel</span><br><span class="line">M(<span class="string">'User'</span>,<span class="string">'Logic'</span>) //实例化UserLogic</span><br><span class="line">M(<span class="string">'User'</span>,<span class="string">'Service'</span>) //实例化UserService</span><br><span class="line">eg:</span><br><span class="line">//实例化模型</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">'User'</span>);</span><br><span class="line">// 相当于 <span class="variable">$User</span> = new \Home\Model\UserModel();</span><br><span class="line">// 执行具体的数据操作</span><br><span class="line"><span class="variable">$User</span>-&gt;select();</span><br></pre></td></tr></table></figure>
+<h3 id="S方法"><a href="#S方法" class="headerlink" title="S方法"></a>S方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">系统内置对缓存操作</span><br><span class="line">缓存初始化:S(array(<span class="string">'type'</span>=&gt;<span class="string">'xcache'</span>,<span class="string">'expire'</span>=&gt;60));</span><br><span class="line">常用的参数是：</span><br><span class="line">参数	      描述</span><br><span class="line">expire	   缓存有效期（时间为秒）</span><br><span class="line">prefix	   缓存标识前缀</span><br><span class="line"><span class="built_in">type</span>	   缓存类型</span><br><span class="line">支持的缓存类型包括：Apachenote、Apc、Db、Eaccelerator、File、Memcache、Redis、Shmop、Sqlite、Wincache和Xcache</span><br><span class="line">缓存设置</span><br><span class="line">// 设置缓存</span><br><span class="line">S(<span class="string">'name'</span>,<span class="variable">$value</span>);</span><br><span class="line">// 缓存数据300秒</span><br><span class="line">S(<span class="string">'name'</span>,<span class="variable">$value</span>,300);</span><br><span class="line">// 采用文件方式缓存数据300秒</span><br><span class="line">S(<span class="string">'name'</span>,<span class="variable">$value</span>,array(<span class="string">'type'</span>=&gt;<span class="string">'file'</span>,<span class="string">'expire'</span>=&gt;300));</span><br><span class="line">// 读取缓存</span><br><span class="line"><span class="variable">$value</span> = S(<span class="string">'name'</span>);</span><br><span class="line">// 删除缓存</span><br><span class="line">S(<span class="string">'name'</span>,null);</span><br></pre></td></tr></table></figure>
+<h3 id="U方法"><a href="#U方法" class="headerlink" title="U方法"></a>U方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用于URL的动态生成</span><br><span class="line">U方法的定义规则如下（方括号内参数根据实际应用决定）：</span><br><span class="line">U(<span class="string">'地址表达式'</span>,[<span class="string">'参数'</span>],[<span class="string">'伪静态后缀'</span>],[<span class="string">'显示域名'</span>])</span><br><span class="line">地址表达式：[模块/控制器/操作<span class="comment">#锚点@域名]?参数1=值1&amp;参数2=值2...</span></span><br></pre></td></tr></table></figure>
+<h3 id="W方法"><a href="#W方法" class="headerlink" title="W方法"></a>W方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在模版中调用Widget:&#123;:W(<span class="string">'Cate/Menu'</span>)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用Config配置项"><a href="#常用Config配置项" class="headerlink" title="常用Config配置项"></a>常用Config配置项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'DEFAULT_CONTROLLER'</span> =&gt; <span class="string">'User'</span>,//默认的控制器</span><br><span class="line"><span class="string">'show_page_trace'</span>=&gt;<span class="literal">false</span>,//是否显示页面追踪</span><br><span class="line"><span class="string">'URL_CASE_INSENSITIVE'</span> =&gt;<span class="literal">true</span>,//不区分URL大小写</span><br><span class="line"><span class="string">'ACTION_SUFFIX'</span> =&gt; <span class="string">'Action'</span>, // 操作方法后缀</span><br><span class="line"><span class="string">'CONTROLLER_LEVEL'</span> =&gt; 2,//设置2级目录的控制器层</span><br><span class="line"><span class="string">'URL_PARAMS_BIND_TYPE'</span> =&gt; 1, // 设置参数绑定按照变量顺序绑定</span><br><span class="line"><span class="string">'URL_PARAMS_BIND'</span> =&gt; <span class="literal">false</span>,//关闭参数绑定功能</span><br><span class="line"><span class="string">'URL_HTML_SUFFIX'</span> =&gt; <span class="string">'html|shtml|xml'</span>,// 多个伪静态后缀设置 用|分割</span><br><span class="line"><span class="string">'DEFAULT_FILTER'</span> =&gt; <span class="string">'strip_tags,htmlspecialchars'</span>,//默认的过滤器</span><br><span class="line"><span class="string">'DB_FIELDS_CACHE'</span>=&gt;<span class="literal">false</span>,// 关闭字段缓存</span><br><span class="line"><span class="string">'DEFAULT_V_LAYER'</span> =&gt;<span class="string">'Template'</span>, // 设置默认的视图层名称，默认为View</span><br><span class="line"><span class="string">'TMPL_TEMPLATE_SUFFIX'</span>=&gt;<span class="string">'.tpl'</span>,//配置视图的后缀，默认为.html</span><br><span class="line">define(<span class="string">'TMPL_PATH'</span>,<span class="string">'./Template/'</span>),//改变所有模块的模板目录</span><br><span class="line"><span class="string">'VIEW_PATH'</span>=&gt;<span class="string">'./Theme/'</span>,//改变某个模块的模板文件目录</span><br><span class="line">DEFAULT_THEME<span class="string">' =&gt; '</span>default<span class="string">',// 设置默认的模板主题</span></span><br><span class="line"><span class="string">'</span>SHOW_ERROR_MSG<span class="string">' =&gt; true, // 显示错误信息</span></span><br><span class="line"><span class="string"> '</span>SHOW_ERROR_MSG<span class="string">' =&gt; false,'</span>ERROR_MESSAGE<span class="string">' =&gt; '</span>发生错误！<span class="string">',//设置统一的错误提示信息</span></span><br><span class="line"><span class="string">'</span>ERROR_PAGE<span class="string">' =&gt;'</span>/Public/error.html<span class="string">',//所有异常和错误都指向一个统一页面</span></span><br><span class="line"><span class="string">'</span>TMPL_EXCEPTION_FILE<span class="string">' =&gt; APP_PATH.'</span>/Public/exception.tpl<span class="string">'//修改系统默认的异常模板文件</span></span><br><span class="line"><span class="string">'</span>LOG_RECORD<span class="string">' =&gt; true, // 开启日志记录</span></span><br><span class="line"><span class="string">'</span>LOG_LEVEL<span class="string">' =&gt;'</span>EMERG,ALERT,CRIT,ERR<span class="string">', // 只记录EMERG ALERT CRIT ERR 错误</span></span><br><span class="line"><span class="string">'</span>TMPL_PARSE_STRING<span class="string">' =&gt; array(</span></span><br><span class="line"><span class="string">'</span>__STATIC__<span class="string">' =&gt; __ROOT__.'</span>/Application/<span class="string">'.MODULE_NAME.'</span>/View/<span class="string">' . '</span>/Public/static<span class="string">',)</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/09/07/thinkphp-db-cz/">
+                    thinkphp数据库操作
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/05/php-object-jc/">
+                    php 面向对象基础
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#thinkphp-notes"><span class="toc-number">1.</span> <span class="toc-text">thinkphp notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块化设计"><span class="toc-number">1.1.</span> <span class="toc-text">模块化设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用目录"><span class="toc-number">1.2.</span> <span class="toc-text">应用目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL模式"><span class="toc-number">1.3.</span> <span class="toc-text">URL模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前置和后置操作-类似高级语言面向对象中的构造函数（前置）与析构函数（后置）"><span class="toc-number">1.4.</span> <span class="toc-text">前置和后置操作{类似高级语言面向对象中的构造函数（前置）与析构函数（后置）}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#success和error方法"><span class="toc-number">1.5.</span> <span class="toc-text">success和error方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向"><span class="toc-number">1.6.</span> <span class="toc-text">重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求类型"><span class="toc-number">1.7.</span> <span class="toc-text">请求类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连贯操作（数据库操作）"><span class="toc-number">1.8.</span> <span class="toc-text">连贯操作（数据库操作）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#where"><span class="toc-number">1.9.</span> <span class="toc-text">where</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名范围（就是-scope-属性定义和scope-连贯操作方法的使用）"><span class="toc-number">1.10.</span> <span class="toc-text">命名范围（就是_scope 属性定义和scope 连贯操作方法的使用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CURD操作-数据库操作的四个基本操作（CURD）：创建-Create-、更新-Update-、读取-Read-和删除-Delete"><span class="toc-number">1.11.</span> <span class="toc-text">CURD操作{数据库操作的四个基本操作（CURD）：创建(Create)、更新(Update)、读取(Read)和删除(Delete)}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ActiveRecord"><span class="toc-number">1.12.</span> <span class="toc-text">ActiveRecord</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置标签"><span class="toc-number">1.13.</span> <span class="toc-text">内置标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日志记录"><span class="toc-number">1.14.</span> <span class="toc-text">日志记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表单合法性检测-配置insertFields-和-updateFields属性"><span class="toc-number">1.15.</span> <span class="toc-text">表单合法性检测(配置insertFields 和 updateFields属性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#assign方法–模板赋值"><span class="toc-number">1.16.</span> <span class="toc-text">assign方法–模板赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display方法–渲染模板"><span class="toc-number">1.17.</span> <span class="toc-text">display方法–渲染模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A方法"><span class="toc-number">1.18.</span> <span class="toc-text">A方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C方法"><span class="toc-number">1.19.</span> <span class="toc-text">C方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D方法"><span class="toc-number">1.20.</span> <span class="toc-text">D方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E方法"><span class="toc-number">1.21.</span> <span class="toc-text">E方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#F方法–快速缓存"><span class="toc-number">1.22.</span> <span class="toc-text">F方法–快速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I方法"><span class="toc-number">1.23.</span> <span class="toc-text">I方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#M方法"><span class="toc-number">1.24.</span> <span class="toc-text">M方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S方法"><span class="toc-number">1.25.</span> <span class="toc-text">S方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U方法"><span class="toc-number">1.26.</span> <span class="toc-text">U方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#W方法"><span class="toc-number">1.27.</span> <span class="toc-text">W方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用Config配置项"><span class="toc-number">1.28.</span> <span class="toc-text">常用Config配置项</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"thinkphp笔记　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/09/07/thinkphp-db-cz/" title="上一篇: thinkphp数据库操作">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/05/php-object-jc/" title="下一篇: php 面向对象基础">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

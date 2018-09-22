@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="php环境安装及维护openssl和curl安装12345678910111213安装openssl下载wget https://www.openssl.org/source/openssl-1.0.2d.tar.gz解压tar -zxvf openssl-1.0.2d.tar.gz进入目录cd openssl-1.0.2d./config --prefix=/data/webserver/ope">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php环境安装及维护">
+<meta property="og:url" content="http://www.phplbw.site/2017/01/26/php-install-maintain/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="php环境安装及维护openssl和curl安装12345678910111213安装openssl下载wget https://www.openssl.org/source/openssl-1.0.2d.tar.gz解压tar -zxvf openssl-1.0.2d.tar.gz进入目录cd openssl-1.0.2d./config --prefix=/data/webserver/ope">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-03-09T06:48:16.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php环境安装及维护">
+<meta name="twitter:description" content="php环境安装及维护openssl和curl安装12345678910111213安装openssl下载wget https://www.openssl.org/source/openssl-1.0.2d.tar.gz解压tar -zxvf openssl-1.0.2d.tar.gz进入目录cd openssl-1.0.2d./config --prefix=/data/webserver/ope">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>php环境安装及维护 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-php-install-maintain" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/26/php-install-maintain/" class="article-date">
+      <time datetime="2017-01-26T09:44:47.000Z" itemprop="datePublished">2017-01-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php环境安装及维护
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="php环境安装及维护"><a href="#php环境安装及维护" class="headerlink" title="php环境安装及维护"></a>php环境安装及维护</h2><h3 id="openssl和curl安装"><a href="#openssl和curl安装" class="headerlink" title="openssl和curl安装"></a>openssl和curl安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">安装openssl</span><br><span class="line">下载</span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.0.2d.tar.gz</span><br><span class="line">解压</span><br><span class="line">tar -zxvf openssl-1.0.2d.tar.gz</span><br><span class="line">进入目录</span><br><span class="line"><span class="built_in">cd</span> openssl-1.0.2d</span><br><span class="line">./config --prefix=/data/webserver/openssl</span><br><span class="line">./config -t</span><br><span class="line">make depend</span><br><span class="line">http://www.111cn.net/sys/linux/60171.htm</span><br><span class="line">安装curl</span><br><span class="line">wget http://curl.haxx.se/download/curl-7.44.0.tar.gz</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="PHP-amqp-扩展安装"><a href="#PHP-amqp-扩展安装" class="headerlink" title="PHP amqp 扩展安装"></a>PHP amqp 扩展安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="comment">########## PHP amqp 扩展安装 S ########## */</span></span><br><span class="line">http://blog.csdn.net/linvo/article/details/7776702</span><br><span class="line">yum install libtool autoconf automake </span><br><span class="line">yum install python-simplejson -y</span><br><span class="line">上传rabbitmq-c到服务器</span><br><span class="line">进入对应目录</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/rabbitmq-c/</span><br><span class="line">autoreconf -i</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br><span class="line">wget http://pecl.php.net/get/amqp-1.2.0.tgz</span><br><span class="line">tar -zxvf amqp-1.2.0.tgz</span><br><span class="line"><span class="built_in">cd</span>  amqp-1.2.0</span><br><span class="line">/usr/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/webserver/php/bin/php-config </span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">在php.ini加入 extension=amqp.so</span><br><span class="line">重启php</span><br><span class="line">/* <span class="comment">########## PHP amqp 扩展安装 E ########## */</span></span><br></pre></td></tr></table></figure>
+<h3 id="PHP-redis-扩展安装"><a href="#PHP-redis-扩展安装" class="headerlink" title="PHP redis 扩展安装"></a>PHP redis 扩展安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="comment">########## PHP redis 扩展安装 S ########## */</span></span><br><span class="line">所有环境安装包都下载或者上传在</span><br><span class="line">/usr/webserver/src/</span><br><span class="line"><span class="built_in">cd</span> /usr/webserver/src/</span><br><span class="line">下载</span><br><span class="line">wget https://github.com/owlient/phpredis/archive/master.zip</span><br><span class="line">解压</span><br><span class="line">unzip master.zip </span><br><span class="line">进入目录</span><br><span class="line"><span class="built_in">cd</span> phpredis-master</span><br><span class="line">根据php的安装目录，下面的路径不同，默认yum安装是下面目录</span><br><span class="line">/usr/bin/phpize </span><br><span class="line">如果没有phpize</span><br><span class="line">说明没有安装这个拓展</span><br><span class="line">yum安装</span><br><span class="line">yum install php53-dev</span><br><span class="line">出现下面这样的说明是成功的</span><br><span class="line">Configuring <span class="keyword">for</span>:</span><br><span class="line">PHP Api Version:         20090626</span><br><span class="line">Zend Module Api No:      20090626</span><br><span class="line">Zend Extension Api No:   220090626</span><br><span class="line">如果php不是安装在默认目录下，请指定对应的位置</span><br><span class="line">./configure --with-php-config=/usr/bin/php-config</span><br><span class="line">如果没有php-config指令，需要执行：</span><br><span class="line">yum install php-devel</span><br><span class="line">如果是安装在默认的路径下，即是/usr/bin/</span><br><span class="line">./configure 就可以了</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">修改php.ini</span><br><span class="line">搜索extension</span><br><span class="line">在下面添加一行</span><br><span class="line">extension=/usr/lib64/php/modules/redis.so</span><br><span class="line">或者</span><br><span class="line">extension=redis.so</span><br><span class="line">保存</span><br><span class="line">重启Apache</span><br><span class="line">service httpd restart</span><br><span class="line">如果是nginx+php</span><br><span class="line">重启php-fpm就可以了</span><br><span class="line">上面安装不成功，尝试下面的这种安装方法</span><br><span class="line">wget http://pecl.php.net/get/redis-2.2.5.tgz</span><br><span class="line">tar xvf redis-2.2.5.tgz -C /usr/<span class="built_in">local</span>/src</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/redis-2.2.5</span><br><span class="line"><span class="comment">#开始编译安装</span></span><br><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/webserver/php/bin/php-config</span><br><span class="line">如果没有php-config指令，需要执行：</span><br><span class="line">yum install php-devel</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="comment">#把redis.so库添加到php.ini配置文件中</span></span><br><span class="line">vi /usr/<span class="built_in">local</span>/php56/etc/php.ini</span><br><span class="line">extension=/usr/<span class="built_in">local</span>/php56/lib/php/extensions/no-debug-non-zts-20131226/redis.so</span><br><span class="line">/* <span class="comment">########## PHP redis 扩展安装 E ########## */</span></span><br></pre></td></tr></table></figure>
+<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br></pre></td><td class="code"><pre><span class="line">添加nginx用户和用户组</span><br><span class="line">/usr/sbin/groupadd www</span><br><span class="line">/usr/sbin/useradd -g www www</span><br><span class="line"><span class="built_in">ulimit</span> -SHn 65535</span><br><span class="line">安装pcre</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz</span><br><span class="line">tar zxvf pcre-8.34.tar.gz</span><br><span class="line"><span class="built_in">cd</span> pcre-8.34</span><br><span class="line">./configure --prefix=/usr/webserver/pcre</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">安装nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.5.2.tar.gz</span><br><span class="line">tar zxvf nginx-1.5.2.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-1.5.2</span><br><span class="line">注意：pcre的源码目录，不是安装目录</span><br><span class="line">./configure --user=www --group=www --prefix=/usr/webserver/nginx --with-http_stub_status_module --with-http_ssl_module  --with-pcre=/usr/webserver/src/pcre-8.34 --</span><br><span class="line">with-http_stub_status_module  --with-http_realip_module</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">修改配置文件</span><br><span class="line">vi /usr/webserver/nginx/conf/nginx.conf</span><br><span class="line">检查配置是否正确</span><br><span class="line">/usr/nginx/sbin/nginx -t </span><br><span class="line">启动</span><br><span class="line">/usr/webserver/nginx/sbin/nginx </span><br><span class="line">编写启动脚本</span><br><span class="line">vi /etc/init.d/nginx</span><br><span class="line"><span class="meta">#!/bin/sh </span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># nginx - this script starts and stops the nginx daemon </span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># chkconfig:   - 85 15 </span></span><br><span class="line"><span class="comment"># description: Nginx is an HTTP(S) server, HTTP(S) reverse \ </span></span><br><span class="line"><span class="comment">#               proxy and IMAP/POP3 proxy server </span></span><br><span class="line"><span class="comment"># processname: nginx </span></span><br><span class="line"><span class="comment"># config:      /etc/nginx/nginx.conf </span></span><br><span class="line"><span class="comment"># config:      /etc/sysconfig/nginx </span></span><br><span class="line"><span class="comment"># pidfile:     /var/run/nginx.pid </span></span><br><span class="line"><span class="comment"># Source function library. </span></span><br><span class="line">. /etc/rc.d/init.d/<span class="built_in">functions</span> </span><br><span class="line"><span class="comment"># Source networking configuration. </span></span><br><span class="line">. /etc/sysconfig/network </span><br><span class="line"><span class="comment"># Check that networking is up. </span></span><br><span class="line">[ <span class="string">"<span class="variable">$NETWORKING</span>"</span> = <span class="string">"no"</span> ] &amp;&amp; <span class="built_in">exit</span> 0 </span><br><span class="line">nginx=<span class="string">"/usr/webserver/nginx/sbin/nginx"</span> </span><br><span class="line">prog=$(basename <span class="variable">$nginx</span>) </span><br><span class="line">NGINX_CONF_FILE=<span class="string">"/usr/webserver/nginx/conf/nginx.conf"</span> </span><br><span class="line">[ -f /etc/sysconfig/nginx ] &amp;&amp; . /etc/sysconfig/nginx </span><br><span class="line">lockfile=/var/lock/subsys/nginx </span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123; </span><br><span class="line">    [ -x <span class="variable">$nginx</span> ] || <span class="built_in">exit</span> 5 </span><br><span class="line">    [ -f <span class="variable">$NGINX_CONF_FILE</span> ] || <span class="built_in">exit</span> 6 </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Starting <span class="variable">$prog</span>: "</span> </span><br><span class="line">    daemon <span class="variable">$nginx</span> -c <span class="variable">$NGINX_CONF_FILE</span> </span><br><span class="line">    retval=$? </span><br><span class="line">    <span class="built_in">echo</span> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; touch <span class="variable">$lockfile</span> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span> </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123; </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Stopping <span class="variable">$prog</span>: "</span> </span><br><span class="line">    killproc <span class="variable">$prog</span> -QUIT </span><br><span class="line">    retval=$? </span><br><span class="line">    <span class="built_in">echo</span> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; rm -f <span class="variable">$lockfile</span> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span> </span><br><span class="line">killall -9 nginx </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">restart</span></span>() &#123; </span><br><span class="line">    configtest || <span class="built_in">return</span> $? </span><br><span class="line">    stop </span><br><span class="line">    sleep 1 </span><br><span class="line">    start </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123; </span><br><span class="line">    configtest || <span class="built_in">return</span> $? </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Reloading <span class="variable">$prog</span>: "</span> </span><br><span class="line">    killproc <span class="variable">$nginx</span> -HUP </span><br><span class="line">RETVAL=$? </span><br><span class="line">    <span class="built_in">echo</span> </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">force_reload</span></span>() &#123; </span><br><span class="line">    restart </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">configtest</span></span>() &#123; </span><br><span class="line"><span class="variable">$nginx</span> -t -c <span class="variable">$NGINX_CONF_FILE</span> </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">rh_status</span></span>() &#123; </span><br><span class="line">    status <span class="variable">$prog</span> </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">rh_status_q</span></span>() &#123; </span><br><span class="line">    rh_status &gt;/dev/null 2&gt;&amp;1 </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span> </span><br><span class="line">    start) </span><br><span class="line">        rh_status_q &amp;&amp; <span class="built_in">exit</span> 0 </span><br><span class="line">    <span class="variable">$1</span> </span><br><span class="line">        ;; </span><br><span class="line">    stop) </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0 </span><br><span class="line">        <span class="variable">$1</span> </span><br><span class="line">        ;; </span><br><span class="line">    restart|configtest) </span><br><span class="line">        <span class="variable">$1</span> </span><br><span class="line">        ;; </span><br><span class="line">    reload) </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 7 </span><br><span class="line">        <span class="variable">$1</span> </span><br><span class="line">        ;; </span><br><span class="line">    force-reload) </span><br><span class="line">        force_reload </span><br><span class="line">        ;; </span><br><span class="line">    status) </span><br><span class="line">        rh_status </span><br><span class="line">        ;; </span><br><span class="line">    condrestart|try-restart) </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0 </span><br><span class="line">            ;; </span><br><span class="line">    *)    </span><br><span class="line">      <span class="built_in">echo</span> $<span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest&#125;"</span> </span><br><span class="line">        <span class="built_in">exit</span> 2 </span><br><span class="line"><span class="keyword">esac</span> </span><br><span class="line">添加系统服务</span><br><span class="line">chkconfig --add nginx</span><br><span class="line">chkconfig nginx on</span><br><span class="line">// 启动</span><br><span class="line">service nginx start</span><br><span class="line">// 停止</span><br><span class="line">service nginx stop</span><br><span class="line">// 重启</span><br><span class="line">service nginx restart</span><br><span class="line">// 重载</span><br><span class="line">service nginx reload</span><br><span class="line">安装PHP依赖库</span><br><span class="line">wget http://www.ijg.org/files/jpegsrc.v9.tar.gz     </span><br><span class="line">tar zxvf jpegsrc.v9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> jpeg-9/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">wget http://prdownloads.sourceforge.net/libpng/libpng-1.6.2.tar.gz</span><br><span class="line">tar zxvf libpng-1.6.2.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libpng-1.6.2/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.12.tar.gz</span><br><span class="line">tar zxvf freetype-2.4.12.tar.gz</span><br><span class="line"><span class="built_in">cd</span> freetype-2.4.12/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">wget <span class="string">"http://downloads.sourceforge.net/mhash/mhash-0.9.9.9.tar.gz?big_mirror=0"</span></span><br><span class="line">wget <span class="string">"http://downloads.sourceforge.net/mcrypt/libmcrypt-2.5.8.tar.gz?big_mirror=0"</span></span><br><span class="line">wget <span class="string">"http://downloads.sourceforge.net/mcrypt/mcrypt-2.6.8.tar.gz?big_mirror=0"</span></span><br><span class="line">tar zxvf libmcrypt-2.5.8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libmcrypt-2.5.8/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> libltdl/</span><br><span class="line">./configure --<span class="built_in">enable</span>-ltdl-install</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../../</span><br><span class="line">tar zxvf mhash-0.9.9.9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mhash-0.9.9.9/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">tar zxvf mcrypt-2.6.8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mcrypt-2.6.8/</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/webserver/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line">touch malloc.h</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">yum install libxml2</span><br><span class="line">yum install libxml2-devel -y</span><br><span class="line">yum -y install curl-devel -y</span><br><span class="line"><span class="built_in">export</span> LDFLAGS=<span class="string">"-L/usr/webserver/libs/lib -L/usr/lib"</span></span><br><span class="line"><span class="built_in">export</span> CFLAGS=<span class="string">"-I/usr/webserver/libs/include -I/usr/include"</span></span><br><span class="line">安装php</span><br><span class="line">wget http://cn2.php.net/get/php-5.6.5.tar.gz/from/this/mirror</span><br><span class="line">tar zxvf php-5.5.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> php-5.5.1/</span><br><span class="line">./configure --prefix=/usr/webserver/php --with-config-file-path=/usr/webserver/php/etc --with-mysql --with-mysqli --with-iconv-dir --with-freetype-dir --with-jpeg-dir </span><br><span class="line">--with-png-dir --with-zlib --with-libxml-dir --<span class="built_in">enable</span>-xml --<span class="built_in">disable</span>-rpath --<span class="built_in">enable</span>-bcmath --<span class="built_in">enable</span>-shmop --<span class="built_in">enable</span>-sysvsem --<span class="built_in">enable</span>-inline-optimization --with-curl --</span><br><span class="line"><span class="built_in">enable</span>-mbregex --<span class="built_in">enable</span>-fpm --<span class="built_in">enable</span>-mbstring --with-mcrypt --with-gd --<span class="built_in">enable</span>-gd-native-ttf --with-mhash --<span class="built_in">enable</span>-pcntl --<span class="built_in">enable</span>-sockets --with-xmlrpc --<span class="built_in">enable</span>-zip </span><br><span class="line">--<span class="built_in">enable</span>-soap --<span class="built_in">enable</span>-opcache --with-pdo-mysql --<span class="built_in">enable</span>-maintainer-zts</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cp php.ini-development /usr/webserver/php/etc/php.ini</span><br><span class="line">vi php.ini</span><br><span class="line">date.timezone = <span class="string">"Asia/Shanghai"</span></span><br><span class="line">ln -s /usr/webserver/php/bin/php /usr/<span class="built_in">local</span>/bin/php</span><br><span class="line">ln -s /usr/webserver/php/bin/phpize /usr/<span class="built_in">local</span>/bin/phpize</span><br><span class="line">复制启动脚本</span><br><span class="line">cp /usr/<span class="built_in">local</span>/src/php-5.6.5/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm</span><br><span class="line">chmod +x /etc/init.d/php-fpm</span><br><span class="line">chkconfig --add php-fpm</span><br><span class="line">chkconfig php-fpm on</span><br><span class="line">// 启动</span><br><span class="line">service php-fpm start</span><br><span class="line">// 停止</span><br><span class="line">service php-fpm stop</span><br><span class="line">// 重启</span><br><span class="line">service php-fpm restart</span><br><span class="line">// 重载</span><br><span class="line">service php-fpm reload</span><br><span class="line">启动php</span><br><span class="line"><span class="built_in">cd</span> /usr/webserver/php/etc </span><br><span class="line">cp php-fpm.conf.default php-fpm.conf</span><br><span class="line">vi php-fpm.conf</span><br><span class="line"><span class="comment">#pid = run/php-fpm.pid</span></span><br><span class="line">改成</span><br><span class="line">pid = run/php-fpm.pid</span><br><span class="line">/usr/webserver/php/sbin/php-fpm</span><br><span class="line">停止php</span><br><span class="line">killall php-fpm</span><br><span class="line">memcache 拓展</span><br><span class="line">PHP Version 5.6.5</span><br><span class="line">要3.0.8才支持</span><br><span class="line">http://pecl.php.net/package/memcache</span><br><span class="line">wget http://pecl.php.net/get/memcache-2.2.7.tgz</span><br><span class="line">tar zxvf memcache-2.2.7.tgz</span><br><span class="line"><span class="built_in">cd</span> memcache-2.2.7</span><br><span class="line">/usr/webserver/php/bin/phpize </span><br><span class="line">./configure --with-php-config=/usr/webserver/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">打开 /usr/webserver/php/etc/php.ini 查找 ; extension_dir = <span class="string">"ext"</span></span><br><span class="line">在其后增加一行：</span><br><span class="line">extension = <span class="string">"memcache.so"</span></span><br><span class="line">FastDFS 拓展</span><br><span class="line">只是安装fastdfs client的话</span><br><span class="line">请先把fdfs源码目录里的conf/client.conf复制到/etc/fdfs/下，并设置好tracker的ip</span><br><span class="line">进入FastDFS安装目录</span><br><span class="line"><span class="built_in">cd</span> php_client</span><br><span class="line">/usr/webserver/php/bin/phpize </span><br><span class="line">./configure --with-php-config=/usr/webserver/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">eaccelerator拓展</span><br><span class="line">wget https://github.com/eaccelerator/eaccelerator/tarball/master</span><br><span class="line">tar zxvf ....</span><br><span class="line"><span class="built_in">cd</span> .../</span><br><span class="line"><span class="built_in">export</span> PHP_PREFIX=<span class="string">"/usr/webserver/php"</span></span><br><span class="line"><span class="variable">$PHP_PREFIX</span>/bin/phpize</span><br><span class="line">./configure --<span class="built_in">enable</span>-eaccelerator=shared --with-php-config=<span class="variable">$PHP_PREFIX</span>/bin/php-config</span><br><span class="line">/usr/webserver/php/bin/phpize</span><br><span class="line">./configure --<span class="built_in">enable</span>-eaccelerator=shared --with-php-config=/usr/webserver/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">APC加速器，替换eaccelerator拓展</span><br><span class="line">wget http://pecl.php.net/get/APC-3.0.19.tgz</span><br><span class="line">tar xvzf APC-3.0.19.tgz</span><br><span class="line"><span class="built_in">cd</span> APC-3.0.19/APC-3.0.19</span><br><span class="line">/usr/webserver/php/bin/phpize</span><br><span class="line">./configure --<span class="built_in">enable</span>-apc --<span class="built_in">enable</span>-apc-mmap --with-php-config=/usr/webserver/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="php维护"><a href="#php维护" class="headerlink" title="php维护"></a>php维护</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="comment">###################  php维护 S ####################### */</span></span><br><span class="line">查看PHP占用内存</span><br><span class="line">/usr/bin/php  -i|grep mem</span><br><span class="line">查看php运行情况</span><br><span class="line">ps aux | grep php-fpm</span><br><span class="line">启动php</span><br><span class="line">/usr/webserver/php/sbin/php-fpm</span><br><span class="line">停止php</span><br><span class="line"><span class="built_in">kill</span> -INT `cat /var/run/php-fpm.pid`</span><br><span class="line">killall php-fpm</span><br><span class="line">看你的php-fpm.pid存放在那个路径</span><br><span class="line">重启php</span><br><span class="line"><span class="built_in">kill</span> -USR2 `cat /var/run/php-fpm.pid`</span><br><span class="line">重启php</span><br><span class="line"><span class="built_in">kill</span> -USR2 `cat /usr/webserver/php/var/run/php-fpm.pid`</span><br><span class="line">上面是没做系统服务的情况</span><br><span class="line">有做系统服务的话，用下面这些命令</span><br><span class="line">// 启动</span><br><span class="line">service php-fpm start</span><br><span class="line">// 停止</span><br><span class="line">service php-fpm stop</span><br><span class="line">// 重启</span><br><span class="line">service php-fpm restart</span><br><span class="line">// 重载</span><br><span class="line">service php-fpm reload</span><br><span class="line">/* <span class="comment">###################  php维护 E ####################### */</span></span><br></pre></td></tr></table></figure>
+<h3 id="nginx维护"><a href="#nginx维护" class="headerlink" title="nginx维护"></a>nginx维护</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="comment">###################  nginx维护 S ####################### */</span></span><br><span class="line">检查配置是否正确:::修改了配置文件后，一定要检查下，没问题再重启</span><br><span class="line">/usr/webserver/nginx/sbin/nginx -t </span><br><span class="line">启动</span><br><span class="line">/usr/webserver/nginx/sbin/nginx </span><br><span class="line">停止</span><br><span class="line">/usr/webserver/nginx/sbin/nginx -s stop</span><br><span class="line">重启nginx</span><br><span class="line">/usr/webserver/nginx/sbin/nginx -s  reload</span><br><span class="line">上面是没做系统服务的情况</span><br><span class="line">有做系统服务的话，用下面这些命令</span><br><span class="line">// 启动</span><br><span class="line">service nginx start</span><br><span class="line">// 停止</span><br><span class="line">service nginx stop</span><br><span class="line">// 重启</span><br><span class="line">service nginx restart</span><br><span class="line">// 重载</span><br><span class="line">service nginx reload</span><br><span class="line">/* <span class="comment">###################  nginx维护 E ####################### */</span></span><br></pre></td></tr></table></figure>
+<h3 id="nginx-php-性能优化"><a href="#nginx-php-性能优化" class="headerlink" title="nginx+php 性能优化"></a>nginx+php 性能优化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/* <span class="comment">###################  nginx+php 性能优化 S ####################### */</span></span><br><span class="line">http://blog.csdn.net/dc_726/article/details/12340349</span><br><span class="line">http://blog.haohtml.com/archives/11162</span><br><span class="line">http://zyan.cc/post/375/</span><br><span class="line">nginx.conf</span><br><span class="line">listen 80后面添加 backlog=1024。</span><br><span class="line">同时配置php-fpm.conf中的listen.backlog为1024，默认为128。</span><br><span class="line">php-fpm初始/空闲/最大worker进程数</span><br><span class="line">pm.max_children = 300</span><br><span class="line">pm.start_servers = 20</span><br><span class="line">pm.min_spare_servers = 5</span><br><span class="line">pm.max_spare_servers = 35</span><br><span class="line">最大处理请求数是指一个php-fpm的worker进程在处理多少个请求后就终止掉，master进程会重新respawn一个新的。</span><br><span class="line">这个配置的主要目的是避免php解释器或程序引用的第三方库造成的内存泄露。</span><br><span class="line">pm.max_requests = 10240</span><br><span class="line">最大执行时间在php.ini和php-fpm.conf里都可以配置，配置项分别为max_execution_time和request_terminate_timeout。</span><br><span class="line">配置输出php-fpm慢日志，阀值为2秒：</span><br><span class="line">request_slowlog_timeout = 2</span><br><span class="line">slowlog = <span class="built_in">log</span>/<span class="variable">$pool</span>.log.slow</span><br><span class="line">/* <span class="comment">###################  nginx+php 性能优化 E ####################### */</span></span><br></pre></td></tr></table></figure>
+<h3 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ab -kc 1000 -n 1000 http://域名:端口/main/ab</span><br><span class="line">ab -kc 1000 -n 1000 http://域名/main/ab</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/02/03/thinkphp-php-execll-dr/">
+                    thinkphp execll导入
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/06/php-design-patterns/">
+                    php设计模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#php环境安装及维护"><span class="toc-number">1.</span> <span class="toc-text">php环境安装及维护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#openssl和curl安装"><span class="toc-number">1.1.</span> <span class="toc-text">openssl和curl安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-amqp-扩展安装"><span class="toc-number">1.2.</span> <span class="toc-text">PHP amqp 扩展安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-redis-扩展安装"><span class="toc-number">1.3.</span> <span class="toc-text">PHP redis 扩展安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境安装"><span class="toc-number">1.4.</span> <span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php维护"><span class="toc-number">1.5.</span> <span class="toc-text">php维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx维护"><span class="toc-number">1.6.</span> <span class="toc-text">nginx维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-php-性能优化"><span class="toc-number">1.7.</span> <span class="toc-text">nginx+php 性能优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压力测试"><span class="toc-number">1.8.</span> <span class="toc-text">压力测试</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"php环境安装及维护　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/02/03/thinkphp-php-execll-dr/" title="上一篇: thinkphp execll导入">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/06/php-design-patterns/" title="下一篇: php设计模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

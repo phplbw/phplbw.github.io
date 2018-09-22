@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="php_interface接口123456789101112131415首先要拿到两个参数consumer_key 对接饿了么开放平台的基本凭证，它代表的是一个品牌或个人实体。该品牌或个人的所有餐厅会关联在此key之下consumer_secret eleme分配给APP的consumer_key制作签名，直接看代码——makeSig2()发送http请求——sendHttp2();制作接口——提">
+<meta name="keywords" content="interface">
+<meta property="og:type" content="article">
+<meta property="og:title" content="饿了么接口——php">
+<meta property="og:url" content="http://www.phplbw.site/2016/09/07/php-elm-interface/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="php_interface接口123456789101112131415首先要拿到两个参数consumer_key 对接饿了么开放平台的基本凭证，它代表的是一个品牌或个人实体。该品牌或个人的所有餐厅会关联在此key之下consumer_secret eleme分配给APP的consumer_key制作签名，直接看代码——makeSig2()发送http请求——sendHttp2();制作接口——提">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-19T12:39:14.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="饿了么接口——php">
+<meta name="twitter:description" content="php_interface接口123456789101112131415首先要拿到两个参数consumer_key 对接饿了么开放平台的基本凭证，它代表的是一个品牌或个人实体。该品牌或个人的所有餐厅会关联在此key之下consumer_secret eleme分配给APP的consumer_key制作签名，直接看代码——makeSig2()发送http请求——sendHttp2();制作接口——提">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>饿了么接口——php | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-php-elm-interface" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/07/php-elm-interface/" class="article-date">
+      <time datetime="2016-09-07T14:15:50.000Z" itemprop="datePublished">2016-09-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      饿了么接口——php
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/">interface</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="php-interface"><a href="#php-interface" class="headerlink" title="php_interface"></a>php_interface</h2><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">首先要拿到两个参数</span><br><span class="line">consumer_key 对接饿了么开放平台的基本凭证，它代表的是一个品牌或个人实体。该品牌或个人的所有餐厅会关联在此key之下</span><br><span class="line">consumer_secret eleme分配给APP的consumer_key</span><br><span class="line">制作签名，直接看代码——makeSig2()</span><br><span class="line">发送http请求——sendHttp2();</span><br><span class="line">制作接口——提供了餐厅接口和订单接口的例子</span><br><span class="line">调接口——自己百度或谷歌去</span><br><span class="line">商家测试</span><br><span class="line">饿了么提供了以下体验店信息以供接口开发测试:</span><br><span class="line">consumer_key: 0170804777</span><br><span class="line">consumer_secret: 87217cb263701f90316236c4df00d9352fb1da76</span><br><span class="line">restaurant_id: 62028381</span><br><span class="line">restaurant_name: 饿了么开放平台测试</span><br><span class="line">餐厅下单测试地址: http://r.ele.me/openapi-test</span><br><span class="line">注意：如遇到 <span class="string">"测试餐厅必须与测试帐号一起使用"</span> 的错误提示，请清理cookie</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line">饿了吗接口,参考文档http://merchant.openapi.eleme.io/quickstart.html</span><br><span class="line">*/</span><br><span class="line">class ElemeAPI</span><br><span class="line">&#123;</span><br><span class="line">    const BASE_URL = <span class="string">'http://v2.openapi.ele.me/'</span>;</span><br><span class="line">    private <span class="variable">$consumer_key</span>;</span><br><span class="line">    private <span class="variable">$consumer_secret</span>;</span><br><span class="line">    /**</span><br><span class="line">     * 初始化接口类，必须两个参数，consumer_key,consumer_secret</span><br><span class="line">     * ElemeAPI constructor.</span><br><span class="line">     * @param <span class="variable">$sy_param</span>            [<span class="string">'consumer_key'</span>=&gt;<span class="string">''</span>,<span class="string">'consumer_secret'</span>=&gt;<span class="string">''</span>]</span><br><span class="line">     */</span><br><span class="line">    public <span class="keyword">function</span> __construct(<span class="variable">$sy_param</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;consumer_key = <span class="variable">$sy_param</span>[<span class="string">'consumer_key'</span>];</span><br><span class="line">        <span class="variable">$this</span>-&gt;consumer_secret=<span class="variable">$sy_param</span>[<span class="string">'consumer_secret'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">####################餐厅接口</span></span><br><span class="line">    /**</span><br><span class="line">     * 查询所属餐厅</span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">getAllRestaurants</span></span>()&#123;</span><br><span class="line">        <span class="variable">$api_url</span>=<span class="string">'restaurant/own/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="built_in">return</span> self::sendHttp2(<span class="variable">$api_url</span>,<span class="string">'GET'</span>,<span class="variable">$sys_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> getRestaurant(<span class="variable">$restaurant_id</span>)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'restaurant/'</span>.<span class="variable">$restaurant_id</span>.<span class="string">'/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="variable">$api_request</span> = array();</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'restaurant_id'</span>] = <span class="variable">$restaurant_id</span>;</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'GET'</span>,<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#################订单接口</span></span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 获取订单详情</span><br><span class="line">     * @param <span class="variable">$eleme_order_id</span>        订单编号</span><br><span class="line">     * @param <span class="variable">$tp_id</span>                0=不显示第三方ID，1=显示第三方ID</span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> getOrderDetail(<span class="variable">$eleme_order_id</span>,<span class="variable">$tp_id</span>=null)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'order/'</span>.<span class="variable">$eleme_order_id</span>.<span class="string">'/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="variable">$api_request</span> = array();</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'tp_id'</span>] = <span class="variable">$tp_id</span>;</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'GET'</span>,<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 取消订单</span><br><span class="line">     * @param <span class="variable">$eleme_order_id</span></span><br><span class="line">     * @param <span class="variable">$reason</span></span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> cancelOrder(<span class="variable">$eleme_order_id</span>,<span class="variable">$reason</span>)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'order/'</span>.<span class="variable">$eleme_order_id</span>.<span class="string">'/status/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="variable">$api_request</span> =array();</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'status'</span>]=-1;</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'reason'</span>] = <span class="variable">$reason</span>;</span><br><span class="line">        <span class="variable">$res</span> = <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'PUT'</span>,<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$res</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 确认订单</span><br><span class="line">     * @param <span class="variable">$eleme_order_id</span></span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> confirmOrder(<span class="variable">$eleme_order_id</span>)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'order/'</span>.<span class="variable">$eleme_order_id</span>.<span class="string">'/status/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="variable">$api_request</span> =array();</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'status'</span>]=2;</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'PUT'</span>,<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 同意退单</span><br><span class="line">     * @param <span class="variable">$eleme_order_id</span></span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> agreeRefund(<span class="variable">$eleme_order_id</span>)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'order/'</span>.<span class="variable">$eleme_order_id</span>.<span class="string">'/agree_refund/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'POST'</span>,<span class="variable">$sys_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 不同意退单</span><br><span class="line">     * @param <span class="variable">$eleme_order_id</span></span><br><span class="line">     * @param null <span class="variable">$reason</span></span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">function</span> disagreeRefund(<span class="variable">$eleme_order_id</span>,<span class="variable">$reason</span>=null)&#123;</span><br><span class="line">        <span class="variable">$api_url</span> = <span class="string">'order/'</span>.<span class="variable">$eleme_order_id</span>.<span class="string">'/disagree_refund/'</span>;</span><br><span class="line">        <span class="variable">$sys_request</span> =[<span class="string">'consumer_key'</span>=&gt;<span class="variable">$this</span>-&gt;consumer_key,<span class="string">'timestamp'</span>=&gt;time()];</span><br><span class="line">        <span class="variable">$api_request</span> =array();</span><br><span class="line">        <span class="variable">$api_request</span>[<span class="string">'reason'</span>]=<span class="variable">$reason</span>;</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;sendHttp2(<span class="variable">$api_url</span>,<span class="string">'POST'</span>,<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 计算签名</span><br><span class="line">     * @param <span class="variable">$api_url</span>            指定接口url</span><br><span class="line">     * @param array <span class="variable">$params</span>        参数</span><br><span class="line">     * @<span class="built_in">return</span> string            返回签名</span><br><span class="line">     *</span><br><span class="line">     */</span><br><span class="line">    private <span class="keyword">function</span> makeSig(<span class="variable">$api_url</span>,<span class="variable">$params</span>=[])&#123;</span><br><span class="line">        //将所有参数（sig除外）按照参数名的字母顺序排序，并用 &amp; 连接:</span><br><span class="line">        <span class="keyword">if</span>(count(<span class="variable">$params</span>))&#123;</span><br><span class="line">            ksort(<span class="variable">$params</span>);</span><br><span class="line">            <span class="variable">$str_a</span> = http_build_query(<span class="variable">$params</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        var_dump(<span class="variable">$str_a</span>);</span><br><span class="line">        //按照请求url + ? + 字符串A + consumer_secret的顺序进行连接，得到 字符串B</span><br><span class="line">        <span class="variable">$str_b</span> = self::BASE_URL.<span class="variable">$api_url</span>.<span class="string">'?'</span>.<span class="variable">$str_a</span>.<span class="variable">$this</span>-&gt;consumer_secret;</span><br><span class="line">        var_dump(<span class="variable">$str_b</span>);</span><br><span class="line">        //对``字符串B``用UTF-8 Encode之后计算HEX值字符串（用HEX Encode），得到 字符串C:</span><br><span class="line">        <span class="variable">$str_c</span> =bin2hex(utf8_encode(<span class="variable">$str_b</span>));</span><br><span class="line">        var_dump(<span class="variable">$str_c</span>);</span><br><span class="line">        //对 字符串C 计算SHA1哈希，得到签名:</span><br><span class="line">        <span class="variable">$sig</span> = sha1(<span class="variable">$str_c</span>);</span><br><span class="line">        var_dump(<span class="variable">$sig</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$sig</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * @param <span class="variable">$api_url</span></span><br><span class="line">     * @param array <span class="variable">$params</span></span><br><span class="line">     * @<span class="built_in">return</span> string</span><br><span class="line">     */</span><br><span class="line">    private <span class="keyword">function</span> makeSig2(<span class="variable">$api_url</span>,<span class="variable">$params</span>=[])&#123;</span><br><span class="line">        ksort(<span class="variable">$params</span>);</span><br><span class="line">        <span class="variable">$pairs</span> = array();</span><br><span class="line">        foreach(<span class="variable">$params</span> as <span class="variable">$key</span>=&gt;<span class="variable">$val</span>) &#123;</span><br><span class="line">            array_push(<span class="variable">$pairs</span>, <span class="variable">$key</span> . <span class="string">'='</span> . urlencode(<span class="variable">$val</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$params</span> = join(<span class="string">'&amp;'</span>, <span class="variable">$pairs</span>);</span><br><span class="line">        //var_dump(<span class="variable">$params</span>);</span><br><span class="line">        <span class="variable">$str</span> = self::BASE_URL.<span class="variable">$api_url</span>.<span class="string">'?'</span>.<span class="variable">$params</span>.<span class="variable">$this</span>-&gt;consumer_secret;</span><br><span class="line">        <span class="variable">$sig</span> = sha1(bin2hex(<span class="variable">$str</span>));</span><br><span class="line">        //var_dump(<span class="variable">$sig</span>);</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$sig</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * @param <span class="variable">$api_url</span></span><br><span class="line">     * @param <span class="variable">$method</span></span><br><span class="line">     * @param array <span class="variable">$sys_request</span>                系统级参数</span><br><span class="line">     * @param array <span class="variable">$api_request</span>                API级参数 可以为空</span><br><span class="line">     * @<span class="built_in">return</span> mixed</span><br><span class="line">     */</span><br><span class="line">    private <span class="keyword">function</span> sendHttp2(<span class="variable">$api_url</span>,<span class="variable">$method</span>,<span class="variable">$sys_request</span>=[],<span class="variable">$api_request</span>=null)&#123;</span><br><span class="line">        <span class="keyword">if</span>(count(<span class="variable">$api_request</span>))&#123;</span><br><span class="line">            //如果有API级参数</span><br><span class="line">            <span class="variable">$api_request</span> = array_filter(<span class="variable">$api_request</span>);            //删除数组中的空值</span><br><span class="line">            <span class="variable">$params</span> = array_merge(<span class="variable">$sys_request</span>,<span class="variable">$api_request</span>);    //API级参数与系统及参数合并得到完整的参数</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="variable">$params</span> = <span class="variable">$sys_request</span>;                                //系统级参数就是完整参数</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$sig</span> = <span class="variable">$this</span>-&gt;makeSig2(<span class="variable">$api_url</span>,<span class="variable">$params</span>);</span><br><span class="line">        <span class="variable">$method</span> = strtoupper(<span class="variable">$method</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$method</span>==<span class="string">'GET'</span>)&#123;</span><br><span class="line">            //如果是get方式传参</span><br><span class="line">            <span class="variable">$params</span>[<span class="string">'sig'</span>] = <span class="variable">$sig</span>;</span><br><span class="line">            <span class="variable">$url</span> = self::BASE_URL.<span class="variable">$api_url</span>.<span class="string">'?'</span>.http_build_query(<span class="variable">$params</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            //如果是其他方式传参，将系统级参数和签名sig，加入到url中即可</span><br><span class="line">            <span class="variable">$sys_request</span>[<span class="string">'sig'</span>] = <span class="variable">$sig</span>;</span><br><span class="line">            <span class="variable">$url</span> = self::BASE_URL.<span class="variable">$api_url</span>.<span class="string">'?'</span>.http_build_query(<span class="variable">$sys_request</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        //var_dump(<span class="variable">$url</span>);</span><br><span class="line">        <span class="variable">$ch</span> = curl_init();</span><br><span class="line">        <span class="variable">$header</span> = array(</span><br><span class="line">                <span class="string">"Content-Type:application/x-www-form-urlencoded; charset=UTF-8"</span></span><br><span class="line">        );</span><br><span class="line">        // 添加apikey到header</span><br><span class="line">        <span class="variable">$api_request</span> = count(<span class="variable">$api_request</span>)&gt;0? http_build_query(<span class="variable">$api_request</span>) :<span class="variable">$api_request</span>;</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_HTTPHEADER  , <span class="variable">$header</span>);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span> , CURLOPT_URL , <span class="variable">$url</span>);</span><br><span class="line">        switch(<span class="variable">$method</span>)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'GET'</span>:</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_HTTPGET,<span class="literal">true</span>);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'POST'</span>:</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_POST,<span class="literal">true</span>);</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_POSTFIELDS,<span class="variable">$api_request</span>);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'PUT'</span>:</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_CUSTOMREQUEST,<span class="string">'PUT'</span>);</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_POSTFIELDS,<span class="variable">$api_request</span>);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'DELETE'</span>:</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_CUSTOMREQUEST,<span class="string">'DELETE'</span>);</span><br><span class="line">                curl_setopt(<span class="variable">$ch</span>,CURLOPT_POSTFIELDS,<span class="variable">$api_request</span>);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        // 执行HTTP请求</span><br><span class="line">        <span class="variable">$res</span> = curl_exec(<span class="variable">$ch</span>);</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$res</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/09/17/mysql-stored-procedure/">
+                    mysql存储过程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/07/thinkphp-db-cz/">
+                    thinkphp数据库操作
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#php-interface"><span class="toc-number">1.</span> <span class="toc-text">php_interface</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#接口"><span class="toc-number">1.1.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-number">1.2.</span> <span class="toc-text">demo</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"饿了么接口——php　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/09/17/mysql-stored-procedure/" title="上一篇: mysql存储过程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/07/thinkphp-db-cz/" title="下一篇: thinkphp数据库操作">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

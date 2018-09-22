@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="Database Operations模型1234567按照系统的规范来命名模型类的话，大多数情况下是可以用模型的名字自动对应数据表模型类的命名规则是除去表前缀的数据表名称，采用驼峰法命名，并且首字母大写，然后加上模型层的名称（默认定义是Model），例如：模型名	           约定对应数据表（假设数据库的前缀定义是 think_）UserModel	        think_userU">
+<meta name="keywords" content="thinkphp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thinkphp数据库操作">
+<meta property="og:url" content="http://www.phplbw.site/2016/09/07/thinkphp-db-cz/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="Database Operations模型1234567按照系统的规范来命名模型类的话，大多数情况下是可以用模型的名字自动对应数据表模型类的命名规则是除去表前缀的数据表名称，采用驼峰法命名，并且首字母大写，然后加上模型层的名称（默认定义是Model），例如：模型名	           约定对应数据表（假设数据库的前缀定义是 think_）UserModel	        think_userU">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-09T06:16:18.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="thinkphp数据库操作">
+<meta name="twitter:description" content="Database Operations模型1234567按照系统的规范来命名模型类的话，大多数情况下是可以用模型的名字自动对应数据表模型类的命名规则是除去表前缀的数据表名称，采用驼峰法命名，并且首字母大写，然后加上模型层的名称（默认定义是Model），例如：模型名	           约定对应数据表（假设数据库的前缀定义是 think_）UserModel	        think_userU">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>thinkphp数据库操作 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-thinkphp-db-cz" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/07/thinkphp-db-cz/" class="article-date">
+      <time datetime="2016-09-07T10:34:36.000Z" itemprop="datePublished">2016-09-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      thinkphp数据库操作
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Database-Operations"><a href="#Database-Operations" class="headerlink" title="Database Operations"></a>Database Operations</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">按照系统的规范来命名模型类的话，大多数情况下是可以用模型的名字自动对应数据表</span><br><span class="line">模型类的命名规则是除去表前缀的数据表名称，采用驼峰法命名，并且首字母大写，然后加上模型层的名称（默认定义是Model），例如：</span><br><span class="line">模型名	           约定对应数据表（假设数据库的前缀定义是 think_）</span><br><span class="line">UserModel	        think_user</span><br><span class="line">UserTypeModel	    think_user_type</span><br><span class="line">如果规则和上面的系统约定不符合，那么需要设置Model类对应的数据表名称，可以通过模型对象调用table方法指定数据库表名，以确保能够找到对应的数据表。</span><br><span class="line">thinkphp是通过数据模型实例化对象来操作对应的数据表的，对于模型类并非必须要创建对应的类，只有当存在独立的业务逻辑或者属性的时候才需要定义。</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="直接实例化"><a href="#直接实例化" class="headerlink" title="直接实例化"></a>直接实例化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以和实例化其他类库一样实例化模型类，例如：</span><br><span class="line"><span class="variable">$User</span> = new \Home\Model\UserModel();</span><br><span class="line"><span class="variable">$Info</span> = new \Admin\Model\InfoModel();</span><br><span class="line">// 带参数实例化</span><br><span class="line"><span class="variable">$New</span>  = new \Home\Model\NewModel(<span class="string">'blog'</span>,<span class="string">'think_'</span>,<span class="variable">$connection</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="快速实例化"><a href="#快速实例化" class="headerlink" title="快速实例化"></a>快速实例化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">M(<span class="string">'[基础模型名:]模型名'</span>,[<span class="string">'数据表前缀'</span>],[<span class="string">'数据库连接信息'</span>])</span><br><span class="line">一般只需要传第一个参数，后两个参数基本上不写，因为会在配置文件中写</span><br><span class="line">D方法实例化模型类的时候通常是实例化某个具体的模型类，如果仅仅是对数据表进行基本的CURD操作的话，使用M方法实例化的话，由于不需要加载具体的模型类，所以性能会更高。</span><br><span class="line">eg:</span><br><span class="line">// 使用M方法实例化</span><br><span class="line">//参数：数据表名，不包括数据表前缀</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">'User'</span>);</span><br><span class="line">// 和用法 <span class="variable">$User</span> = new \Think\Model(<span class="string">'User'</span>); 等效</span><br><span class="line">// 执行其他的数据操作</span><br><span class="line"><span class="variable">$User</span>-&gt;select();</span><br><span class="line">M方法也可以支持跨库操作，eg：</span><br><span class="line">// 使用M方法实例化 操作db_name数据库的ot_user表</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">'db_name.User'</span>,<span class="string">'ot_'</span>);</span><br><span class="line">// 执行其他的数据操作</span><br><span class="line"><span class="variable">$User</span>-&gt;select();</span><br><span class="line">如果模型类有自己的业务逻辑，M方法是无法支持的，就算是已经定义了具体的模型类，M方法实例化的时候是会直接忽略。</span><br><span class="line">D方法</span><br><span class="line">D(<span class="string">'[项目://][分组/]模型'</span>,<span class="string">'模型层名称'</span>)</span><br><span class="line">方法的返回值是实例化的模型对象</span><br><span class="line">//实例化模型</span><br><span class="line"><span class="variable">$User</span> = D(<span class="string">'User'</span>);</span><br><span class="line">// 相当于 <span class="variable">$User</span> = new \Home\Model\UserModel();</span><br><span class="line">// 执行具体的数据操作</span><br><span class="line"><span class="variable">$User</span>-&gt;select();</span><br><span class="line">//D方法还可以支持跨模块调用，需要使用：</span><br><span class="line">//实例化Admin模块的User模型(admin是默认的home目录等级的)</span><br><span class="line">D(<span class="string">'Admin/User'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="实例化空模型类"><a href="#实例化空模型类" class="headerlink" title="实例化空模型类"></a>实例化空模型类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">如果仅仅是使用原生SQL查询的话，不需要使用额外的模型类，实例化一个空模型类即可进行操作了，eg：</span><br><span class="line">//实例化空模型，Model是TP框架提供Model基类</span><br><span class="line"><span class="variable">$Model</span> = new Model();</span><br><span class="line">//或者使用M快捷方法是等效的</span><br><span class="line"><span class="variable">$Model</span> = M();</span><br><span class="line">//进行原生的SQL查询</span><br><span class="line"><span class="variable">$Model</span>-&gt;query(<span class="string">'SELECT * FROM think_user WHERE status = 1'</span>);</span><br><span class="line">实例化空模型类后还可以用table方法切换到具体的数据表进行操作</span><br></pre></td></tr></table></figure>
+<h3 id="数据的写入"><a href="#数据的写入" class="headerlink" title="数据的写入"></a>数据的写入</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">向user数据表中写入一条数据</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象,user是表名</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'name'</span>] = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'email'</span>] = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;add(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="数据的查询"><a href="#数据的查询" class="headerlink" title="数据的查询"></a>数据的查询</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">读取数据集一</span><br><span class="line">读取数据表中的一行数据（或者关联数据），主要通过find方法完成，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 查找status值为1 name值为think的用户数据 </span><br><span class="line">//<span class="built_in">where</span>方法的参数可以是数组、字符串、对象，建议用数组形式</span><br><span class="line"><span class="variable">$data</span> = <span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'status=1 AND name="thinkphp"'</span>)-&gt;find();</span><br><span class="line">dump(<span class="variable">$data</span>);</span><br><span class="line">find方法查询数据的时候可以配合相关的连贯操作方法，其中最关键的则是<span class="built_in">where</span>方法。</span><br><span class="line">如果查询出错，find方法返回<span class="literal">false</span>，如果查询结果为空返回NULL，查询成功则返回一个关联数组（键值是字段名或者别名）。</span><br><span class="line">即使满足条件的数据不止一个，find方法也只会返回第一条记录（可以通过order方法排序后查询）。</span><br><span class="line">还可以用data方法获取查询后的数据对象（查询成功后）</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 查找status值为1name值为think的用户数据 </span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'status=1 AND name="thinkphp"'</span>)-&gt;find();</span><br><span class="line">dump(<span class="variable">$User</span>-&gt;data());</span><br><span class="line">读取数据集二</span><br><span class="line">读取数据集其实就是获取数据表中的多行记录（以及关联数据），使用select方法，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 查找status值为1的用户数据 以创建时间排序 返回10条数据</span><br><span class="line"><span class="variable">$list</span> = <span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'status=1'</span>)-&gt;order(<span class="string">'create_time'</span>)-&gt;<span class="built_in">limit</span>(10)-&gt;select();</span><br><span class="line">如果查询出错，select的返回值是<span class="literal">false</span>，如果查询结果为空，则返回NULL，否则返回二维数组。</span><br><span class="line">读取数据集三</span><br><span class="line">读取字段值其实就是获取数据表中的某个列的多个或者单个数据，最常用的方法是 getField方法。</span><br><span class="line">eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 获取ID为3的用户的昵称 </span><br><span class="line"><span class="variable">$nickname</span> = <span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=3'</span>)-&gt;getField(<span class="string">'nickname'</span>);</span><br><span class="line">默认情况下：当只有一个字段的时候，返回数据表中满足条件的数据集的第一行的该字段的值。</span><br><span class="line">如果需要返回整个列的数据，可以用：</span><br><span class="line"><span class="variable">$User</span>-&gt;getField(<span class="string">'id'</span>,<span class="literal">true</span>); // 获取id数组</span><br><span class="line">//返回数据格式如array(1,2,3,4,5)一维数组，其中value就是id列的每行的值</span><br><span class="line">如果传入多个字段的话，默认返回一个关联数组：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 获取所有用户的ID和昵称列表 </span><br><span class="line"><span class="variable">$list</span> = <span class="variable">$User</span>-&gt;getField(<span class="string">'id,nickname'</span>);</span><br><span class="line">//两个字段的情况下返回的是array(`id`=&gt;`nickname`)的关联数组，以id的值为key，nickname字段值为value</span><br><span class="line">这样返回的list是一个数组，键名是用户的id字段的值，键值是用户的昵称nickname。</span><br><span class="line">如果传入多个字段的名称，eg：</span><br><span class="line"><span class="variable">$list</span> = <span class="variable">$User</span>-&gt;getField(<span class="string">'id,nickname,email'</span>);</span><br><span class="line">//返回的数组格式是array(id=&gt;array(id=&gt;value,nickname=&gt;value,email=&gt;value))是一个二维数组，key还是id字段的值，但value是整行的array数组，类似于select()方法的结果遍历将id的值设为数组key（准确的说是getField方法的第一个字段名）。</span><br><span class="line">如果传入一个字符串分隔符：<span class="variable">$list</span> = <span class="variable">$User</span>-&gt;getField(<span class="string">'id,nickname,email'</span>,<span class="string">':'</span>);</span><br><span class="line">那么返回的结果就是一个数组，键名是用户id，键值是 nickname:email的输出字符串。</span><br><span class="line">getField方法还可以支持限制数量，eg：</span><br><span class="line"><span class="variable">$this</span>-&gt;getField(<span class="string">'id,name'</span>,5); // 限制返回5条记录</span><br><span class="line"><span class="variable">$this</span>-&gt;getField(<span class="string">'id'</span>,3); // 获取id数组 限制3条记录</span><br><span class="line">可以配合使用order方法使用。</span><br></pre></td></tr></table></figure>
+<h3 id="数据的更新"><a href="#数据的更新" class="headerlink" title="数据的更新"></a>数据的更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">更新一条或多条记录用save</span><br><span class="line">更新数据使用save方法，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 要修改的数据对象属性赋值</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'name'</span>] = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'email'</span>] = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;save(<span class="variable">$data</span>); // 根据条件更新记录</span><br><span class="line">也可以改成对象方式来操作：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 要修改的数据对象属性赋值</span><br><span class="line"><span class="variable">$User</span>-&gt;name = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;email = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;save(); // 根据条件更新记录</span><br><span class="line">数据对象赋值的方式，save方法无需传入数据，会自动识别</span><br><span class="line">注意：save方法的返回值是影响的记录数，如果返回<span class="literal">false</span>则表示更新出错，因此一定要用恒等来判断是否更新失败</span><br><span class="line">为了保证数据库的安全，避免出错更新整个数据表，如果没有任何更新条件或者数据对象本身也不包含主键字段的话，save方法不会更新任何数据库的记录</span><br><span class="line">因此下面的代码不会更改数据库的任何记录</span><br><span class="line"><span class="variable">$User</span>-&gt;save(<span class="variable">$data</span>);</span><br><span class="line">要修改的数据必须要有条件或者主键</span><br><span class="line">除非使用下面的方式（假如id字段是主键）：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 要修改的数据对象属性赋值</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'id'</span>] = 5;  //要修改的数据必须要有条件或者主键</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'name'</span>] = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'email'</span>] = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;save(<span class="variable">$data</span>); // 根据条件保存修改的数据</span><br><span class="line">字段和数据过滤</span><br><span class="line">和add方法一样，save方法支持使用field方法过滤字段和filter方法过滤数据，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 要修改的数据对象属性赋值</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'name'</span>] = <span class="string">'test'</span>;</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'email'</span>] = <span class="string">'&lt;b&gt;test@gmail.com&lt;/b&gt;'</span>;</span><br><span class="line">//field方法用于指定要修改的的字段</span><br><span class="line">//strip_tags：过滤HTML标签</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;field(<span class="string">'email'</span>)-&gt;filter(<span class="string">'strip_tags'</span>)-&gt;save(<span class="variable">$data</span>); // 根据条件保存修改的数据</span><br><span class="line">当使用field(<span class="string">'email'</span>)的时候，只允许更新email字段的值（采用strip_tags方法过滤），name字段的值将不会被修改。</span><br><span class="line">还有一种方法是通过create或者data方法创建要更新的数据对象，然后进行保存操作，这样save方法的参数可以不需要传入。</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 要修改的数据对象属性赋值</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'name'</span>] = <span class="string">'ThinkPHP'</span>;</span><br><span class="line"><span class="variable">$data</span>[<span class="string">'email'</span>] = <span class="string">'ThinkPHP@gmail.com'</span>;</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;data(<span class="variable">$data</span>)-&gt;save(); // 根据条件保存修改的数据</span><br><span class="line">使用create方法的例子：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 根据表单提交的POST数据创建数据对象</span><br><span class="line"><span class="variable">$User</span>-&gt;create();</span><br><span class="line"><span class="variable">$User</span>-&gt;save(); // 根据条件保存修改的数据</span><br><span class="line">更新字段</span><br><span class="line">如果只是更新个别字段的值，可以使用setField方法。</span><br><span class="line">使用示例：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 更改用户的name值</span><br><span class="line"><span class="variable">$User</span>-&gt; <span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setField(<span class="string">'name'</span>,<span class="string">'ThinkPHP'</span>);</span><br><span class="line">setField方法支持同时更新多个字段，只需要传入数组即可，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line">// 更改用户的name和email的值</span><br><span class="line"><span class="variable">$data</span> = array(<span class="string">'name'</span>=&gt;<span class="string">'ThinkPHP'</span>,<span class="string">'email'</span>=&gt;<span class="string">'ThinkPHP@gmail.com'</span>);</span><br><span class="line"><span class="variable">$User</span>-&gt; <span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setField(<span class="variable">$data</span>);</span><br><span class="line">而对于统计字段（通常指的是数字类型）的更新，系统还提供了setInc和setDec方法</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setInc(<span class="string">'score'</span>,3); // 用户的积分加3</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setInc(<span class="string">'score'</span>); // 用户的积分加1</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setDec(<span class="string">'score'</span>,5); // 用户的积分减5</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setDec(<span class="string">'score'</span>); // 用户的积分减1</span><br><span class="line">3.2.3版本开始，setInc和setDec方法支持延迟更新，用法如下：</span><br><span class="line"><span class="variable">$Article</span> = M(<span class="string">"Article"</span>); // 实例化Article对象</span><br><span class="line"><span class="variable">$Article</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setInc(<span class="string">'view'</span>,1); // 文章阅读数加1</span><br><span class="line"><span class="variable">$Article</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;setInc(<span class="string">'view'</span>,1,60); // 文章阅读数加1，并且延迟60秒更新（写入）</span><br></pre></td></tr></table></figure>
+<h3 id="数据的删除"><a href="#数据的删除" class="headerlink" title="数据的删除"></a>数据的删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">删除数据使用delete方法，eg：</span><br><span class="line"><span class="variable">$Form</span> = M(<span class="string">'Form'</span>);</span><br><span class="line"><span class="variable">$Form</span>-&gt;delete(5);</span><br><span class="line">表示删除主键为5的数据，delete方法可以删除单个数据，也可以删除多个数据，这取决于删除条件，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'id=5'</span>)-&gt;delete(); // 删除id为5的用户数据</span><br><span class="line"><span class="variable">$User</span>-&gt;delete(<span class="string">'1,2,5'</span>); // 删除主键为1,2和5的用户数据</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'status=0'</span>)-&gt;delete(); // 删除所有状态为0的用户数据</span><br><span class="line">delete方法的返回值是删除的记录数，如果返回值是<span class="literal">false</span>则表示SQL出错，返回值如果为0表示没有删除任何数据。</span><br><span class="line">也可以用order和<span class="built_in">limit</span>方法来限制要删除的个数，eg：</span><br><span class="line">// 删除所有状态为0的5 个用户数据 按照创建时间排序</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'status=0'</span>)-&gt;order(<span class="string">'create_time'</span>)-&gt;<span class="built_in">limit</span>(<span class="string">'5'</span>)-&gt;delete();</span><br><span class="line">为了避免错删数据，如果没有传入任何条件进行删除操作的话，不会执行删除操作，eg：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;delete();</span><br><span class="line">不会删除任何数据，如果确实要删除所有的记录，除非使用下面的方式：</span><br><span class="line"><span class="variable">$User</span> = M(<span class="string">"User"</span>); // 实例化User对象</span><br><span class="line"><span class="variable">$User</span>-&gt;<span class="built_in">where</span>(<span class="string">'1'</span>)-&gt;delete();</span><br></pre></td></tr></table></figure>
+<h3 id="经典函数用法"><a href="#经典函数用法" class="headerlink" title="经典函数用法"></a>经典函数用法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">A 函数：实例化控制器</span><br><span class="line">R 函数：直接调用控制器的操作方法</span><br><span class="line">C 函数：设置和获取配置参数</span><br><span class="line">L 函数：设置和获取语言变量</span><br><span class="line">D 函数：实例化模型</span><br><span class="line">M 函数：实例化模型（无需定义模型类）</span><br><span class="line">N 函数：计数器</span><br><span class="line">G 函数：调试统计</span><br><span class="line">U 函数：URL地址生成</span><br><span class="line">I 函数：安全获取系统输入变量</span><br><span class="line">S 函数：缓存设置和存取</span><br><span class="line">F 函数：快速缓存设置和存取</span><br><span class="line">session函数：Session操作</span><br><span class="line">cookie函数：Cookie操作</span><br><span class="line">import函数：类库导入</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/09/07/php-elm-interface/">
+                    饿了么接口——php
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/07/thinkphp-bj/">
+                    thinkphp笔记
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Database-Operations"><span class="toc-number">1.</span> <span class="toc-text">Database Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">1.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接实例化"><span class="toc-number">1.2.</span> <span class="toc-text">直接实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速实例化"><span class="toc-number">1.3.</span> <span class="toc-text">快速实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化空模型类"><span class="toc-number">1.4.</span> <span class="toc-text">实例化空模型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的写入"><span class="toc-number">1.5.</span> <span class="toc-text">数据的写入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的查询"><span class="toc-number">1.6.</span> <span class="toc-text">数据的查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的更新"><span class="toc-number">1.7.</span> <span class="toc-text">数据的更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的删除"><span class="toc-number">1.8.</span> <span class="toc-text">数据的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#经典函数用法"><span class="toc-number">1.9.</span> <span class="toc-text">经典函数用法</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"thinkphp数据库操作　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/09/07/php-elm-interface/" title="上一篇: 饿了么接口——php">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/07/thinkphp-bj/" title="下一篇: thinkphp笔记">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

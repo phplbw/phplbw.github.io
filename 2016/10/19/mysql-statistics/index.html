@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="mysql-statistics数据表格式12345678910111213141516171819表Student(S#,Sname,Sage,Ssex) 学生表S#    学号Sage  年龄Ssex  性别表Course(C#,Cname,T#) 课程表C#      课程号Cname   课程名T#      教师号表SC（学生与课程的分数制图表）(S#,C#,score) 成绩表S#">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql统计分析语句">
+<meta property="og:url" content="http://www.phplbw.site/2016/10/19/mysql-statistics/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="mysql-statistics数据表格式12345678910111213141516171819表Student(S#,Sname,Sage,Ssex) 学生表S#    学号Sage  年龄Ssex  性别表Course(C#,Cname,T#) 课程表C#      课程号Cname   课程名T#      教师号表SC（学生与课程的分数制图表）(S#,C#,score) 成绩表S#">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-15T16:15:07.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql统计分析语句">
+<meta name="twitter:description" content="mysql-statistics数据表格式12345678910111213141516171819表Student(S#,Sname,Sage,Ssex) 学生表S#    学号Sage  年龄Ssex  性别表Course(C#,Cname,T#) 课程表C#      课程号Cname   课程名T#      教师号表SC（学生与课程的分数制图表）(S#,C#,score) 成绩表S#">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mysql统计分析语句 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-mysql-statistics" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/19/mysql-statistics/" class="article-date">
+      <time datetime="2016-10-18T16:45:17.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql统计分析语句
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="mysql-statistics"><a href="#mysql-statistics" class="headerlink" title="mysql-statistics"></a>mysql-statistics</h2><h3 id="数据表格式"><a href="#数据表格式" class="headerlink" title="数据表格式"></a>数据表格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">表Student</span><br><span class="line">(S<span class="comment">#,Sname,Sage,Ssex) 学生表</span></span><br><span class="line">S<span class="comment">#    学号</span></span><br><span class="line">Sage  年龄</span><br><span class="line">Ssex  性别</span><br><span class="line">表Course</span><br><span class="line">(C<span class="comment">#,Cname,T#) 课程表</span></span><br><span class="line">C<span class="comment">#      课程号</span></span><br><span class="line">Cname   课程名</span><br><span class="line">T<span class="comment">#      教师号</span></span><br><span class="line">表SC（学生与课程的分数制图表）</span><br><span class="line">(S<span class="comment">#,C#,score) 成绩表</span></span><br><span class="line">S<span class="comment">#       学号</span></span><br><span class="line">C<span class="comment">#       课程号</span></span><br><span class="line">score    分数</span><br><span class="line">表Teacher</span><br><span class="line">(T<span class="comment">#,Tname) 教师表</span></span><br><span class="line">T<span class="comment">#         教师号</span></span><br><span class="line">Tname      教师名</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">查询“001”课程比“002”课程成绩高的所有学生的学号</span><br><span class="line">select a.S<span class="comment"># from (select S#,score from SC where C#='001') a,(select S#,score from SC where C#='002') b where a.score&gt;b.score and a.S#=b.S#;</span></span><br><span class="line">查询平均成绩大于60分的同学的学号和平均成绩</span><br><span class="line">select S<span class="comment">#,avg(score) from sc group by S# having avg(score) &gt;60;</span></span><br><span class="line">查询所有同学的学号、姓名、选课数、总成绩</span><br><span class="line">select Student.S<span class="comment">#,Student.Sname,count(SC.C#),sum(score) from Student left Outer join SC on Student.S#=SC.S# group by Student.S#,Sname;</span></span><br><span class="line">查询姓“李”的老师的个数</span><br><span class="line">select count(distinct(Tname)) from Teacher <span class="built_in">where</span> Tname like <span class="string">'李%'</span>;</span><br><span class="line">查询没学过“aaa”老师课的同学的学号、姓名</span><br><span class="line">select Student.S<span class="comment">#,Student.Sname from Student where S# not in (select distinct( SC.S#) from SC,Course,Teacher where  SC.C#=Course.C#and Teacher.T#=Course.T# and Teacher.Tname='aaa');</span></span><br><span class="line">查询学过“001”并且也学过编号“002”课程的同学的学号、姓名</span><br><span class="line">select Student.S<span class="comment">#,Student.Sname from Student,SC where Student.S#=SC.S# and SC.C#='001'and exists( Select * from SC as SC_2 where SC_2.S#=SC.S# and SC_2.C#='002');</span></span><br><span class="line">查询学过“aaa”老师所教的所有课的同学的学号、姓名</span><br><span class="line">select S<span class="comment">#,Sname from Student where S# in (select S# from SC,Course ,Teacher where SC.C#=Course.C# and Teacher.T#=Course.T# and Teacher.Tname='aaa'group by S# having count(SC.C#)=(select count(C#) from Course,Teacher  where Teacher.T#=Course.T# and Tname='aaa'));</span></span><br><span class="line">查询课程编号“002”的成绩比课程编号“001”课程低的所有同学的学号、姓名</span><br><span class="line">Select S<span class="comment">#,Sname from (select Student.S#,Student.Sname,score ,(select score from SC SC_2 where SC_2 .S#=Student.S# and SC_2.C#='002') score2 from Student,SC where Student.S#=SC.S# and C#='001') S_2 where score2 &lt;score;</span></span><br><span class="line">查询所有课程成绩小于60分的同学的学号、姓名</span><br><span class="line">select S<span class="comment">#,Sname from Student where S# not in (select Student.S# from Student,SC where S.S#=SC.S# and score&gt;60);</span></span><br><span class="line">查询没有学全所有课的同学的学号、姓名</span><br><span class="line">select Student.S<span class="comment">#,Student.Sname from Student,SC where Student.S#=SC.S# group by Student.S#,Student.Sname having count(C#)&lt;(select count(C#) from Course);</span></span><br><span class="line">查询至少有一门课与学号为“1001”的同学所学相同的同学的学号和姓名</span><br><span class="line">select S<span class="comment">#,Sname from Student,SC where Student.S#=SC.S# and C# in (select C# from SC where S#='1001');</span></span><br><span class="line">查询至少学过学号为“001”同学所有一门课的其他同学学号和姓名</span><br><span class="line">select distinct SC.S<span class="comment">#,Sname from Student,SC where Student.S#=SC.S# and C# in (select C# from SC where S#='001');</span></span><br><span class="line">把“SC”表中“aaa”老师教的课的成绩都更改为此课程的平均成绩</span><br><span class="line">update SC <span class="built_in">set</span> score=(select avg(SC_2.score) from SC SC_2 <span class="built_in">where</span> SC_2.C<span class="comment">#=SC.C# ) from Course,Teacher where Course.C#=SC.C# and Course.T#=Teacher.T# and Teacher.Tname='aaa');</span></span><br><span class="line">查询和“1002”号的同学学习的课程完全相同的其他同学学号和姓名</span><br><span class="line">select S<span class="comment"># from SC where C# in (select C# from SC where S#='1002') group by S# having count(*)=(select count(*) from SC where S#='1002');</span></span><br><span class="line">删除学习“aaa”老师课的SC表记录(联合其他表)</span><br><span class="line">Delete from(此处from可省略) SC from course ,Teacher <span class="built_in">where</span> Course.C<span class="comment">#=SC.C# and Course.T#=Teacher.T# and Tname='aaa';</span></span><br><span class="line">向SC表中插入一些记录，这些记录要求符合以下条件：没有上过编号“003”课程的同学学号、2号课的平均成绩</span><br><span class="line">Insert SC select S<span class="comment">#,'002',(Select avg(score) from SC where C#='002') from Student where S# not in (Select S# from SC where C#='002');</span></span><br><span class="line">按平均成绩从高到低显示所有学生的“数据库”、“企业管理”、“英语”三门的课程成绩，按如下形式显示：学生ID,</span><br><span class="line">数据库,企业管理,英语,有效课程数,有效平均分</span><br><span class="line">SELECT S<span class="comment"># as 学生ID,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='004') AS 数据库,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='001') AS 企业管理,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='006') AS 英语,COUNT(*) AS 有效课程数, AVG(t.score) AS 平均成绩 FROM SC AS t GROUP BY S# ORDER BY avg(t.score);</span></span><br><span class="line">查询各科成绩最高和最低的分：以如下形式显示：课程ID，最高分，最低分</span><br><span class="line">SELECT L.C<span class="comment"># As 课程ID,L.score AS 最高分,R.score AS 最低分 FROM SC L ,SC AS R WHERE L.C# = R.C# and L.score = (SELECT MAX(IL.score) FROM SC ASIL,Student AS IM WHERE L.C# =IL.C# and IM.S#=IL.S# GROUP BYIL.C#) AND R.Score= (SELECT MIN(IR.score) FROM SC AS IR WHERE R.C# =IR.C# GROUP BY IR.C#);</span></span><br><span class="line">按各科平均成绩从低到高和及格率的百分数从高到低顺序</span><br><span class="line">SELECT t.C<span class="comment"># AS 课程号,max(course.Cname)AS 课程名,isnull(AVG(score),0) AS平均成绩,100 * SUM(CASE WHEN isnull(score,0)&gt;=60 THEN 1 ELSE 0 END)/COUNT(*) AS 及格百分数 FROM SC T,Course where t.C#=course.C# GROUP BY t.C# ORDER BY 100* SUM(CASE WHEN  isnull(score,0)&gt;=60 THEN 1 ELSE 0 END)/COUNT(*) DESC;</span></span><br><span class="line">查询如下课程平均成绩和及格率的百分数(用<span class="string">"1行"</span>显示):</span><br><span class="line">企业管理（001），xxx（002），OO&amp;UML （003），数据库（004）</span><br><span class="line">SELECT SUM(CASE WHEN C<span class="comment"># ='001' THEN score ELSE 0 END)/SUM(CASE C# WHEN '001' THEN 1 ELSE 0 END) AS 企业管理平均分,100 * SUM(CASE WHEN C# = '001' AND score &gt;= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '001' THEN 1 ELSE 0 END) AS 企业管理及格百分数,SUM(CASE WHEN C# = '002' THEN score ELSE 0 END)/SUM(CASE C# WHEN '002' THEN 1 ELSE 0 END) AS xxx平均分,100 * SUM(CASE WHEN C# = '002' AND score &gt;= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '002' THEN 1 ELSE 0 END) AS xxx及格百分数,SUM(CASE WHEN C# = '003' THEN score ELSE 0 END)/SUM(CASE C# WHEN '003' THEN 1 ELSE 0 END) AS UML平均分,100* SUM(CASE WHEN C# = '003' AND score &gt;= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '003' THEN 1 ELSE 0 END) AS UML及格百分数,SUM(CASE WHEN C# = '004' THEN score ELSE 0 END)/SUM(CASE C# WHEN '004' THEN 1 ELSE 0 END) AS 数据库平均分,100 * SUM(CASE WHEN C# = '004' AND score &gt;= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '004' THEN 1 ELSE 0 END) AS 数据库及格百分数 FROM SC</span></span><br><span class="line">查询不同老师所教不同课程平均分从高到低显示</span><br><span class="line">SELECT max(Z.T<span class="comment">#) AS 教师ID,MAX(Z.Tname) AS 教师姓名,C.C# AS 课程ＩＤ,MAX(C.Cname) AS 课程名称,AVG(Score) AS 平均成绩 FROM SC AS T,Course AS C ,Teacher AS Z where T.C#=C.C# and C.T#=Z.T# GROUP BY C.C# ORDER BY AVG(Score) DESC;</span></span><br><span class="line">查询如下课程成绩第 3 名到第 6 名的学生成绩单：</span><br><span class="line">企业管理（001），xxxx（002），UML （003），数据库（004）</span><br><span class="line">[学生ID],[学生姓名],企业管理,xxxx,UML,数据库,平均成绩</span><br><span class="line">SELECT  DISTINCT top 3 SC.S<span class="comment"># As 学生学号,Student.Sname AS 学生姓名,T1.score AS 企业管理,T2.score AS xxxx, T3.score AS UML,T4.score AS 数据库,ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) as 总分 FROM Student,SC  LEFT JOIN SC AS T1 ON SC.S# = T1.S# AND T1.C# = '001' LEFT JOIN SC AS T2 ON SC.S# = T2.S# AND T2.C# = '002' LEFT JOIN SC AS T3 ON SC.S# = T3.S# AND T3.C# = '003' LEFT JOIN SC AS T4 ON SC.S# = T4.S# AND T4.C# = '004' WHERE student.S#=SC.S# and ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) NOT IN (SELECT DISTINCT TOP 15 WITH TIES ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) FROM sc LEFT JOIN sc AS T1 ON sc.S# = T1.S# AND T1.C# = 'k1' LEFT JOIN sc AS T2 ON sc.S# = T2.S# AND T2.C# = 'k2' LEFT JOIN sc AS T3 ON sc.S# = T3.S# AND T3.C# = 'k3' LEFT JOIN sc AS T4 ON sc.S# = T4.S# AND T4.C# = 'k4' ORDER BY ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) DESC);</span></span><br><span class="line">统计列印各科成绩,各分数段人数:课程ID,课程名称,[100-85],[85-70],[70-60],[ &lt;60]</span><br><span class="line">SELECT SC.C<span class="comment"># as 课程ID, Cname as 课程名称,SUM(CASE WHEN score BETWEEN 85 AND 100 THEN 1 ELSE 0 END) AS [100 - 85],SUM(CASE WHEN score BETWEEN 70 AND 85 THEN 1 ELSE 0 END) AS [85 - 70],SUM(CASE WHEN score BETWEEN 60 AND 70 THEN 1 ELSE 0 END) AS [70 - 60],SUM(CASE WHEN score &lt; 60 THEN 1 ELSE 0 END) AS [60 -] FROM SC,Course where SC.C#=Course.C# GROUP BY SC.C#,Cname;</span></span><br><span class="line">查询学生平均成绩及其名次</span><br><span class="line">SELECT 1+(SELECT COUNT( distinct 平均成绩) FROM (SELECT S<span class="comment">#,AVG(score) AS 平均成绩 FROM SC GROUP BY S#</span></span><br><span class="line">) AS T1 WHERE 平均成绩 &gt; T2.平均成绩) as 名次,S<span class="comment"># as 学生学号,平均成绩 FROM (SELECT S#,AVG(score) 平均成绩 FROM SC GROUP BY S#) AS T2 ORDER BY 平均成绩 desc;</span></span><br><span class="line">查询各科成绩前三名的记录:(不考虑成绩并列情况)</span><br><span class="line">SELECT t1.S<span class="comment"># as 学生ID,t1.C# as 课程ID,Score as 分数 FROM SC t1 WHERE score IN (SELECT TOP 3 score FROM SC WHERE t1.C#= C# ORDER BY score DESC) ORDER BY t1.C#;</span></span><br><span class="line">查询每门课程被选修的学生数</span><br><span class="line">select c<span class="comment">#,count(S#) from sc group by C#;</span></span><br><span class="line">查询出只选修了一门课程的全部学生的学号和姓名</span><br><span class="line">select SC.S<span class="comment">#,Student.Sname,count(C#) AS 选课数 from SC ,Student where SC.S#=Student.S# group by SC.S#,Student.Sname having count(C#)=1;</span></span><br><span class="line">查询男生、女生人数</span><br><span class="line">Select count(Ssex) as 男生人数 from Student group by Ssex having Ssex=<span class="string">'男'</span>;</span><br><span class="line">Select count(Ssex) as 女生人数 from Student group by Ssex having Ssex=<span class="string">'女'</span>；</span><br><span class="line">查询姓“张”的学生名单</span><br><span class="line">SELECT Sname FROM Student WHERE Sname like <span class="string">'张%'</span>;</span><br><span class="line">查询同名同性学生名单，并统计同名人数</span><br><span class="line">select Sname,count(*) from Student group by Sname having  count(*)&gt;1;</span><br><span class="line">1981年出生的学生名单(注：Student表中Sage列的类型是datetime)</span><br><span class="line">select Sname,  CONVERT(char (11),DATEPART(year,Sage)) as age from student <span class="built_in">where</span>  CONVERT(char(11),DATEPART(year,Sage))=<span class="string">'1981'</span>;</span><br><span class="line">查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列</span><br><span class="line">Select C<span class="comment">#,Avg(score) from SC group by C# order by Avg(score),C# DESC ;</span></span><br><span class="line">查询平均成绩大于85的所有学生的学号、姓名和平均成绩</span><br><span class="line">select Sname,SC.S<span class="comment"># ,avg(score)from Student,SC where Student.S#=SC.S# group by SC.S#,Sname having avg(score)&gt;85;</span></span><br><span class="line">查询课程名称为“数据库”，且分数低于60的学生姓名和分数</span><br><span class="line">Select Sname,isnull(score,0) from Student,SC,Course <span class="built_in">where</span> SC.S<span class="comment">#=Student.S# and SC.C#=Course.C# and Course.Cname='数据库'and score &lt;60;</span></span><br><span class="line">查询所有学生的选课情况；</span><br><span class="line">SELECT SC.S<span class="comment">#,SC.C#,Sname,Cname FROM SC,Student,Course where SC.S#=Student.S# and SC.C#=Course.C#;</span></span><br><span class="line">查询任何一门课程成绩在70分以上的姓名、课程名称和分数</span><br><span class="line">SELECT  distinct student.S<span class="comment">#,student.Sname,SC.C#,SC.score FROM student,SC WHERE SC.score&gt;=70 AND SC.S#=student.S#;</span></span><br><span class="line">查询不及格的课程，并按课程号从大到小排列</span><br><span class="line">select c<span class="comment"># from sc where scor e &lt;60 order by C# ;</span></span><br><span class="line">查询课程编号为003且课程成绩在80分以上的学生的学号和姓名</span><br><span class="line">select SC.S<span class="comment">#,Student.Sname from SC,Student where SC.S#=Student.S# and Score&gt;80 and C#='003';</span></span><br><span class="line">求选了课程的学生人数</span><br><span class="line">select count(*) from sc;</span><br><span class="line">查询选修“aaa”老师所授课程的学生中，成绩最高的学生姓名及其成绩</span><br><span class="line">select Student.Sname,score from Student,SC,Course C,Teacher <span class="built_in">where</span> Student.S<span class="comment">#=SC.S# and SC.C#=C.C# and C.T#=Teacher.T# and Teacher.Tname='aaa' and SC.score=(select max(score)from SC where C#=C.C# );</span></span><br><span class="line">查询各个课程及相应的选修人数</span><br><span class="line">select count(*) from sc group by C<span class="comment">#;</span></span><br><span class="line">查询不同课程成绩相同的学生的学号、课程号、学生成绩</span><br><span class="line">select distinct  A.S<span class="comment">#,B.score from SC A  ,SC B where A.Score=B.Score and A.C#&lt;&gt;B.C#;</span></span><br><span class="line">查询每门功成绩最好的前两名;</span><br><span class="line">SELECT t1.S<span class="comment"># as 学生ID,t1.C# as 课程ID,Score as 分数 FROM SC t1 WHERE score IN (SELECT TOP 2 score FROM SC WHERE t1.C#= C# ORDER BY score DESC) ORDER BY t1.C#;</span></span><br><span class="line">统计每门课程的学生选修人数（超过10人的课程才统计）。要求输出课程号和选修人数，查询结果按人数降序排列，</span><br><span class="line">查询结果按人数降序排列，若人数相同，按课程号升序排列</span><br><span class="line">select  C<span class="comment"># as 课程号,count(*) as 人数 from  sc group  by  C# order  by  count(*) desc,c#;</span></span><br><span class="line">检索至少选修两门课程的学生学号</span><br><span class="line">select  S<span class="comment"># from  sc group by s# having count(*)&gt;=2;</span></span><br><span class="line">查询全部学生都选修的课程的课程号和课程名</span><br><span class="line">select  C<span class="comment">#,Cname from  Course where C# in (select c# from sc group by c#);</span></span><br><span class="line">查询没学过“aaa”老师讲授的任一门课程的学生姓名</span><br><span class="line">select Sname from Student <span class="built_in">where</span> S<span class="comment"># not in (select S# from Course,Teacher,SC where Course.T#=Teacher.T# and SC.C#=course.C# and Tname='aaa');</span></span><br><span class="line">查询两门以上不及格课程的同学的学号及其平均成绩</span><br><span class="line">select S<span class="comment">#,avg(isnull(score,0)) from SC where S# in (select S# from SC where score &lt;60 group by S# having count(*)&gt;2)group by S#;</span></span><br><span class="line">检索“004”课程分数小于60，按分数降序排列的同学学号</span><br><span class="line">select S<span class="comment"># from SC where C#='004'and score &lt;60 order by score desc;</span></span><br><span class="line">删除“002”同学的“001”课程的成绩</span><br><span class="line">delete from Sc <span class="built_in">where</span> S<span class="comment">#='001'and C#='001';</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/11/17/php-redis-duilie/">
+                    php redis消息队列
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/13/php-PSR/">
+                    php代码规范
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-statistics"><span class="toc-number">1.</span> <span class="toc-text">mysql-statistics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据表格式"><span class="toc-number">1.1.</span> <span class="toc-text">数据表格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sql语句"><span class="toc-number">1.2.</span> <span class="toc-text">sql语句</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"mysql统计分析语句　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/17/php-redis-duilie/" title="上一篇: php redis消息队列">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/13/php-PSR/" title="下一篇: php代码规范">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

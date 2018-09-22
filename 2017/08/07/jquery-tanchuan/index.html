@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="多种弹窗方式tanchuan.css1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889/**	注意：记得将lbw">
+<meta name="keywords" content="touch_alert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端弹窗多种方式">
+<meta property="og:url" content="http://www.phplbw.site/2017/08/07/jquery-tanchuan/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="多种弹窗方式tanchuan.css1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889/**	注意：记得将lbw">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-25T12:24:06.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端弹窗多种方式">
+<meta name="twitter:description" content="多种弹窗方式tanchuan.css1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889/**	注意：记得将lbw">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>移动端弹窗多种方式 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-jquery-tanchuan" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/07/jquery-tanchuan/" class="article-date">
+      <time datetime="2017-08-07T12:55:56.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动端弹窗多种方式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/touch-alert/">touch_alert</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="多种弹窗方式"><a href="#多种弹窗方式" class="headerlink" title="多种弹窗方式"></a>多种弹窗方式</h2><h3 id="tanchuan-css"><a href="#tanchuan-css" class="headerlink" title="tanchuan.css"></a>tanchuan.css</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	注意：记得将lbw替换为script</span><br><span class="line">	../img/btn_close.gif右上角的×自己设计去</span><br><span class="line">*/</span><br><span class="line">/*自适应适配*/</span><br><span class="line">@media (min-width: 320px) &#123;html &#123;font-size: 100%; &#125;&#125;</span><br><span class="line">@media (min-width: 360px) &#123;html &#123;font-size: 112.5%;&#125;&#125;</span><br><span class="line">@media (min-width: 384px) &#123;html &#123;font-size: 120%;&#125;&#125;</span><br><span class="line">@media (min-width: 400px) &#123;html &#123;font-size: 125%;&#125;&#125;</span><br><span class="line">@media (min-width: 540px) &#123;html &#123;font-size: 168.75%;&#125;&#125;</span><br><span class="line">@media (min-width: 600px) &#123;html &#123;font-size: 187.5%;&#125;&#125;</span><br><span class="line">@media (min-width: 640px) &#123;html &#123;font-size: 200%;&#125;&#125;</span><br><span class="line">@media (min-width: 720px) &#123;html &#123;font-size: 225%;&#125;&#125;</span><br><span class="line">@media (min-width: 768px) &#123;html &#123;font-size: 100%;&#125;&#125;</span><br><span class="line">html &#123;font-size: calc(100vw / 320 * 16);&#125;</span><br><span class="line">*, *:before, *:after &#123;</span><br><span class="line">	-moz-box-sizing: border-box;   /* Firefox 1, probably can drop this */</span><br><span class="line">	-webkit-box-sizing: border-box;   /* Safari 3-4, also probably droppable */</span><br><span class="line">	box-sizing: border-box;   /* Everything <span class="keyword">else</span> */</span><br><span class="line">&#125;</span><br><span class="line">/*背景遮罩层css*/</span><br><span class="line">.xy-ui-overlay&#123;</span><br><span class="line">	position:fixed;left:0;top:0;right:0;height:100%;width:100%;</span><br><span class="line">&#125;</span><br><span class="line">/*窗体容器css*/</span><br><span class="line">.xy-ui-wrapper&#123;</span><br><span class="line">	background:<span class="comment">#fff;float:left;font-family:"Microsoft Yahei",Arial;padding:0.0625rem;min-width:15rem;_width:15rem;max-width:18.875rem;</span></span><br><span class="line">	box-shadow:0 0 0.3125rem rgba(0,0,0,0.3);-webkit-box-shadow:0 0 0.3125rem rgba(0,0,0,0.3);-moz-box-shadow:0 0 0.3125rem rgba(0,0,0,0.3);</span><br><span class="line">&#125;</span><br><span class="line">.anim-ui-wrapper&#123;</span><br><span class="line">	/* animation:anim_ui_in 0.3s ease-in-out;-webkit-animation:anim_ui_in 0.3s ease-in-out;-moz-animation:anim_ui_in 0.3s ease-in-out; */</span><br><span class="line">	animation:showAlert 0.3s ease-in-out;-webkit-animation:showAlert 0.3s ease-in-out;-moz-animation:showAlert 0.3s ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line">/* ==========弹窗css3动画 (打开) &#123;&#123;&#123; */</span><br><span class="line">/*弹窗效果一*/</span><br><span class="line">/* @keyframes anim_ui_in &#123;</span><br><span class="line">	0%&#123;opacity: 0; transform: scale(1.2);&#125; 50%&#123;transform: scale(0.95);&#125; 100%&#123;opacity: 1; transform: scale(1);&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes anim_ui_in &#123;</span><br><span class="line">	0%&#123;opacity: 0; -webkit-transform: scale(1.2);&#125; 50%&#123;-webkit-transform: scale(0.95);&#125; 100%&#123;opacity: 1; -webkit-transform: scale(1);&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-moz-keyframes anim_ui_in &#123;</span><br><span class="line">	0%&#123;opacity: 0; -moz-transform: scale(1.2);&#125; 50%&#123;-moz-transform: scale(0.95);&#125; 100%&#123;opacity: 1; -moz-transform: scale(1);&#125;</span><br><span class="line">&#125; */</span><br><span class="line">/*弹窗效果二*/</span><br><span class="line">@keyframes showAlert&#123;</span><br><span class="line">	0% &#123; transform: scale(0.7); &#125;</span><br><span class="line">	45% &#123; transform: scale(1.05); &#125;</span><br><span class="line">	80% &#123; transform: scale(0.95); &#125;</span><br><span class="line">	100% &#123; transform: scale(1); &#125;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes showAlert&#123;</span><br><span class="line">	0% &#123; transform: scale(0.7); -webkit-transform: scale(0.7); &#125;</span><br><span class="line">	45% &#123; transform: scale(1.05); -webkit-transform: scale(1.05); &#125;</span><br><span class="line">	80% &#123; transform: scale(0.95); -webkit-tranform: scale(0.95); &#125;</span><br><span class="line">	100% &#123; transform: scale(1); -webkit-transform: scale(1); &#125;</span><br><span class="line">&#125;</span><br><span class="line">@-moz-keyframes showAlert&#123;</span><br><span class="line">	0% &#123; transform: scale(0.7); -moz-transform: scale(0.7); &#125;</span><br><span class="line">	45% &#123; transform: scale(1.05); -moz-transform: scale(1.05); &#125;</span><br><span class="line">	80% &#123; transform: scale(0.95); -moz-tranform: scale(0.95); &#125;</span><br><span class="line">	100% &#123; transform: scale(1); -moz-transform: scale(1); &#125;</span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-head&#123;</span><br><span class="line">	background:<span class="comment">#fff;border-bottom:0.0625rem solid #e8e8e8;height:2.5rem;line-height:2.375rem;</span></span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-title&#123;</span><br><span class="line">	color:<span class="comment">#000;font-size:0.9375rem;font-family:"Microsoft Yahei";padding:0 0.9375rem 0 0.625rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;</span></span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-close&#123;</span><br><span class="line">	background:url(../img/btn_close.gif) no-repeat center center;background-size:0.75rem 0.6875rem;-webkit-background-size:0.75rem 0.6875rem;cursor:pointer;height:0.6875rem;width:0.75rem;position:absolute;top:0.90125rem;right:0.625rem;</span><br><span class="line">	transition:all 0.8s;-webkit-transition:all 0.8s;-moz-transition:all 0.8s;</span><br><span class="line">	-webkit-tap-highlight-color:rgba(255,255,255,0); /*去除点击蓝色边框*/</span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-close:hover&#123;</span><br><span class="line">	transform:rotate(180deg);-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);</span><br><span class="line">	transform-origin:50% 50%; -webkit-transform-origin:50% 50%; -moz-transform-origin:50% 50%;</span><br><span class="line">&#125;</span><br><span class="line">/* 底部按钮栏 */</span><br><span class="line">.xy-ui-foot&#123;</span><br><span class="line">	background:<span class="comment">#f7f7f7;border-top:0.0625rem solid #e8e8e8;</span></span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-foot .ui-btns&#123;</span><br><span class="line">	background:<span class="comment">#f7f7f7;border-right:0.0625rem solid #e8e8e8;color:#333;text-shadow:0.0625rem 0.0625rem #fff;</span></span><br><span class="line">	cursor:pointer;display:inline;<span class="built_in">float</span>:left;font:0.9375rem/2.8125rem <span class="string">"Microsoft Yahei"</span>;height:2.8125rem;overflow:hidden;_zoom:1;text-align:center;text-decoration:none;vertical-align:middle;</span><br><span class="line">	-webkit-tap-highlight-color:rgba(255,255,255,0); /*去除点击蓝色边框*/</span><br><span class="line">&#125;</span><br><span class="line">.xy-ui-foot .ui-btns:active&#123;background:<span class="comment">#f2f2f2;&#125;</span></span><br><span class="line">.xy-ui-foot .xy_ui_btn0&#123;border-right:0 none;<span class="built_in">float</span>:right;&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;xyPop弹窗 - (测试版 v1.0)&lt;/title&gt;</span><br><span class="line">&lt;meta content=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> name=<span class="string">"viewport"</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span>&gt;</span><br><span class="line">&lt;lbw <span class="built_in">type</span>=<span class="string">"text/javalbw"</span> src=<span class="string">"js/jquery-1.9.1.min.js"</span>&gt;&lt;/lbw&gt;</span><br><span class="line">&lt;lbw <span class="built_in">type</span>=<span class="string">"text/javalbw"</span> src=<span class="string">"js/tanchuan.js"</span>&gt;&lt;/lbw&gt;</span><br><span class="line">	&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"css/tanchuan.css"</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div style=<span class="string">"font-size:1rem;background:#fcc;"</span>&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> id=<span class="string">"KKK"</span>&gt;xyPop消息提示(多按钮事件测试)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;lbw <span class="built_in">type</span>=<span class="string">"text/javalbw"</span>&gt;</span><br><span class="line">			$(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">				$(<span class="string">"#KKK"</span>).on(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">					/* 1.===原始方法调用 (object模式) */</span><br><span class="line">						xyPop(&#123;</span><br><span class="line">							id: <span class="string">"pop_msg"</span>,</span><br><span class="line">							title: <span class="string">"弹窗提醒"</span>,</span><br><span class="line">							content: <span class="string">"提示：数据请求成功，正等待服务器回应！"</span>,</span><br><span class="line">							<span class="built_in">type</span>: <span class="string">"success"</span>,</span><br><span class="line">							padding: 50,</span><br><span class="line">							btn: [<span class="string">"确定按钮"</span>,<span class="string">"按钮1"</span>,<span class="string">"按钮2"</span>, <span class="string">"按钮3"</span>],</span><br><span class="line">							btn1: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">								//alert(<span class="string">"同意"</span>);</span><br><span class="line">								xyPop(<span class="string">"我只是一个简单的提示!"</span>);</span><br><span class="line">							&#125;,</span><br><span class="line">							btn2: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">								alert(<span class="string">"我是关闭执行"</span>);</span><br><span class="line">							&#125;,</span><br><span class="line">							btn3: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">								xyPop(<span class="string">"我是两个参数调用后的执行效果，确定要删除这条数据吗？"</span>, <span class="keyword">function</span>(i)&#123;</span><br><span class="line">									xyPop.msg(<span class="string">"恭喜，数据删除成功！"</span>, &#123;<span class="built_in">type</span>: <span class="string">"success"</span>, lock: 1&#125;);</span><br><span class="line">								&#125;);</span><br><span class="line">							&#125;,</span><br><span class="line">							btn4: <span class="keyword">function</span>(i)&#123;</span><br><span class="line">								alert(<span class="string">"关闭"</span>);</span><br><span class="line">							&#125;,</span><br><span class="line">							fixed: <span class="literal">true</span></span><br><span class="line">						&#125;);</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">		&lt;/lbw&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop(&#123;id:&amp;#39;xyPop_follow&amp;#39;, type:&amp;#39;confirm&amp;#39;, content:&amp;#39;您确定要删除这条数据吗？&amp;#39;,btn:[&amp;#39;确定&amp;#39;,&amp;#39;取消&amp;#39;], onOk:function()&#123;</span></span><br><span class="line"><span class="string">			xyPop.msg(&amp;#39;数据删除成功！&amp;#39;, &#123;lock:1&#125;);</span></span><br><span class="line"><span class="string">		&#125;&#125;);"</span>&gt;xyPop测试(自定义按钮、返回函数)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop(&#123;content:&amp;#39;您没有填写完整信息!&amp;#39;&#125;);"</span>&gt;xyPop测试(内容content提示——短内容)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> class=<span class="string">"followid22"</span> onclick=<span class="string">"xyPop(&#123;content:&amp;#39;对不起，用户名格式有误，用户名只能输入 汉字字母和数字下划线!&amp;#39;&#125;);"</span>&gt;xyPop测试(内容content提示——长内容)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop(&#123;title:&amp;#39;定时关闭&amp;#39;, content:&amp;#39;本窗口将在3s后关闭!&amp;#39;, time:3, lock:1&#125;);"</span>&gt;xyPop定时关闭(3s后关闭)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop(&#123;title:false, content:&amp;#39;本窗口没有标题栏提示!&amp;#39;&#125;);"</span>&gt;xyPop测试(没有顶部标题栏 title:<span class="literal">false</span>)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop(&#123;title:&amp;#39;无底部按钮&amp;#39;, content:&amp;#39;本窗口没有底部按钮!&amp;#39;, bottom:false&#125;);"</span>&gt;xyPop测试(没有底部按钮 bottom:<span class="literal">false</span>)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=<span class="string">"javalbw:;"</span> onclick=<span class="string">"xyPop.msg(&amp;#39;本窗口没有顶部及底部的超精简提示!&amp;#39;);"</span>&gt;xyPop测试(没有顶部及底部的超精简提示)&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div style=<span class="string">"background:#eee;color:red;font-weight:700;"</span>&gt;更多精彩功能，敬请期待……&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="tanchuan-js"><a href="#tanchuan-js" class="headerlink" title="tanchuan.js"></a>tanchuan.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(w, $)&#123;</span><br><span class="line">	var utils = &#123;</span><br><span class="line">		//当前JS路径</span><br><span class="line">		getPath: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			var js = document.lbws, lbw = js[js.length - 1], jsPath = lbw.src;</span><br><span class="line">			<span class="built_in">return</span> jsPath.substring(0, jsPath.lastIndexOf(<span class="string">"/"</span>) + 1);</span><br><span class="line">		&#125;(),</span><br><span class="line">		//浏览器检测</span><br><span class="line">		browser: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			<span class="built_in">return</span> &#123;</span><br><span class="line">				mobile: /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod/.<span class="built_in">test</span>(navigator.userAgent.toLowerCase())</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;,</span><br><span class="line">	/**工厂构造函数*/</span><br><span class="line">	Factory = <span class="keyword">function</span>(configs)&#123;</span><br><span class="line">		var _i = this, c = _i.options;</span><br><span class="line">		_i.config = $.extend(&#123;&#125;, c, configs);</span><br><span class="line">		</span><br><span class="line">		//实例化弹窗</span><br><span class="line">		<span class="keyword">if</span>(!(_i instanceof Factory))&#123;</span><br><span class="line">			<span class="built_in">return</span> new Factory(configs);</span><br><span class="line">		&#125;</span><br><span class="line">		_i.init();</span><br><span class="line">	&#125;;</span><br><span class="line">	Factory.prototype = &#123;</span><br><span class="line">		options: &#123;</span><br><span class="line">			dom: <span class="string">"xy-ui-pop"</span>,			//标识弹窗，用于关闭所有</span><br><span class="line">			id: <span class="string">"uiPop"</span>,					//弹窗ID (不同ID对应不同弹窗)</span><br><span class="line">			title: <span class="string">"提示"</span>,				//标题(为<span class="literal">false</span>时隐藏标题)</span><br><span class="line">			content: <span class="string">""</span>,					//消息内容</span><br><span class="line">			<span class="built_in">type</span>: <span class="string">"warning"</span>,			//图标类型 warning|error|success|confirm</span><br><span class="line">			padding: <span class="string">"20px"</span>,			//内容填充区域</span><br><span class="line">			lock: 1,						//锁定屏幕(遮罩)</span><br><span class="line">			fixed: <span class="literal">false</span>,					//是否固定定位</span><br><span class="line">			zIndex: 9999,				//设置元素层叠</span><br><span class="line">			time: 0,						//定时关闭</span><br><span class="line">			btn: <span class="string">"确定"</span>,					//按钮(String/Array) 	btn:<span class="string">"确定"</span> | btn:[<span class="string">"确定"</span>, <span class="string">"取消"</span>] | btn: [<span class="string">'按钮1'</span>, <span class="string">'按钮2'</span>, <span class="string">'按钮3'</span>, …]</span><br><span class="line">			onShow: null,				//打开弹窗成功回调方法</span><br><span class="line">			onOk: null,					//确定按钮回调方法</span><br><span class="line">			onClose: null,				//关闭按钮回调方法</span><br><span class="line">			bottom: <span class="literal">true</span>,				//底部(为<span class="literal">false</span>时隐藏底部)</span><br><span class="line">			</span><br><span class="line">			alpha: [<span class="string">".4"</span>, <span class="string">"#000"</span>],	//设置遮罩层背景及透明度</span><br><span class="line">			skinPath: <span class="string">"skin/"</span>			//css或image路径</span><br><span class="line">		&#125;,</span><br><span class="line">		init: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			var _i = this, opt = _i.config, c = null, popWin = null, offsetL, offsetT;</span><br><span class="line">			_i.isfixed = (opt.fixed || opt.time) ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">if</span>($(<span class="string">"#"</span> + opt.id)[0])</span><br><span class="line">				<span class="built_in">return</span>;</span><br><span class="line">			c = $(<span class="string">"&lt;div id='"</span>+opt.id+<span class="string">"' class='"</span>+opt.dom+<span class="string">"'&gt;&lt;/div&gt;"</span>);</span><br><span class="line">			c.html(</span><br><span class="line">				/**遮罩*/</span><br><span class="line">				(opt.lock ? <span class="string">'&lt;div class="xy-ui-overlay"&gt;&lt;/div&gt;'</span> : <span class="string">''</span>)</span><br><span class="line">				/**窗体*/</span><br><span class="line">				+ <span class="string">'&lt;div class="xy-ui-wrapper anim-ui-wrapper"&gt;'</span></span><br><span class="line">					/*标题区域*/</span><br><span class="line">					+ (opt.title ? <span class="string">'&lt;div class="xy-ui-head"&gt;&lt;div class="xy-ui-title"&gt;'</span>+opt.title+<span class="string">'&lt;/div&gt;&lt;a class="xy-ui-close"&gt;&lt;/a&gt;&lt;/div&gt;'</span> : <span class="string">''</span>)</span><br><span class="line">					/*内容区域*/</span><br><span class="line">					+ <span class="string">'&lt;div class="xy-ui-body"&gt;'</span></span><br><span class="line">					+	(opt.type ? <span class="string">'&lt;div style="text-align:center;"&gt;&lt;span style="background:url('</span>+ opt.skinPath + opt.type +<span class="string">'_icon.gif) no-repeat 0 center;display:inline-block;padding:0.75rem 0 0.75rem 2.625rem;"&gt;'</span> + opt.content + <span class="string">'&lt;/span&gt;&lt;/div&gt;'</span> : opt.content)</span><br><span class="line">					+ <span class="string">'&lt;/div&gt;'</span></span><br><span class="line">					/*底部区域*/</span><br><span class="line">					+ (opt.bottom &amp;&amp; opt.btn ? <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">						/*定义多个按钮*/</span><br><span class="line">						var btn = <span class="string">""</span>;</span><br><span class="line">						typeof opt.btn === <span class="string">"string"</span> &amp;&amp; (opt.btn = [opt.btn]);</span><br><span class="line">						$.each(opt.btn, <span class="keyword">function</span>(i, v)&#123;</span><br><span class="line">							btn += <span class="string">'&lt;a class="ui-btns xy_ui_btn'</span>+i+<span class="string">'" style="width: '</span>+ (100 / opt.btn.length)+<span class="string">'%"&gt;'</span>+v+<span class="string">'&lt;/a&gt;'</span>;</span><br><span class="line">						&#125;);</span><br><span class="line">						<span class="built_in">return</span> <span class="string">'&lt;div class="xy-ui-foot"&gt;'</span></span><br><span class="line">						+ <span class="string">'&lt;div class="xy-ui-btns"&gt;'</span>+ btn +<span class="string">'&lt;/div&gt;'</span></span><br><span class="line">						<span class="string">'&lt;/div&gt;'</span></span><br><span class="line">					&#125;() : <span class="string">''</span>)</span><br><span class="line">				+ <span class="string">'&lt;/div&gt;'</span></span><br><span class="line">			);</span><br><span class="line">			$(<span class="string">"body"</span>).append(c); //插入到body最后	</span><br><span class="line">			/**锁屏设置*/</span><br><span class="line">			_i.overlay = c.find(<span class="string">".xy-ui-overlay"</span>);</span><br><span class="line">			_i.overlay.css(&#123;</span><br><span class="line">				<span class="string">"background-color"</span>: opt.alpha[1] || <span class="string">"#000"</span>,</span><br><span class="line">				<span class="string">"opacity"</span>: 0,</span><br><span class="line">				<span class="string">"z-index"</span>: _i.maxIndex() + 1</span><br><span class="line">			&#125;).fadeTo(300, opt.alpha[0]);	</span><br><span class="line">			_i.popWin = popWin = c.find(<span class="string">".xy-ui-wrapper"</span>);</span><br><span class="line">			popWin.css(&#123;</span><br><span class="line">				<span class="string">"position"</span>: _i.isfixed ? <span class="string">"fixed"</span> : <span class="string">"absolute"</span>,</span><br><span class="line">				<span class="string">"z-index"</span>: _i.maxIndex() + 1</span><br><span class="line">			&#125;);</span><br><span class="line">			_i.body = _i.popWin.find(<span class="string">".xy-ui-body"</span>);</span><br><span class="line">			_i.body.css(&#123;</span><br><span class="line">				<span class="string">"padding"</span>: opt.padding</span><br><span class="line">			&#125;);</span><br><span class="line">			offsetL = ($(window).width() - popWin.outerWidth()) / 2;</span><br><span class="line">			offsetT = ($(window).height() - popWin.outerHeight()) / 2;</span><br><span class="line">			/**弹窗定位*/</span><br><span class="line">			popWin.css(&#123;</span><br><span class="line">				<span class="string">"left"</span>: _i.isfixed ? offsetL : $(document).scrollLeft() + offsetL,</span><br><span class="line">				<span class="string">"top"</span>: _i.isfixed ? offsetT : $(document).scrollTop() + offsetT</span><br><span class="line">			&#125;);		</span><br><span class="line">			/**弹窗重置*/</span><br><span class="line">			_i.setPos = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">				<span class="keyword">if</span>(!_i.isfixed)&#123;</span><br><span class="line">					popWin.css(&#123;</span><br><span class="line">						<span class="string">"left"</span>: $(document).scrollLeft() + ($(window).width() - popWin.outerWidth()) / 2,</span><br><span class="line">						<span class="string">"top"</span>: $(document).scrollTop() + ($(window).height() - popWin.outerHeight()) / 2</span><br><span class="line">					&#125;);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					popWin.css(&#123;</span><br><span class="line">						<span class="string">"left"</span>: ($(window).width() - popWin.outerWidth()) / 2,</span><br><span class="line">						<span class="string">"top"</span>: ($(window).height() - popWin.outerHeight()) / 2</span><br><span class="line">					&#125;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			$(window).resize(_i.setPos);		</span><br><span class="line">			_i.ui_overlay = c.find(<span class="string">".xy-ui-overlay"</span>);</span><br><span class="line">			_i.ui_close = c.find(<span class="string">".xy-ui-close"</span>);</span><br><span class="line">			</span><br><span class="line">			//弹窗事件</span><br><span class="line">			_i.callback();</span><br><span class="line">		&#125;,</span><br><span class="line">		callback: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			var _i = this, opt = _i.config;</span><br><span class="line">			</span><br><span class="line">			opt.onShow &amp;&amp; opt.onShow(_i);</span><br><span class="line">			//弹窗自动关闭</span><br><span class="line">			<span class="keyword">if</span>(opt.time)&#123;</span><br><span class="line">				setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">					_i.close();</span><br><span class="line">				&#125;, opt.time * 1000);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			//按钮事件</span><br><span class="line">			_i.popWin.find(<span class="string">".xy-ui-btns a"</span>).on(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">				var index = $(this).index();</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">if</span>(index === 0)&#123; //默认是确定按钮 [第一个按钮，可以写btn1]</span><br><span class="line">					opt.onOk ? (_i.close(), opt.onOk(_i)) : _i.close();</span><br><span class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(index === 1)&#123; //默认是取消按钮 [第二个按钮，可以写btn2]</span><br><span class="line">					_i.close();</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					opt[<span class="string">"btn"</span> + (index+1)] &amp;&amp; _i.close();</span><br><span class="line">				&#125;</span><br><span class="line">				opt[<span class="string">"btn"</span> + (index+1)] &amp;&amp; opt[<span class="string">"btn"</span> + (index+1)](_i);</span><br><span class="line">			&#125;);</span><br><span class="line">			//右上角关闭</span><br><span class="line">			<span class="keyword">if</span>(_i.ui_close[0])&#123;</span><br><span class="line">				_i.ui_close.on(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">					_i.close();</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;</span><br><span class="line">			//点击锁屏重置窗体位置 (双击关闭弹窗)</span><br><span class="line">			_i.ui_overlay.on(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">				_i.setPos();</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;,</span><br><span class="line">		//关闭弹窗</span><br><span class="line">		close: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			var _i = this, opt = _i.config;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>($(<span class="string">"#"</span> + opt.id))&#123;</span><br><span class="line">				$(<span class="string">"#"</span> + opt.id).remove();</span><br><span class="line">			&#125;</span><br><span class="line">			opt.onClose &amp;&amp; opt.onClose(_i); //执行关闭事件</span><br><span class="line">		&#125;,</span><br><span class="line">		//关闭页面所有弹窗(根据页面唯一弹窗标识)</span><br><span class="line">		closeAll: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			$(<span class="string">"."</span> + this.config.dom).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">				$(this).remove();</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;,</span><br><span class="line">		//获取弹窗最大层级</span><br><span class="line">		maxIndex: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">			<span class="keyword">for</span>(var idx = this.config.zIndex, elem = $(<span class="string">"*"</span>), i = 0, len = elem.length; i &lt; len; i++)</span><br><span class="line">				idx = Math.max(idx, elem[i].style.zIndex);</span><br><span class="line">			<span class="built_in">return</span> idx;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	//提供外部访问接口</span><br><span class="line">	var interface = (<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		/*</span><br><span class="line">			===多功能消息弹窗(合并alert和confirm)(可接收三个参数[可向左容错])===</span><br><span class="line">			1. 参数1个 信息内容</span><br><span class="line">			2. 参数2个 &#123;a:1~2组合[信息内容~配置参数] | b:1~3组合[信息内容~执行函数]&#125;</span><br><span class="line">			3. 参数3个 &#123;a:1~2~3组合[信息内容~定时关闭~执行函数] | b:1~2~3组合[信息内容~配置参数~执行函数]&#125;</span><br><span class="line">		*/</span><br><span class="line">		exports = <span class="keyword">function</span>(content, options, fn)&#123;</span><br><span class="line">			Factory(</span><br><span class="line">				typeof content === <span class="string">"object"</span> ? arguments[0] : $.extend(&#123;</span><br><span class="line">					content: content,</span><br><span class="line">					onOk: typeof options === <span class="string">"function"</span> ? options : fn,</span><br><span class="line">					btn: arguments.length === 3 ? [<span class="string">"确定"</span>, <span class="string">"取消"</span>] : typeof options === <span class="string">"function"</span> ? [<span class="string">"确定"</span>, <span class="string">"取消"</span>] : [<span class="string">"关闭"</span>]</span><br><span class="line">				&#125;, options || &#123;&#125;)</span><br><span class="line">			);</span><br><span class="line">		&#125;;</span><br><span class="line">		/*</span><br><span class="line">			===简单信息弹窗(可接收三个参数[可向左容错])===</span><br><span class="line">			1. 参数1个 信息内容</span><br><span class="line">			2. 参数2个 &#123;a:1~2组合[信息内容~配置参数] | b:1~3组合[信息内容~执行函数]&#125;</span><br><span class="line">			3. 参数3个 信息内容~配置参数~执行函数</span><br><span class="line">		*/</span><br><span class="line">		exports.msg = <span class="keyword">function</span>(content, options, fn)&#123;</span><br><span class="line">			Factory(</span><br><span class="line">				$.extend(&#123;</span><br><span class="line">					title: <span class="literal">false</span>,</span><br><span class="line">					content: content,</span><br><span class="line">					time: 3,</span><br><span class="line">					bottom: <span class="literal">false</span>,</span><br><span class="line">					onClose: typeof options === <span class="string">"function"</span> ? options : fn</span><br><span class="line">				&#125;, options || &#123;&#125;)</span><br><span class="line">			);</span><br><span class="line">		&#125;;</span><br><span class="line">		/*</span><br><span class="line">			===加载外部css与js===</span><br><span class="line">			1. 	xyPop.load(<span class="string">"skin/xyPop.css"</span>);				//默认方式</span><br><span class="line">				xyPop.load(<span class="string">"skin/xyPop.css, aaa.css"</span>);		//使用逗号分隔  (<span class="string">"a, b, c, d......"</span>)</span><br><span class="line">				xyPop.load([<span class="string">"skin/xyPop.css"</span>, <span class="string">"aaa.css"</span>]);	//使用数组形式 ([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>......])</span><br><span class="line">			2.	加载js方法同上</span><br><span class="line">		*/</span><br><span class="line">		exports.load = <span class="keyword">function</span>(path)&#123;</span><br><span class="line">			//加载多个文件</span><br><span class="line">			var file = $.isArray(path) ? path : $.trim(path).replace(/[ ]&#123;2,&#125;/g, <span class="string">" "</span>).split(<span class="string">","</span>);</span><br><span class="line">			$.each(file, <span class="keyword">function</span>(i, v)&#123;</span><br><span class="line">				var f = file[i].replace(/\s/g, <span class="string">""</span>),</span><br><span class="line">				isCss = /\.css$/.<span class="built_in">test</span>(f),</span><br><span class="line">				node = document.createElement(isCss ? <span class="string">"link"</span> : <span class="string">"lbw"</span>),</span><br><span class="line">				//唯一标识</span><br><span class="line">				id = <span class="string">"xyPopTag_"</span> + f.replace(/(\.|\/|\:)/g, <span class="string">""</span>);</span><br><span class="line">				</span><br><span class="line">				isCss &amp;&amp; (node.rel = <span class="string">"stylesheet"</span>);</span><br><span class="line">				node[isCss ? <span class="string">"href"</span> : <span class="string">"src"</span>] = f;</span><br><span class="line">				node.id = id;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">if</span>(!$(<span class="string">"#"</span> + id)[0])&#123;</span><br><span class="line">					$(<span class="string">"head"</span>)[0].appendChild(node);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="built_in">return</span> exports;</span><br><span class="line">	&#125;());</span><br><span class="line">	//加载css文件</span><br><span class="line">	//interface.load(<span class="string">"skin/xyPop.css"</span>);</span><br><span class="line">	//提供外部接口</span><br><span class="line">	w.xyPop = interface;</span><br><span class="line">&#125;(window, jQuery);</span><br></pre></td></tr></table></figure>
+<h3 id="jquery-1-9-1-min-js"><a href="#jquery-1-9-1-min-js" class="headerlink" title="jquery-1.9.1.min.js"></a>jquery-1.9.1.min.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自己找去</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/08/07/zhengze/">
+                    正则匹配
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/07/10/git-work-to-sum-up/">
+                    git工作命令总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多种弹窗方式"><span class="toc-number">1.</span> <span class="toc-text">多种弹窗方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tanchuan-css"><span class="toc-number">1.1.</span> <span class="toc-text">tanchuan.css</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-number">1.2.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tanchuan-js"><span class="toc-number">1.3.</span> <span class="toc-text">tanchuan.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jquery-1-9-1-min-js"><span class="toc-number">1.4.</span> <span class="toc-text">jquery-1.9.1.min.js</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"移动端弹窗多种方式　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/08/07/zhengze/" title="上一篇: 正则匹配">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/07/10/git-work-to-sum-up/" title="下一篇: git工作命令总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>

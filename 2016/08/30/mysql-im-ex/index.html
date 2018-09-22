@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="phplbw" />
+
+
+
+<meta name="description" content="mysql command*查看数据库版本1mysql&amp;gt; SELECT VERSION(); 一、从命令行登录MySQL数据库服务器12345登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/local/mysql/bin/mysql -h hostname -u root -p登录使用默认3306端口的MySQL /usr/local/mysql/bin/mys">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql常用命令">
+<meta property="og:url" content="http://www.phplbw.site/2016/08/30/mysql-im-ex/index.html">
+<meta property="og:site_name" content="Hello KuGou...">
+<meta property="og:description" content="mysql command*查看数据库版本1mysql&amp;gt; SELECT VERSION(); 一、从命令行登录MySQL数据库服务器12345登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/local/mysql/bin/mysql -h hostname -u root -p登录使用默认3306端口的MySQL /usr/local/mysql/bin/mys">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-21T08:40:24.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql常用命令">
+<meta name="twitter:description" content="mysql command*查看数据库版本1mysql&amp;gt; SELECT VERSION(); 一、从命令行登录MySQL数据库服务器12345登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/local/mysql/bin/mysql -h hostname -u root -p登录使用默认3306端口的MySQL /usr/local/mysql/bin/mys">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello KuGou..." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/php.gif">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mysql常用命令 | Hello KuGou...</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+  <!--<script src="https://api.i-meto.com/music/player.js"></script>-->
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/php.gif" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">phplbw</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result' style="display:none;">No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="http://blog.phplbw.site">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7-nginx1-12-2-mysql-5-7-20-php7-0-26/">centos7_nginx1.12.2_mysql.5.7.20_php7.0.26</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/execl/">execl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interface/">interface</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-environment-to-build/">java_environment_to_build</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache/">memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regular/">regular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/touch-alert/">touch_alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos6-lnmp/">vmware_centos6_lnmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware-centos7-share-folder/">vmware_centos7_share_folder</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于全端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+    <div class="music_wyy">
+         <!--<div class="aplayer" data-id="857896" data-server="netease" data-type="song"></div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66"></iframe>-->
+        <embed width=260 height=86 src="//music.163.com/outchain/player?type=2&id=857896&auto=1&height=66" />
+    </div>
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">phplbw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/php.gif" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">phplbw</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">人生最大的挑战就是战胜自己~~~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="http://blog.phplbw.site">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/abner.lin.180" title="Facebook"></a>
+                            
+                                <a class="fa Google" target="_blank" href="https://www.google.com" title="Google"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://www.linkedin.com/" title="LinkedIn"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-mysql-im-ex" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/30/mysql-im-ex/" class="article-date">
+      <time datetime="2016-08-30T10:39:44.000Z" itemprop="datePublished">2016-08-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql常用命令
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="mysql-command"><a href="#mysql-command" class="headerlink" title="mysql command"></a>mysql command</h2><h3 id="查看数据库版本"><a href="#查看数据库版本" class="headerlink" title="*查看数据库版本"></a>*查看数据库版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION();</span><br></pre></td></tr></table></figure>
+<h3 id="一、从命令行登录MySQL数据库服务器"><a href="#一、从命令行登录MySQL数据库服务器" class="headerlink" title="一、从命令行登录MySQL数据库服务器"></a>一、从命令行登录MySQL数据库服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/<span class="built_in">local</span>/mysql/bin/mysql -h hostname -u root -p</span><br><span class="line">登录使用默认3306端口的MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br><span class="line">通过TCP连接管理不同端口的多个MySQL（注意：MySQL4.1以上版本才有此项功能） /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --protocol=tcp --host=localhost --port=3307</span><br><span class="line">通过socket套接字管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --socket=/tmp/mysql3307.sock</span><br><span class="line">通过端口和IP管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p -P 3306 -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="二、数据库操作SQL语句"><a href="#二、数据库操作SQL语句" class="headerlink" title="二、数据库操作SQL语句"></a>二、数据库操作SQL语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">启动mysql net start mysql</span><br><span class="line">停止mysql net stop mysql</span><br><span class="line">登录mysql mysql -h hostname -u username -p 或者mysql -u username -ppassword</span><br><span class="line">退出mysql <span class="built_in">exit</span> 或者 quit</span><br><span class="line">显示服务器上当前存在什么数据库 SHOW DATABASES;</span><br><span class="line">创建名称为rewin的数据库 CREATE DATABASE rewin;</span><br><span class="line">删除名称为rewin的数据库 DROP DATABASE rewin;</span><br><span class="line">选择rewin数据库 USE rewin;</span><br></pre></td></tr></table></figure>
+<h3 id="三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）"><a href="#三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）" class="headerlink" title="三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）"></a>三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">显示当前数据库中存在什么表 SHOW TABLES;</span><br><span class="line">创建数据库表zhangyan：在mysql&gt;后粘贴以下SQL语句，存储引擎为MYISAM，字段id为主键、唯一索引 CREATE TABLE `zhangyan` ( `id` INT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT , `name` VARCHAR( 20 ) NOT NULL , `password` CHAR( 32 ) NOT NULL , `time` DATETIME NOT NULL , `photo_number` FLOAT( 10 ) NOT NULL , `content` TEXT NOT NULL , PRIMARY KEY ( `id` ) ) ENGINE = MYISAM ;</span><br><span class="line">查看zhangyan表结构 DESCRIBE zhangyan;</span><br><span class="line">从zhangyan表中检索所有记录 SELECT * FROM zhangyan;</span><br><span class="line">从zhangyan表中检索特定的行：字段name等于abc，字段photo_number等于1，按字段id降序排列 SELECT * FROM zhangyan WHERE name = abc AND photo_number=1 ORDER BY id DESC;</span><br><span class="line">显示zhangyan表所有的name以字母“bob”开头和phone_number为“3444444”的第1至第5条记录 SELECT * FROM zhangyan WHERE name like <span class="string">"Bob%"</span> AND phone_number = <span class="string">'3444444'</span> <span class="built_in">limit</span> 1,5; </span><br><span class="line">从zhangyan表中检索指定的字段：name和password SELECT name, password FROM zhangyan;</span><br><span class="line">从zhangyan表中检索出唯一的不重复记录： SELECT DISTINCT name FROM zhangyan;</span><br><span class="line">插入信息到zhangyan表 INSERT INTO zhangyan (id, name, password, time, photo_number, content) VALUES (, abc, 123456,2007-08-06 14:32:12, 23.41, hello world);</span><br><span class="line">更新zhangyan表中的指定信息 UPDATE zhangyan SET content = hello china WHERE name = abc;</span><br><span class="line">删除zhangyan表中的指定信息 DELETE FROM zhangyan WHERE id = 1;</span><br><span class="line">清空zhangyan表 DELETE FROM zhangyan;</span><br><span class="line">删除zhangyan表 DROP TABLE zhangyan;</span><br><span class="line">更改表结构，将zhangyan表name字段的字段类型改为CHAR(25) alter table zhangyan modify column name char(25);</span><br><span class="line">返回zhangyan表的各列信息show columns from zhangyan;</span><br><span class="line">使用值“whatever”过滤zhangyan表显示选定的某些行 SELECT * FROM zhangyan WHERE [field name] = <span class="string">"whatever"</span>;</span><br><span class="line">使用正则表达式查找记录。使用“正则表达式二进制”强制区分大小写。此命令查找zhangyan表以a开头的任何记录 SELECT * FROM zhangyan WHERE rec RLIKE <span class="string">"^a"</span>;</span><br><span class="line">返回zhangyan表中字段name唯一不同的记录(去重复) SELECT DISTINCT name FROM zhangyan;或select name from zhangyan group by name;</span><br><span class="line">返回zhangyan表的行数 SELECT COUNT(*) FROM zhangyan;</span><br><span class="line">统计zhangyan表指定列值的总和 SELECT SUM(*) FROM zhangyan;</span><br></pre></td></tr></table></figure>
+<h3 id="四、数据库权限操作SQL语句"><a href="#四、数据库权限操作SQL语句" class="headerlink" title="四、数据库权限操作SQL语句"></a>四、数据库权限操作SQL语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">创建一个具有root权限，可从任何IP登录的用户sina，密码为zhangyan GRANT ALL PRIVILEGES ON *.* TO sina@% IDENTIFIED BY zhangyan;</span><br><span class="line">创建一个具有<span class="string">"数据操作"</span>、<span class="string">"结构操作"</span>权限，只能从192.168.1.***登录的用户sina，密码为zhangyan GRANT SELECT , INSERT , UPDATE , DELETE , FILE , CREATE , DROP , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON *.* TO sina@192.168.1.% IDENTIFIED BY zhangyan;</span><br><span class="line">创建一个只拥有<span class="string">"数据操作"</span>权限，只能从192.168.1.24登录，只能操作rewin数据库的zhangyan表的用户sina，密码为zhangyan GRANT SELECT , INSERT , UPDATE , DELETE ON  rewin.zhangyan TO sina@192.168.1.24 IDENTIFIED BY zhangyan;</span><br><span class="line">创建一个拥有<span class="string">"数据操作"</span>、<span class="string">"结构操作"</span>权限，可从任何IP登录，只能操作rewin数据库的用户sina，密码为zhangyan GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , DROP , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON rewin.* TO sina@% IDENTIFIED BY zhangyan;</span><br><span class="line">删除用户 DROP USER sina@%;</span><br><span class="line">MySQL中将字符串aaa批量替换为bbb的SQL语句 UPDATE 表名 SET 字段名 = REPLACE (字段名, aaa, bbb);</span><br><span class="line">修复损坏的表 a、用root帐号从命令行登录MySQL：mysql -u root -p b、输入root帐号的密码。c、选定数据库名（本例中的数据库名为student）：use student;修复损坏的表（本例中要修复的表为smis_user_student）：repair table smis_user_student;udent;</span><br><span class="line">新建一个用户，以root登录。切换到mysql数据库，创建用户，刷新权限 mysql -u root -p; INSERT INTO user (Host,User,Password) VALUES(<span class="string">'%'</span>,<span class="string">'username'</span>,PASSWORD(<span class="string">'password'</span>)); flush privileges;</span><br><span class="line">从unix命令行更改用户密码 /usr/<span class="built_in">local</span>/mysql/bin/mysqladmin -u username -h hostname.blah.org -p password <span class="string">'new-password'</span>;</span><br><span class="line">从mysql命令行更改用户密码。以root登录，设置密码，更新权限 /etc/init.d/mysql stop; mysqld_safe --skip-grant-tables &amp;; mysql -u root; use mysql; update user <span class="built_in">set</span> password=PASSWORD(<span class="string">"newrootpassword"</span>) <span class="built_in">where</span> User=<span class="string">'root'</span>; flush privileges; quit; /etc/init.d/mysql stop; /etc/init.d/mysql start;</span><br><span class="line">root密码为空时，设置root密码 mysqladmin -u root password newpassword;</span><br><span class="line">更新root密码 mysqladmin -u root -p oldpassword newpassword;</span><br><span class="line">允许用户“bob”从localhost以密码“passwd”连接服务器。以root登录，切换mysql数据库。设置权限，更新权限 mysql -u root -p; use mysql; grant usage on *.* to bob@localhost identified by <span class="string">'passwd'</span>; flush privileges;</span><br><span class="line">为数据库db设置权限。以root登录，切换到mysql数据库，授予权限，更新权限 mysql -u root -p; use mysql; INSERT INTO db (Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv) VALUES (<span class="string">'%'</span>,<span class="string">'databasename'</span>,<span class="string">'username'</span>,<span class="string">'Y'</span>,<span class="string">'Y'</span>,<span class="string">'Y'</span>,<span class="string">'Y'</span>,<span class="string">'Y'</span>,<span class="string">'N'</span>); flush privileges;或者grant all privileges on databasename.* to username@localhost; flush privileges;</span><br><span class="line">更新已存在表的数据 UPDATE [table name] SET Select_priv = <span class="string">'Y'</span>,Insert_priv = <span class="string">'Y'</span>,Update_priv = <span class="string">'Y'</span> <span class="built_in">where</span> [field name] = <span class="string">'user'</span>;</span><br><span class="line">删除表中[field name] = ‘whatever’的行 ELETE from [table name] <span class="built_in">where</span> [field name] = <span class="string">'whatever'</span>;</span><br><span class="line">更新数据库的权限/特权 flush privileges;</span><br><span class="line">删除列 alter table [table name] drop column [column name];</span><br><span class="line">新增列到db alter table [table name] add column [new column name] varchar (20);</span><br><span class="line">更改列名 alter table [table name] change [old column name] [new column name] varchar (50);</span><br><span class="line">更改表名 alter table table1 rename as table2;</span><br><span class="line">增加唯一的列 alter table [table name] add unique ([column name]);</span><br><span class="line">设置列值大点(修改字段类型或长度) alter table [table name] modify [column name] VARCHAR(3);</span><br><span class="line">删除唯一列 alter table [table name] drop index [colmn name];</span><br></pre></td></tr></table></figure>
+<h3 id="五、MySQL拷贝表结构、表数据"><a href="#五、MySQL拷贝表结构、表数据" class="headerlink" title="五、MySQL拷贝表结构、表数据"></a>五、MySQL拷贝表结构、表数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">只复制拷贝表结构，不复制拷贝表数据 CREATE TABLE 新的表名 LIKE 要复制的表名;</span><br><span class="line">复制表结构和数据，但是新的表结构不会有主键和索引 CREATE TABLE 新的表名 AS (SELECT * FROM 要复制的表名);</span><br><span class="line">真正的复制表结构和完整数据，先复制表结构，再插入所有数据 CREATE TABLE 新的表名 LIKE 要复制的表名; INSERT INTO 新的表名 (SELECT * FROM 要复制的表名);</span><br></pre></td></tr></table></figure>
+<h3 id="六、MySQL导入导出"><a href="#六、MySQL导入导出" class="headerlink" title="六、MySQL导入导出"></a>六、MySQL导入导出</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">导入一个CSV文件到表 LOAD DATA INFILE <span class="string">'/tmp/filename.csv'</span> replace INTO TABLE [table name] FIELDS TERMINATED BY <span class="string">','</span> LINES TERMINATED BY <span class="string">'\n'</span> (field1,field2,field3);</span><br><span class="line">导出所有数据库到sql文件 mysqldump -u root -ppassword --opt &gt;/tmp/alldatabases.sql;</span><br><span class="line">导出一个数据库 mysqldump -u username -ppassword --databases databasename &gt;/tmp/databasename.sql;</span><br><span class="line">从一个数据库导出一个表 mysqldump -c -u username -ppassword databasename tablename &gt; /tmp/databasename.tablename.sql;</span><br><span class="line">从sql文件还原数据库（数据表）mysql -u username -ppassword databasename &lt; /tmp/databasename.sql;</span><br><span class="line">导出整个数据库</span><br><span class="line">mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名</span><br><span class="line">mysqldump -uroot -proot dingding &gt; 1.sql</span><br><span class="line">导出一个表</span><br><span class="line">mysqldump -u 用户名 -p 数据库名 表名&gt; 导出的文件名</span><br><span class="line">mysqldump -uroot -proot dingding &gt;F:/dingding/wcnc.sql</span><br><span class="line">导出一个数据库结构</span><br><span class="line">mysqldump -u wcnc -p -d --add-drop-table smgp_apps_wcnc &gt;d:wcnc_db.sql</span><br><span class="line">导入数据库</span><br><span class="line">常用<span class="built_in">source</span>命令</span><br><span class="line">进入mysql数据库控制台，</span><br><span class="line">如mysql -u root -p</span><br><span class="line">mysql&gt;use 数据库</span><br><span class="line">然后使用<span class="built_in">source</span>命令，后面参数为脚本文件(如这里用到的.sql)</span><br><span class="line">mysql&gt;<span class="built_in">source</span> d:wcnc_db.sql</span><br></pre></td></tr></table></figure>
+<h3 id="七、MySQL索引的查看创建和删除"><a href="#七、MySQL索引的查看创建和删除" class="headerlink" title="七、MySQL索引的查看创建和删除"></a>七、MySQL索引的查看创建和删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">普通索引 ALTER TABLE table_name ADD INDEX index_name (column_list);或者CREATE INDEX index_name ON table_name (column_list);</span><br><span class="line">UNIQUE索引 ALTER TABLE table_name ADD UNIQUE (column_list);或者CREATE UNIQUE INDEX index_name ON table_name (column_list);</span><br><span class="line">PRIMARY KEY索引 ALTER TABLE table_name ADD PRIMARY KEY (column_list);</span><br><span class="line">对students表在sid上添加PRIMARY KEY索引 ALTER TABLE students ADD PRIMARY KEY (sid);</span><br><span class="line">删除索引 DROP INDEX index_name ON talbe_name;或者ALTER TABLE table_name DROP INDEX index_name;</span><br><span class="line">只在删除PRIMARY KEY索引时使用 ALTER TABLE table_name DROP PRIMARY KEY;</span><br><span class="line">查看索引 SHOW index FROM `tblname`;或者SHOW keys FROM `tblname`;</span><br></pre></td></tr></table></figure>
+<h3 id="八、mysql修改表存储引擎"><a href="#八、mysql修改表存储引擎" class="headerlink" title="八、mysql修改表存储引擎"></a>八、mysql修改表存储引擎</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table tablename <span class="built_in">type</span>=innodb;</span><br><span class="line">alter table tablename <span class="built_in">type</span>=myisam;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/08/31/linux-work-command/">
+                    linux工作命令
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/29/hello-kugou/">
+                    Hello KuGou
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-command"><span class="toc-number">1.</span> <span class="toc-text">mysql command</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看数据库版本"><span class="toc-number">1.1.</span> <span class="toc-text">*查看数据库版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、从命令行登录MySQL数据库服务器"><span class="toc-number">1.2.</span> <span class="toc-text">一、从命令行登录MySQL数据库服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、数据库操作SQL语句"><span class="toc-number">1.3.</span> <span class="toc-text">二、数据库操作SQL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）"><span class="toc-number">1.4.</span> <span class="toc-text">三、表操作SQL语句（登录之后必须用以上的USE命令选择一个数据库，再进行表操作）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、数据库权限操作SQL语句"><span class="toc-number">1.5.</span> <span class="toc-text">四、数据库权限操作SQL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、MySQL拷贝表结构、表数据"><span class="toc-number">1.6.</span> <span class="toc-text">五、MySQL拷贝表结构、表数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、MySQL导入导出"><span class="toc-number">1.7.</span> <span class="toc-text">六、MySQL导入导出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、MySQL索引的查看创建和删除"><span class="toc-number">1.8.</span> <span class="toc-text">七、MySQL索引的查看创建和删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八、mysql修改表存储引擎"><span class="toc-number">1.9.</span> <span class="toc-text">八、mysql修改表存储引擎</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"mysql常用命令　| Hello KuGou...　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+
+    <a href="/img/wxsyf.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="/img/wxsyf.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+        &nbsp;&nbsp;
+
+    <a href="/img/zfb.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/zfb.jpg" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2140956';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/08/31/linux-work-command/" title="上一篇: linux工作命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/29/hello-kugou/" title="下一篇: Hello KuGou">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/23/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36/">centos6-install-nginx1.12.2-mysql5.6.22-php5.6.36</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/16/vmware-centos-share-folder/">vmware下centos7实现共享文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/centos7-install-nginx-mysql-php/">centos7编译安装nginx、mysql、php</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/14/java-first-learn/">win10下java环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/zhengze/">正则匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/07/jquery-tanchuan/">移动端弹窗多种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/git-work-to-sum-up/">git工作命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/alert-replace-page/">php表单提交弹窗代替alert()</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/php-gbf/">php解决网站大流量与高并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/mysql-sjkyh-zj/">mysql数据库优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/19/https-deploy/">https部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/03/thinkphp-php-execll-dr/">thinkphp execll导入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/26/php-install-maintain/">php环境安装及维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/php-design-patterns/">php设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/php-redis-duilie/">php redis消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/php-PSR/">php代码规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-memcache-memcached/">memcache和memcached区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/php-redis-windows/">window安装redis和php-redis扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/php-json-array/">php json 数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/27/mysql-multi-table-query/">mysql单表、多表查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/php-elm-interface/">饿了么接口——php</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-db-cz/">thinkphp数据库操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/thinkphp-bj/">thinkphp笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/php-object-jc/">php 面向对象基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/javascript-callback/">javascript立即调用函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/03/mysql-innodb-myisam/">mysql_innodb_myisam</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/phpstorm-problem/">phpstorm以及xdebug安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/git-command/">git基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/linux-work-command/">linux工作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/hello-kugou/">Hello KuGou</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 phplbw
+            </div>
+            <div class="footer-right">
+            <!--
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                -->
+            </div>
+        </div>
+        <div id="days"></div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true">本站到访数</i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true">本页阅读量</i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js">
+    //这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件
+    </script>
+    <script>
+        var begin = moment([2016,10,15]); //定义博客开始时间
+        var now = moment(); //使用 moment() 获取当前时间
+        document.getElementById('days').innerHTML ="博客已运行 "+now.diff(begin,'days')+" 天"
+    // 使用 now.diff(begin,'days') 函数获取天数，这里天数考虑了闰年
+    </script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </div>
+  <!--
+  <a href="https://github.com/phplbw/phplbw.github.io"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  -->
+  <script type="text/javascript" src="/js/love.js"></script>
+</body>
+</html>
