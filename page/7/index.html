@@ -277,72 +277,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-javascript-youhua-jiqiao" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/05/javascript-youhua-jiqiao/" class="article-date">
-      <time datetime="2016-09-05T07:03:21.000Z" itemprop="datePublished">2016-09-05</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="优化技巧"><a href="#优化技巧" class="headerlink" title="优化技巧"></a>优化技巧</h2><h3 id="避免全局查找"><a href="#避免全局查找" class="headerlink" title="避免全局查找"></a>避免全局查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">search</span></span>() &#123;</span><br><span class="line">//当使用当前页面地址和主机域名</span><br><span class="line">   alert(window.location.href + window.location.host);</span><br><span class="line">&#125;</span><br><span class="line">//最好的方式是如下这样先用一个简单变量保存起来</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">search</span></span>() &#123;</span><br><span class="line">   var location = window.location;</span><br><span class="line">   alert(location.href + location.host);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/09/05/javascript-youhua-jiqiao/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-javascript-callback" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -588,6 +522,72 @@
       
         <p class="article-more-link">
           <a href="/2016/09/01/git-command/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-linux-work-command" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/31/linux-work-command/" class="article-date">
+      <time datetime="2016-08-31T13:54:35.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/31/linux-work-command/">linux工作命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="linux-command"><a href="#linux-command" class="headerlink" title="linux command"></a>linux command</h2><h3 id="一、常用的系统工作命令"><a href="#一、常用的系统工作命令" class="headerlink" title="一、常用的系统工作命令"></a>一、常用的系统工作命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">将<span class="built_in">echo</span>命令的字符串输出到终端 <span class="built_in">echo</span> Linux</span><br><span class="line">用<span class="built_in">echo</span>命令查看SHELL变量的值(前面有$符号) <span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line">查看本机主机名 <span class="built_in">echo</span> <span class="variable">$HOSTNAME</span></span><br><span class="line">查看当前系统的时间 date</span><br><span class="line">设置系统时间为2016年6月19号早上6点7分 date -s <span class="string">"20160619 6:07:00"</span></span><br><span class="line">重启计算机 reboot</span><br><span class="line">下载node源代码 wget http://nodejs.org/dist/v4.4.5/node-v4.4.5.tar.gz</span><br><span class="line">实现一个纯文本界面的浏览器 a、yum install elinks b、elinks www.baidu.com</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/08/31/linux-work-command/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
