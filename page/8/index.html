@@ -277,11 +277,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-mysql-im-ex" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux-work-command" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/30/mysql-im-ex/" class="article-date">
-      <time datetime="2016-08-30T10:39:44.000Z" itemprop="datePublished">2016-08-30</time>
+      <a href="/2016/08/31/linux-work-command/" class="article-date">
+      <time datetime="2016-08-31T13:54:35.000Z" itemprop="datePublished">2016-08-31</time>
 </a>
 
 
@@ -296,7 +296,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a>
+      <a class="article-title" href="/2016/08/31/linux-work-command/">linux工作命令</a>
     </h1>
   
 
@@ -306,8 +306,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="mysql-command"><a href="#mysql-command" class="headerlink" title="mysql command"></a>mysql command</h2><h3 id="查看数据库版本"><a href="#查看数据库版本" class="headerlink" title="*查看数据库版本"></a>*查看数据库版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION();</span><br></pre></td></tr></table></figure>
-<h3 id="一、从命令行登录MySQL数据库服务器"><a href="#一、从命令行登录MySQL数据库服务器" class="headerlink" title="一、从命令行登录MySQL数据库服务器"></a>一、从命令行登录MySQL数据库服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/<span class="built_in">local</span>/mysql/bin/mysql -h hostname -u root -p</span><br><span class="line">登录使用默认3306端口的MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br><span class="line">通过TCP连接管理不同端口的多个MySQL（注意：MySQL4.1以上版本才有此项功能） /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --protocol=tcp --host=localhost --port=3307</span><br><span class="line">通过socket套接字管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --socket=/tmp/mysql3307.sock</span><br><span class="line">通过端口和IP管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p -P 3306 -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+              <h2 id="linux-command"><a href="#linux-command" class="headerlink" title="linux command"></a>linux command</h2><h3 id="一、常用的系统工作命令"><a href="#一、常用的系统工作命令" class="headerlink" title="一、常用的系统工作命令"></a>一、常用的系统工作命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">将<span class="built_in">echo</span>命令的字符串输出到终端 <span class="built_in">echo</span> Linux</span><br><span class="line">用<span class="built_in">echo</span>命令查看SHELL变量的值(前面有$符号) <span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line">查看本机主机名 <span class="built_in">echo</span> <span class="variable">$HOSTNAME</span></span><br><span class="line">查看当前系统的时间 date</span><br><span class="line">设置系统时间为2016年6月19号早上6点7分 date -s <span class="string">"20160619 6:07:00"</span></span><br><span class="line">重启计算机 reboot</span><br><span class="line">下载node源代码 wget http://nodejs.org/dist/v4.4.5/node-v4.4.5.tar.gz</span><br><span class="line">实现一个纯文本界面的浏览器 a、yum install elinks b、elinks www.baidu.com</span><br></pre></td></tr></table></figure>
           
       
     </div>
@@ -318,12 +317,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a href="/2016/08/30/mysql-im-ex/#more">阅读全文 >></a>
+          <a href="/2016/08/31/linux-work-command/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

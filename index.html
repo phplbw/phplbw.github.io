@@ -277,6 +277,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-mysql-im-ex" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/30/mysql-im-ex/" class="article-date">
+      <time datetime="2016-08-30T10:39:44.000Z" itemprop="datePublished">2016-08-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/30/mysql-im-ex/">mysql常用命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="mysql-command"><a href="#mysql-command" class="headerlink" title="mysql command"></a>mysql command</h2><h3 id="查看数据库版本"><a href="#查看数据库版本" class="headerlink" title="*查看数据库版本"></a>*查看数据库版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION();</span><br></pre></td></tr></table></figure>
+<h3 id="一、从命令行登录MySQL数据库服务器"><a href="#一、从命令行登录MySQL数据库服务器" class="headerlink" title="一、从命令行登录MySQL数据库服务器"></a>一、从命令行登录MySQL数据库服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">登录MySQL,如果连接远程数据库，需要用-h指定hostname /usr/<span class="built_in">local</span>/mysql/bin/mysql -h hostname -u root -p</span><br><span class="line">登录使用默认3306端口的MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br><span class="line">通过TCP连接管理不同端口的多个MySQL（注意：MySQL4.1以上版本才有此项功能） /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --protocol=tcp --host=localhost --port=3307</span><br><span class="line">通过socket套接字管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --socket=/tmp/mysql3307.sock</span><br><span class="line">通过端口和IP管理不同端口的多个MySQL /usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p -P 3306 -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <a class="">置顶</a>
+        </div>
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/08/30/mysql-im-ex/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-centos6-install-nginx1-12-2-mysql5-6-22-php5-6-36" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -538,76 +609,6 @@
       
         <p class="article-more-link">
           <a href="/2017/10/14/java-first-learn/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-php-substr-cut" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/27/php-substr-cut/" class="article-date">
-      <time datetime="2017-08-27T14:31:45.000Z" itemprop="datePublished">2017-08-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="php截取字符"><a href="#php截取字符" class="headerlink" title="php截取字符"></a>php截取字符</h2><h3 id="php截取字符中间保留星号"><a href="#php截取字符中间保留星号" class="headerlink" title="php截取字符中间保留星号"></a>php截取字符中间保留星号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">    <span class="keyword">function</span> substr_cut(<span class="variable">$user_name</span>)&#123;</span><br><span class="line">        //获取字符串长度</span><br><span class="line">        <span class="variable">$strlen</span> = mb_strlen(<span class="variable">$user_name</span>, <span class="string">'utf-8'</span>);</span><br><span class="line">        //如果字符串长度小于2，不做任何处理</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$strlen</span>&lt;2)&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="variable">$user_name</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            //mb_substr — 获取字符串的部分</span><br><span class="line">            <span class="variable">$firstStr</span> = mb_substr(<span class="variable">$user_name</span>, 0, 1, <span class="string">'utf-8'</span>);</span><br><span class="line">            <span class="variable">$lastStr</span> = mb_substr(<span class="variable">$user_name</span>, -1, 1, <span class="string">'utf-8'</span>);</span><br><span class="line">            //str_repeat — 重复一个字符串</span><br><span class="line">            <span class="built_in">return</span> <span class="variable">$strlen</span> == 2 ? <span class="variable">$firstStr</span> . str_repeat(<span class="string">'*'</span>, mb_strlen(<span class="variable">$user_name</span>, <span class="string">'utf-8'</span>) - 1) : <span class="variable">$firstStr</span> . str_repeat(<span class="string">"*"</span>, <span class="variable">$strlen</span> - 2) . <span class="variable">$lastStr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$str</span> = <span class="string">'中文ewe'</span>;</span><br><span class="line"><span class="built_in">echo</span> substr_cut(<span class="variable">$str</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/08/27/php-substr-cut/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

@@ -277,6 +277,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-mysql-stored-procedure" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/17/mysql-stored-procedure/" class="article-date">
+      <time datetime="2016-09-17T01:49:14.000Z" itemprop="datePublished">2016-09-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="mysql-stored-procedure"><a href="#mysql-stored-procedure" class="headerlink" title="mysql_stored_procedure"></a>mysql_stored_procedure</h2><h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">create procedure 存储过程名字()   </span><br><span class="line">(   </span><br><span class="line">[<span class="keyword">in</span>|out|inout] 参数 datatype   </span><br><span class="line">)   </span><br><span class="line">begin   </span><br><span class="line">MySQL 语句;   </span><br><span class="line">end;</span><br><span class="line">MySQL 存储过程参数如果不显式指定“<span class="keyword">in</span>”、“out”、“inout”，则默认为“<span class="keyword">in</span>”。习惯上，对于是“<span class="keyword">in</span>” 的参数，都不会显式指定。</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/09/17/mysql-stored-procedure/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-php-elm-interface" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -521,72 +587,6 @@
       
         <p class="article-more-link">
           <a href="/2016/09/05/php-object-jc/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript-youhua-jiqiao" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/05/javascript-youhua-jiqiao/" class="article-date">
-      <time datetime="2016-09-05T07:03:21.000Z" itemprop="datePublished">2016-09-05</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/05/javascript-youhua-jiqiao/">javascript优化技巧</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="优化技巧"><a href="#优化技巧" class="headerlink" title="优化技巧"></a>优化技巧</h2><h3 id="避免全局查找"><a href="#避免全局查找" class="headerlink" title="避免全局查找"></a>避免全局查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">search</span></span>() &#123;</span><br><span class="line">//当使用当前页面地址和主机域名</span><br><span class="line">   alert(window.location.href + window.location.host);</span><br><span class="line">&#125;</span><br><span class="line">//最好的方式是如下这样先用一个简单变量保存起来</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">search</span></span>() &#123;</span><br><span class="line">   var location = window.location;</span><br><span class="line">   alert(location.href + location.host);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/09/05/javascript-youhua-jiqiao/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

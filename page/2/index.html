@@ -277,6 +277,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-php-substr-cut" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/27/php-substr-cut/" class="article-date">
+      <time datetime="2017-08-27T14:31:45.000Z" itemprop="datePublished">2017-08-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/27/php-substr-cut/">php截取字符中间保留星号</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="php截取字符"><a href="#php截取字符" class="headerlink" title="php截取字符"></a>php截取字符</h2><h3 id="php截取字符中间保留星号"><a href="#php截取字符中间保留星号" class="headerlink" title="php截取字符中间保留星号"></a>php截取字符中间保留星号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">    <span class="keyword">function</span> substr_cut(<span class="variable">$user_name</span>)&#123;</span><br><span class="line">        //获取字符串长度</span><br><span class="line">        <span class="variable">$strlen</span> = mb_strlen(<span class="variable">$user_name</span>, <span class="string">'utf-8'</span>);</span><br><span class="line">        //如果字符串长度小于2，不做任何处理</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$strlen</span>&lt;2)&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="variable">$user_name</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            //mb_substr — 获取字符串的部分</span><br><span class="line">            <span class="variable">$firstStr</span> = mb_substr(<span class="variable">$user_name</span>, 0, 1, <span class="string">'utf-8'</span>);</span><br><span class="line">            <span class="variable">$lastStr</span> = mb_substr(<span class="variable">$user_name</span>, -1, 1, <span class="string">'utf-8'</span>);</span><br><span class="line">            //str_repeat — 重复一个字符串</span><br><span class="line">            <span class="built_in">return</span> <span class="variable">$strlen</span> == 2 ? <span class="variable">$firstStr</span> . str_repeat(<span class="string">'*'</span>, mb_strlen(<span class="variable">$user_name</span>, <span class="string">'utf-8'</span>) - 1) : <span class="variable">$firstStr</span> . str_repeat(<span class="string">"*"</span>, <span class="variable">$strlen</span> - 2) . <span class="variable">$lastStr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$str</span> = <span class="string">'中文ewe'</span>;</span><br><span class="line"><span class="built_in">echo</span> substr_cut(<span class="variable">$str</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <a class="">置顶</a>
+        </div>
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-substr-cut/">php_substr_cut</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/08/27/php-substr-cut/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-zhengze" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -537,76 +607,6 @@
       
         <p class="article-more-link">
           <a href="/2017/06/25/alert-replace-page/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-centos6-x-redis-az" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/25/centos6-x-redis-az/" class="article-date">
-      <time datetime="2017-02-25T13:31:09.000Z" itemprop="datePublished">2017-02-25</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/25/centos6-x-redis-az/">centos6.x安装redis</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="centos-redis"><a href="#centos-redis" class="headerlink" title="centos-redis"></a>centos-redis</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir redis</span><br><span class="line"><span class="built_in">cd</span> redis</span><br><span class="line">wget https://github.com/antirez/redis/archive/2.8.19.tar.gz -O redis-2.8.19.tar.gz (下载安装并重新命名)</span><br><span class="line">tar xzf redis-2.8.19.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-2.8.19</span><br><span class="line">make</span><br><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">redis-server (就会看到启动结果 图略)</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/">centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/02/25/centos6-x-redis-az/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

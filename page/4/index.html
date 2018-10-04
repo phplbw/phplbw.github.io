@@ -277,6 +277,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-https-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/19/https-deploy/" class="article-date">
+      <time datetime="2017-02-18T18:42:12.000Z" itemprop="datePublished">2017-02-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/19/https-deploy/">https部署</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="https-deploy"><a href="#https-deploy" class="headerlink" title="https_deploy"></a>https_deploy</h2><h3 id="获取证书"><a href="#获取证书" class="headerlink" title="获取证书"></a>获取证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我域名原先在阿里云解析后转到https://www.dnspod.cn/console/dns/解析，首先要把阿里云那边的dns解析改为f1g1ns1.dnspod.net和f1g1ns2.dnspod.net，然后再解析域名。</span><br><span class="line">解析完后在https://www.dnspod.cn/console/user/security创建API Token得到YOUR_TOKEN_ID和YOUR_API_TOKEN</span><br><span class="line">wget https://github.com/xdtianyu/scripts/raw/master/le-dns/le-dnspod.sh</span><br><span class="line">wget https://github.com/xdtianyu/scripts/raw/master/le-dns/dnspod.conf</span><br><span class="line">chmod +x le-dnspod.sh</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/02/19/https-deploy/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-thinkphp-php-execll-dr" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -523,72 +589,6 @@
       
         <p class="article-more-link">
           <a href="/2016/11/17/php-redis-duilie/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql-statistics" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/19/mysql-statistics/" class="article-date">
-      <time datetime="2016-10-18T16:45:17.000Z" itemprop="datePublished">2016-10-19</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="mysql-statistics"><a href="#mysql-statistics" class="headerlink" title="mysql-statistics"></a>mysql-statistics</h2><h3 id="数据表格式"><a href="#数据表格式" class="headerlink" title="数据表格式"></a>数据表格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">表Student</span><br><span class="line">(S<span class="comment">#,Sname,Sage,Ssex) 学生表</span></span><br><span class="line">S<span class="comment">#    学号</span></span><br><span class="line">Sage  年龄</span><br><span class="line">Ssex  性别</span><br><span class="line">表Course</span><br><span class="line">(C<span class="comment">#,Cname,T#) 课程表</span></span><br><span class="line">C<span class="comment">#      课程号</span></span><br><span class="line">Cname   课程名</span><br><span class="line">T<span class="comment">#      教师号</span></span><br><span class="line">表SC（学生与课程的分数制图表）</span><br><span class="line">(S<span class="comment">#,C#,score) 成绩表</span></span><br><span class="line">S<span class="comment">#       学号</span></span><br><span class="line">C<span class="comment">#       课程号</span></span><br><span class="line">score    分数</span><br><span class="line">表Teacher</span><br><span class="line">(T<span class="comment">#,Tname) 教师表</span></span><br><span class="line">T<span class="comment">#         教师号</span></span><br><span class="line">Tname      教师名</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/10/19/mysql-statistics/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

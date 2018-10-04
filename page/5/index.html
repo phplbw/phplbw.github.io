@@ -277,6 +277,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-mysql-statistics" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/19/mysql-statistics/" class="article-date">
+      <time datetime="2016-10-18T16:45:17.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/19/mysql-statistics/">mysql统计分析语句</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="mysql-statistics"><a href="#mysql-statistics" class="headerlink" title="mysql-statistics"></a>mysql-statistics</h2><h3 id="数据表格式"><a href="#数据表格式" class="headerlink" title="数据表格式"></a>数据表格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">表Student</span><br><span class="line">(S<span class="comment">#,Sname,Sage,Ssex) 学生表</span></span><br><span class="line">S<span class="comment">#    学号</span></span><br><span class="line">Sage  年龄</span><br><span class="line">Ssex  性别</span><br><span class="line">表Course</span><br><span class="line">(C<span class="comment">#,Cname,T#) 课程表</span></span><br><span class="line">C<span class="comment">#      课程号</span></span><br><span class="line">Cname   课程名</span><br><span class="line">T<span class="comment">#      教师号</span></span><br><span class="line">表SC（学生与课程的分数制图表）</span><br><span class="line">(S<span class="comment">#,C#,score) 成绩表</span></span><br><span class="line">S<span class="comment">#       学号</span></span><br><span class="line">C<span class="comment">#       课程号</span></span><br><span class="line">score    分数</span><br><span class="line">表Teacher</span><br><span class="line">(T<span class="comment">#,Tname) 教师表</span></span><br><span class="line">T<span class="comment">#         教师号</span></span><br><span class="line">Tname      教师名</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/10/19/mysql-statistics/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-php-memcache-memcached" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -523,72 +589,6 @@
       
         <p class="article-more-link">
           <a href="/2016/09/27/mysql-multi-table-query/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql-stored-procedure" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/17/mysql-stored-procedure/" class="article-date">
-      <time datetime="2016-09-17T01:49:14.000Z" itemprop="datePublished">2016-09-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/17/mysql-stored-procedure/">mysql存储过程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="mysql-stored-procedure"><a href="#mysql-stored-procedure" class="headerlink" title="mysql_stored_procedure"></a>mysql_stored_procedure</h2><h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">create procedure 存储过程名字()   </span><br><span class="line">(   </span><br><span class="line">[<span class="keyword">in</span>|out|inout] 参数 datatype   </span><br><span class="line">)   </span><br><span class="line">begin   </span><br><span class="line">MySQL 语句;   </span><br><span class="line">end;</span><br><span class="line">MySQL 存储过程参数如果不显式指定“<span class="keyword">in</span>”、“out”、“inout”，则默认为“<span class="keyword">in</span>”。习惯上，对于是“<span class="keyword">in</span>” 的参数，都不会显式指定。</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/09/17/mysql-stored-procedure/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
